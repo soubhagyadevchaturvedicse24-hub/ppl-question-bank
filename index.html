@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPL Question Bank - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .link-icon {
+            font-size: 2.5rem;
+        }
+
+        .link-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.25rem;
+        }
+
+        .link-desc {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        .features {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .features h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            color: #495057;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 PPL Question Bank</h1>
+        <p class="subtitle">Complete Previous Year Questions Database (2020-2024)</p>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-value">162</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Units</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">68</div>
+                <div class="stat-label">Subtopics</div>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="PPL_Interactive_QuestionBank.html" class="link-card">
+                <div class="link-icon">📝</div>
+                <div class="link-content">
+                    <div class="link-title">Interactive Question Bank</div>
+                    <div class="link-desc">Browse all questions with checkboxes, search, filters, and progress tracking</div>
+                </div>
+            </a>
+
+            <a href="PPL_Probability_Dashboard.html" class="link-card">
+                <div class="link-icon">📊</div>
+                <div class="link-content">
+                    <div class="link-title">Probability Dashboard</div>
+                    <div class="link-desc">Nov-Dec 2025 exam predictions with probability percentages</div>
+                </div>
+            </a>
+
+            <a href="PPL_Complete_All_Units_Questions.html" class="link-card">
+                <div class="link-icon">📖</div>
+                <div class="link-content">
+                    <div class="link-title">Complete Database</div>
+                    <div class="link-desc">Full question database with detailed analysis and study guides</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="features">
+            <h3>✨ Key Features</h3>
+            <ul>
+                <li>Interactive checkboxes at Unit, Subtopic, and Question levels</li>
+                <li>Smart search and filtering system</li>
+                <li>Progress tracking with LocalStorage persistence</li>
+                <li>Probability analysis for upcoming exams</li>
+                <li>Mobile-responsive design</li>
+                <li>High-priority questions marked with ⭐⭐⭐</li>
+                <li>Frequency data (questions asked 5-7 times)</li>
+                <li>Complete PYQ coverage from 2020-2024</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

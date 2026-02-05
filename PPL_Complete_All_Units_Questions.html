@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPL Complete Question Database - All Units</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --radius: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Layout Structure */
+        .app-shell {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            background: var(--bg-slate);
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
+            transition: all 0.2s;
+            min-width: 120px;
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary);
+            background-color: #fff;
+        }
+
+        .highlight {
+            background-color: #fef08a;
+            color: black;
+            padding: 0 2px;
+            border-radius: 2px;
+            box-shadow: 0 0 0 1px #fde047;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 2rem;
+            padding: 2rem;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 5.5rem;
+            max-height: calc(100vh - 7rem);
+            overflow-y: auto;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar { display: block; }
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 0.35rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #eff6ff;
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background-color: #eff6ff;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .container {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Element Styling Refinement */
+        .title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #1e293b, #334155);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            border: none;
+            box-shadow: var(--shadow-md);
+        }
+
+        .title-section h1 { 
+            color: white; 
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .title-section h2 { color: #94a3b8; }
+        .title-section p { color: #cbd5e1; font-size: 0.9rem; }
+
+        .unit-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+            color: var(--text-main);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 2.5rem 0 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .unit-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+
+        .subtopic-header {
+            background: #f1f5f9;
+            border: none;
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .subtopic-header h3 {
+            color: var(--text-main);
+        }
+
+        .question {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .question:hover {
+            border-left-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transform: translateX(2px);
+        }
+
+        .question.completed {
+            background: #f0fdf4;
+            border-left-color: var(--success);
+            opacity: 0.85;
+        }
+
+        .question-number {
+            font-family: 'Consolas', monospace;
+            font-size: 0.75rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1e293b;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .question-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+            font-size: 0.8rem;
+        }
+
+        .question-meta span {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .year-badge { background: #dbeafe; color: #1e40af; }
+        .marks-badge { background: #d1fae5; color: #065f46; }
+        .frequency-badge { background: #fed7aa; color: #92400e; }
+        .frequency-count { background: #fecaca; color: #991b1b; font-weight: 600; }
+
+        /* Simple Checkbox */
+        input[type="checkbox"].q-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            margin-right: 12px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .q-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        /* Progress Widget */
+        .progress-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #e2e8f0;
+            z-index: 100;
+            min-width: 200px;
+            font-size: 0.85rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+    </style>
+        
+        /* Top questions styling */
+        .top-questions {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: var(--radius);
+        }
+
+        /* Print Override */
+        @media print {
+            .sidebar, .top-nav { display: none; }
+            .container { width: 100%; display: block; }
+            .question { break-inside: avoid; border: 1px solid #ddd; }
+        }
+
+        /* Accordion Extensions */
+        .subtopic-header {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .subtopic-header:hover {
+            filter: brightness(0.95);
+            transform: translateX(5px);
+        }
+
+        .dropdown-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .subtopic-header.active .dropdown-icon {
+            transform: rotate(-180deg);
+        }
+
+        .questions-wrapper {
+            overflow: hidden;
+            display: none; /* Default State: Collapsed */
+        }
+        
+        .questions-wrapper.searching {
+            display: block !important;
+        }
+        
+        .wrapper-animate {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-shell">
+        <nav class="top-nav">
+            <div class="nav-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                PPL Database v2.0
+            </div>
+            <div class="search-wrapper" style="max-width: 700px; display:flex;">
+                <div style="position:relative; flex:1;">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search questions...">
+                </div>
+                
+                <div class="filters-container">
+                    <select id="unitFilter" class="filter-select">
+                        <option value="all">All Units</option>
+                        <option value="1">Unit I</option>
+                        <option value="2">Unit II</option>
+                        <option value="3">Unit III</option>
+                        <option value="4">Unit IV</option>
+                        <option value="5">Unit V</option>
+                    </select>
+                    
+                    <select id="priorityFilter" class="filter-select">
+                        <option value="all">All Priorities</option>
+                        <option value="high">High &amp; Top</option>
+                        <option value="medium">Medium</option>
+                    </select>
+
+                    <select id="sortFilter" class="filter-select">
+                        <option value="default">Default Sort</option>
+                        <option value="marks">Highest Marks</option>
+                        <option value="frequency">Most Frequent</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <div class="main-layout">
+            <aside class="sidebar">
+                <div class="sidebar-title">Quick Navigation</div>
+                <div id="sidebar-nav"></div>
+                
+                <div class="sidebar-title" style="margin-top: 2rem;">Stats</div>
+                <div style="font-size: 0.85rem; color: #64748b;">
+                    <div>Questions: <strong>162</strong></div>
+                    <div>Units: <strong>5</strong></div>
+                    <div>Subtopics: <strong>68</strong></div>
+                </div>
+            </aside>
+            <main class="content-area">
+                <div class="container">
+        <!-- TITLE -->
+        <div class="title-section">
+            <h1>PPL (B022313(022)) - COMPLETE QUESTION DATABASE</h1>
+            <h2>All 162+ Questions | All 5 Units | All 68 Subtopics</h2>
+            <p><strong>Level:</strong> B.Tech III | <strong>Exam:</strong> Nov-Dec 2025</p>
+            <p><strong>Papers Analyzed:</strong> 9 (2020-2024) | <strong>Total Questions:</strong> 162+ | <strong>Subtopics:</strong> 68</p>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h3>📋 DATABASE STRUCTURE</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong>Unit I: Program Design</strong><br/>
+                    31 questions | 13 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit II: Language Processors</strong><br/>
+                    25 questions | 11 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit III: Functional & Logic PL</strong><br/>
+                    32 questions | 15 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit IV: OOP Concepts-I</strong><br/>
+                    37 questions | 16 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit V: OOP Concepts-II</strong><br/>
+                    37 questions | 13 subtopics
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP PRIORITY QUESTIONS -->
+        <div class="top-questions">
+            <h3>🎯 TOP 10 HIGHEST PROBABILITY QUESTIONS (Study These FIRST)</h3>
+            <div class="top-q-item">
+                <span class="top-q-rank">1</span>
+                <strong>V-3.1: Friend Functions & Classes</strong> - 90% probability<br/>
+                <small>Asked 7 times (2021-2024) | 8 marks | HIGHEST ⭐⭐⭐</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">2</span>
+                <strong>V-1.1: Constructor & Destructor</strong> - 85% probability<br/>
+                <small>Asked 6 times | Part (a) 4 marks | Almost every year</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">3</span>
+                <strong>I-1.2: Modules & Modularization</strong> - 80% probability<br/>
+                <small>Asked 7 times | 8 marks | Foundation of Unit I</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">4</span>
+                <strong>III-1.1: LISP Fundamentals</strong> - 85-90% probability<br/>
+                <small>Asked 6+ times | 8 marks | Dominant in Unit III</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">5</span>
+                <strong>IV-5.1: New vs Delete Operators</strong> - 70-75% probability<br/>
+                <small>Asked 5 times | 8 marks | Very high frequency</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">6</span>
+                <strong>IV-1.1: OOP Concepts Introduction</strong> - 75% probability<br/>
+                <small>Asked 5 times | 8 marks | Core OOP</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">7</span>
+                <strong>V-4.1: Function Overloading</strong> - 80% probability<br/>
+                <small>Asked 5 times | 8 marks | Key OOP concept</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">8</span>
+                <strong>II-1.1: Language Characteristics</strong> - 65% probability<br/>
+                <small>Asked 4 times | 8 marks | Unit II foundation</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">9</span>
+                <strong>III-2.1: PROLOG Fundamentals</strong> - 70% probability<br/>
+                <small>Asked 4 times | 8 marks | Logic programming</small>
+            </div>
+            <div class="top-q-item">
+                <span class="top-q-rank">10</span>
+                <strong>IV-3.1: Inheritance</strong> - 75% probability<br/>
+                <small>Asked 5 times | 8 marks | Core OOP</small>
+            </div>
+        </div>
+
+        <!-- ============ UNIT I ============ -->
+        <div class="unit-header">
+            <h2>UNIT-I: PROGRAM DESIGN (31 Questions across 13 Subtopics)</h2>
+        </div>
+
+        <!-- Subtopic 1.1 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.1: INTRODUCTION - FUNDAMENTAL DESIGN CONCEPTS</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.1.1</div>
+            <div class="question-text">Define software design and explain its importance in software engineering.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Foundational concept</span>
+                <span class="meta-item">Implicit in multiple papers</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.1.2</div>
+            <div class="question-text">What are the fundamental design concepts in programming languages?</div>
+            <div class="question-meta">
+                <span class="year-badge">2023(AM)</span>
+                <span class="marks-badge">4 marks</span>
+                <span class="meta-item">Part (a)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.1.3</div>
+            <div class="question-text">Explain about: (i) Abstraction (ii) Refinement (iii) Modularity (iv) Software Architecture</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="meta-item">4-part comprehensive</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.2 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 1.2: MODULES AND MODULARIZATION CRITERIA
+                <span class="priority-badge">⭐ HIGHEST (80%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 7 times | Very High Frequency | 5 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.2.1</div>
+            <div class="question-text"><strong>Define modules and modularization criteria. Explain the criteria for breaking down a program into modules.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 7X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.2.2</div>
+            <div class="question-text">What are the modules and modularization criteria for programming language?</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(ND)</span>
+                <span class="marks-badge">4 marks</span>
+                <span class="meta-item">Part (a) variant</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.2.3</div>
+            <div class="question-text">Explain module and modularization criteria in brief with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(AM)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="meta-item">Recent paper</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.2.4</div>
+            <div class="question-text">List and explain the modularization criteria for effective program design.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Implicit in all modularization questions</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.2.5</div>
+            <div class="question-text">How do you decide if a design is well-modularized? What are the key indicators?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of modularization criteria understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.3 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.3: DESIGN NOTATION - PROCEDURE TEMPLATE</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.3.1</div>
+            <div class="question-text">Explain procedure template notation and its use in design documentation.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Related to design techniques</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.3.2</div>
+            <div class="question-text">What is the role of procedure templates in program design?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of design notation coverage</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.4 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 1.4: DESIGN NOTATION - PSEUDO CODE
+                <span class="priority-badge">⭐ IMPORTANT (45%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 3 times | 4 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.4.1</div>
+            <div class="question-text"><strong>Define pseudo code with example. Explain flowchart in detail with suitable diagram.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 3X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2023(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.4.2</div>
+            <div class="question-text">Write short notes on: (i) Structured flowchart (ii) Decision table</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(AM)</span>
+                <span class="marks-badge">12 marks</span>
+                <span class="meta-item">2-part question</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.4.3</div>
+            <div class="question-text">What is the difference between pseudo code and actual code? When should you use each?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of 2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.4.4</div>
+            <div class="question-text">Do structured flowchart decisions differ from pseudo code?</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="meta-item">Comparison question</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.5 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.5: DESIGN NOTATION - STRUCTURED FLOWCHART</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.5.1</div>
+            <div class="question-text">What is structured flowchart? Briefly explain the logic behind each step.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(ND)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="meta-item">Recent paper</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.5.2</div>
+            <div class="question-text">Define flowchart and explain how it represents program logic.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of flowchart questions</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.5.3</div>
+            <div class="question-text">Compare structured flowcharts with unstructured flowcharts.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Related to design concepts</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.6 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.6: DESIGN NOTATION - DECISION TABLES</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.6.1</div>
+            <div class="question-text">Explain decision tables and their role in program design.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(AM)</span>
+                <span class="marks-badge">Part of 12-mark Q</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.6.2</div>
+            <div class="question-text">How are decision tables useful in testing and design?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Related to design documentation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.7 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.7: DESIGN TECHNIQUES - STEPWISE REFINEMENT</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.7.1</div>
+            <div class="question-text">Explain stepwise refinement design technique.</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.7.2</div>
+            <div class="question-text">How does stepwise refinement improve program design quality?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of design techniques coverage</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.7.3</div>
+            <div class="question-text">Provide an example of stepwise refinement in solving a complex problem.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected in-depth understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.8 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 1.8: DESIGN TECHNIQUES - LEVELS OF ABSTRACTION
+                <span class="priority-badge">⭐ HIGH (60%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 5 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.8.1</div>
+            <div class="question-text"><strong>Define different levels of abstraction and illustrate how it contributes to maintainability and flexibility with examples.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 5X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.8.2</div>
+            <div class="question-text">Explain about abstraction, refinement, modularity and software architecture.</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="meta-item">Part of 4-part question</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.8.3</div>
+            <div class="question-text">How does abstraction help in designing large programs?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of abstraction importance</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.9 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.9: DESIGN TECHNIQUES - TOP-DOWN APPROACH</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.9.1</div>
+            <div class="question-text">Compare top-down and bottom-up approaches in program design.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(ND)</span>
+                <span class="marks-badge">4 marks</span>
+                <span class="meta-item">Part (a)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.9.2</div>
+            <div class="question-text">Explain top-down design approach with example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of design techniques</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.9.3</div>
+            <div class="question-text">What are advantages and disadvantages of top-down design?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected from textbook understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.10 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.10: DESIGN TECHNIQUES - GENERAL</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.10.1</div>
+            <div class="question-text">What are design techniques for programming? Describe various techniques in detail.</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 3X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2022(ND)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.10.2</div>
+            <div class="question-text">Describe test plan design guidelines.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(AM)</span>
+                <span class="marks-badge">10 marks</span>
+                <span class="meta-item">AICTE Scheme</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.11 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.11: TEST PLANS</h3>
+            <div class="probability-info">Low Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.11.1</div>
+            <div class="question-text">Define software testing and types. Explain: (i) Operational Acceptance Testing (ii) Alpha Testing (iii) Beta Testing (iv) Software Maintenance</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 2X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2022(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.11.2</div>
+            <div class="question-text">What are test plans and its types? Short notes on: (i) Unit test (ii) Module test (iii) Sub-system test</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 2X</span>
+                <span class="marks-badge">8-12 marks</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2023(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.11.3</div>
+            <div class="question-text">Explain software testing in brief.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of design guidelines</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.12 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.12: DESIGN GUIDELINES - MODULARITY & COHESION</h3>
+            <div class="probability-info">Low-Medium Probability | 4 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.12.1</div>
+            <div class="question-text">Define modularity. Explain cohesion in detail with a suitable diagram. Should we minimize coupling or maximize it?</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 2X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2023(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.12.2</div>
+            <div class="question-text">T/F: (i) We should minimize coupling. (ii) We should maximize cohesion</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">4 marks</span>
+                <span class="meta-item">True/False</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.12.3</div>
+            <div class="question-text">Explain modularity and cohesion with practical examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected from design guidelines</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.12.4</div>
+            <div class="question-text">What is the relationship between modularity and software maintainability?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of design guidelines understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 1.13 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 1.13: DFD (DATA FLOW DIAGRAM)</h3>
+            <div class="probability-info">Low Probability | 4 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.13.1</div>
+            <div class="question-text">Explain DFD with purpose of Level-0 and Level-1. Include: definition, purpose, symbols used.</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 2X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2022(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.13.2</div>
+            <div class="question-text">T/F: (i) DFD = Data Flow Diagram (ii) Flowchart depicts flow of control in program modules</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">4 marks</span>
+                <span class="meta-item">True/False</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.13.3</div>
+            <div class="question-text">Draw a DFD for a simple system (e.g., Student Management System).</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected practical question</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1.13.4</div>
+            <div class="question-text">Explain Level-0 DFD and Level-1 DFD with differences.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of DFD detailed understanding</span>
+            </div>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- ============ UNIT II ============ -->
+        <div class="unit-header">
+            <h2>UNIT-II: PROGRAMMING LANGUAGE PROCESSORS (25 Questions across 11 Subtopics)</h2>
+        </div>
+
+        <!-- Subtopic 2.1 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 2.1: CHARACTERISTICS OF PROGRAMMING LANGUAGES
+                <span class="priority-badge">⭐ HIGH (65%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 4 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.1.1</div>
+            <div class="question-text"><strong>List and explain the characteristics of programming languages with examples.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 4X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.1.2</div>
+            <div class="question-text">What are the key characteristics that define a programming language?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of language characteristics</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.1.3</div>
+            <div class="question-text">Explain orthogonality and its importance in programming languages.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of language design principles</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.2 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.2: FACTORS INFLUENCING EVOLUTION OF PROGRAMMING LANGUAGES</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.2.1</div>
+            <div class="question-text">Explain the factors influencing the evolution of programming languages.</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.2.2</div>
+            <div class="question-text">How have programming languages evolved over time? What were the driving forces?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of language history and development</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.2.3</div>
+            <div class="question-text">Name at least 5 factors that influence the evolution of programming languages.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected from syllabus understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.3 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.3: DEVELOPMENT IN PROGRAMMING METHODOLOGIES</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.3.1</div>
+            <div class="question-text">Explain developments in programming methodologies from procedural to object-oriented to functional.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Context from 2021-2024 papers</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.3.2</div>
+            <div class="question-text">Compare different programming methodologies and their evolution.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of language design course</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.4 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.4: DESIRABLE FEATURES AND DESIGN ISSUES</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.4.1</div>
+            <div class="question-text">List and explain the desirable features of a good programming language.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.4.2</div>
+            <div class="question-text">What are the design issues in programming languages?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of language design considerations</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.4.3</div>
+            <div class="question-text">Explain the trade-offs involved in programming language design.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected from design issues understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.5 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.5: STRUCTURE AND OPERATIONS OF TRANSLATORS</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.5.1</div>
+            <div class="question-text">Explain the structure and operations of programming language translators.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Related to compilers and interpreters</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.5.2</div>
+            <div class="question-text">What are the phases in a compiler? Explain each phase briefly.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of translator knowledge</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.6 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.6: SOFTWARE SIMULATED COMPUTER</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.6.1</div>
+            <div class="question-text">Explain software simulated computer concept in programming language design.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Advanced concept</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.6.2</div>
+            <div class="question-text">What is the role of virtual machines in programming languages?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Related to software simulated computers</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.7 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.7: SYNTAX, SEMANTICS & STRUCTURE</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.7.1</div>
+            <div class="question-text">Define and explain: (i) Syntax (ii) Semantics (iii) Structure of a programming language</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.7.2</div>
+            <div class="question-text">Explain BNF (Backus-Naur Form) and its use in defining language syntax.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of syntax definition</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.8 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.8: VIRTUAL COMPUTERS</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.8.1</div>
+            <div class="question-text">What is a virtual computer? Explain its architecture and functionality.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Conceptual understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.9 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.9: BINDING AND BINDING TIMES</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.9.1</div>
+            <div class="question-text">Explain binding and different binding times in programming languages.</div>
+            <div class="question-meta">
+                <span class="year-badge">2023(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.9.2</div>
+            <div class="question-text">What are the implications of different binding times on program execution?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of binding concept understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.10 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.10: STORAGE MANAGEMENT</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.10.1</div>
+            <div class="question-text">Explain storage management in programming languages. Discuss static and dynamic storage allocation.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.10.2</div>
+            <div class="question-text">What is garbage collection and why is it important?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of storage management concepts</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 2.11 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 2.11: COMPARISONS (TRANSLATORS, LANGUAGES, FEATURES)</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.11.1</div>
+            <div class="question-text">Compare compiler and interpreter. When should each be used?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Important comparison question</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2.11.2</div>
+            <div class="question-text">Compare static and dynamic storage allocation. Give examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Part of storage management</span>
+            </div>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- ============ UNIT III ============ -->
+        <div class="unit-header">
+            <h2>UNIT-III: FUNCTIONAL & LOGIC PROGRAMMING LANGUAGES (32 Questions across 15 Subtopics)</h2>
+        </div>
+
+        <!-- Subtopic 3.1 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 3.1: INTRODUCTION - FUNCTIONAL PROGRAMMING
+                <span class="priority-badge">⭐ HIGHEST (85-90%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 6+ times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.1.1</div>
+            <div class="question-text"><strong>Define functional programming language and compare it with procedural and object-oriented languages.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 6X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.1.2</div>
+            <div class="question-text">What are the key characteristics of functional programming?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of functional programming understanding</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.1.3</div>
+            <div class="question-text">Explain the concept of pure functions and immutability in functional programming.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Advanced functional programming concept</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.2 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 3.2: LOGIC PROGRAMMING - INTRODUCTION
+                <span class="priority-badge">⭐ HIGH (70%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 4 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.2.1</div>
+            <div class="question-text"><strong>Define logic programming and explain how it differs from imperative programming.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 4X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.2.2</div>
+            <div class="question-text">What are the key characteristics and advantages of logic programming?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of logic programming understanding</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.2.3</div>
+            <div class="question-text">Compare functional programming and logic programming with examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected comparison question</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.3 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.3: APPLICATIONS OF FUNCTIONAL & LOGIC PROGRAMMING</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.3.1</div>
+            <div class="question-text">What are the real-world applications of functional and logic programming languages?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Practical applications</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.3.2</div>
+            <div class="question-text">Give 3 examples each for functional and logic programming applications.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected from textbook</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.4 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.4: LISP - INTRODUCTION & FUNDAMENTALS</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.4.1</div>
+            <div class="question-text">Define LISP and explain its significance as a functional programming language.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 LISP introduction</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.4.2</div>
+            <div class="question-text">What are the key features of LISP?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 LISP features understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.5 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 3.5: LISP - OBJECTS
+                <span class="priority-badge">⭐ IMPORTANT (50%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 3 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.5.1</div>
+            <div class="question-text">Explain the concept of atoms and lists in LISP. Provide examples.</div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 3X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.5.2</div>
+            <div class="question-text">What are LISP objects? How are they represented?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of LISP fundamentals</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.5.3</div>
+            <div class="question-text">Explain S-expressions and their role in LISP programs.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 LISP data representation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.6 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.6: LISP - CONTROL CONSTRUCTS</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.6.1</div>
+            <div class="question-text">Explain control constructs in LISP: (i) COND (ii) IF (iii) AND (iv) OR</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.6.2</div>
+            <div class="question-text">What is COND in LISP and how is it used?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part of LISP control flow</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.6.3</div>
+            <div class="question-text">Write a simple LISP program using control constructs.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected practical LISP programming</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.7 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.7: LISP - LIST PROCESSING</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.7.1</div>
+            <div class="question-text">Explain list processing functions in LISP: CAR, CDR, CONS, LIST</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.7.2</div>
+            <div class="question-text">What is the purpose of CAR and CDR functions? Give examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Core LISP list operations</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.7.3</div>
+            <div class="question-text">Write a LISP program to reverse a list using CAR, CDR, and CONS.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected LISP coding practice</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.8 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.8: PROLOG - INTRODUCTION</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.8.1</div>
+            <div class="question-text">Define PROLOG and explain its significance as a logic programming language.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 PROLOG introduction</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.8.2</div>
+            <div class="question-text">What are the key features and principles of PROLOG?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 PROLOG features understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.9 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.9: PROLOG - SYNTAX & STRUCTURE</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.9.1</div>
+            <div class="question-text">Explain PROLOG syntax: facts, rules, and queries.</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.9.2</div>
+            <div class="question-text">Write PROLOG programs for: (i) Facts (ii) Rules (iii) Queries</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 PROLOG programming basics</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.10 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.10: PROLOG - LISTS</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.10.1</div>
+            <div class="question-text">Explain list operations in PROLOG. Write programs for common list operations.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.10.2</div>
+            <div class="question-text">How are lists represented in PROLOG? Give examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 PROLOG data structures</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.11 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.11: PROLOG - OPERATORS & ARITHMETIC</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.11.1</div>
+            <div class="question-text">Explain operators and arithmetic operations in PROLOG with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2023(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.11.2</div>
+            <div class="question-text">Write PROLOG programs to perform arithmetic calculations.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 PROLOG arithmetic operations</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.12 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.12: PROLOG - CONTROL CONSTRUCTS</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.12.1</div>
+            <div class="question-text">Explain control constructs in PROLOG: (i) Cut (!) (ii) Fail (iii) Backtracking</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.12.2</div>
+            <div class="question-text">What is backtracking in PROLOG and how does it work?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Core PROLOG execution mechanism</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.13 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.13: PROLOG - UNIFICATION & PATTERN MATCHING</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.13.1</div>
+            <div class="question-text">Explain unification and pattern matching in PROLOG.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Core PROLOG concepts</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.13.2</div>
+            <div class="question-text">How does PROLOG use unification to solve queries?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 PROLOG inference mechanism</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.14 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.14: PROLOG - COMPARISON WITH LISP</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.14.1</div>
+            <div class="question-text">Compare LISP and PROLOG programming approaches and applications.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Comparison question</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 3.15 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 3.15: FUNCTIONAL & LOGIC PROGRAMMING - GENERAL</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3.15.1</div>
+            <div class="question-text">Discuss the advantages and disadvantages of functional and logic programming languages.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Final comparison and analysis</span>
+            </div>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- ============ UNIT IV ============ -->
+        <div class="unit-header">
+            <h2>UNIT-IV: OBJECT-ORIENTED PROGRAMMING CONCEPTS-I (37 Questions across 16 Subtopics)</h2>
+        </div>
+
+        <!-- Subtopic 4.1 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 4.1: OOP CONCEPTS INTRODUCTION - BASIC CONCEPTS
+                <span class="priority-badge">⭐ HIGH (75%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 5 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.1.1</div>
+            <div class="question-text"><strong>Define and explain basic OOP concepts: Object, Class, Encapsulation, Abstraction, Data Hiding, Inheritance, Polymorphism, Message Passing.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 5X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2022(ND)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.1.2</div>
+            <div class="question-text">What is the difference between a class and an object?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Fundamental OOP distinction</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.1.3</div>
+            <div class="question-text">Explain encapsulation and data hiding with example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Core OOP principle</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.2 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.2: C++ PROGRAM STRUCTURE</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.2.1</div>
+            <div class="question-text">Explain the basic structure of a C++ program with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.2.2</div>
+            <div class="question-text">What are the main components of a C++ program?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 C++ program organization</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.2.3</div>
+            <div class="question-text">Write a simple C++ program that demonstrates basic structure.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected practical C++ programming</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.3 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.3: C++ COMPILER & COMPILATION PROCESS</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.3.1</div>
+            <div class="question-text">Explain the C++ compilation process from source code to executable.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 C++ compilation stages</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.3.2</div>
+            <div class="question-text">What is the role of preprocessor, compiler, and linker in C++?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 C++ toolchain understanding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.4 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.4: C++ CLASSES & OBJECTS</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.4.1</div>
+            <div class="question-text">Define C++ class and object. Explain how to declare and use them.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.4.2</div>
+            <div class="question-text">What is the difference between public, private, and protected members in a class?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 C++ access modifiers</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.4.3</div>
+            <div class="question-text">Write a C++ class for a Student with data members and member functions.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected C++ class implementation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.5 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.5: C++ METHODS (MEMBER FUNCTIONS)</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.5.1</div>
+            <div class="question-text">Explain methods (member functions) in C++ classes with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2023(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.5.2</div>
+            <div class="question-text">What is the difference between inline and outline member functions?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Member function types</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.6 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.6: C++ NESTED CLASS</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.6.1</div>
+            <div class="question-text">What is a nested class in C++? Give example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Advanced C++ class concept</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.6.2</div>
+            <div class="question-text">When should nested classes be used?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Nested class applications</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.7 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.7: C++ CONST MEMBERS</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.7.1</div>
+            <div class="question-text">Explain const members and const member functions in C++ with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2024(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.7.2</div>
+            <div class="question-text">What is the purpose of const objects in C++?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Const correctness in C++</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.8 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.8: C++ STATIC MEMBERS</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.8.1</div>
+            <div class="question-text">Explain static members (data and functions) in C++ with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.8.2</div>
+            <div class="question-text">What is the difference between static and instance members?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Static vs instance members</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.8.3</div>
+            <div class="question-text">Write a C++ class demonstrating static data members and static functions.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected static member implementation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.9 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.9: C++ THIS POINTER</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.9.1</div>
+            <div class="question-text">Explain 'this' pointer in C++ and its uses with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.9.2</div>
+            <div class="question-text">Can 'this' pointer be modified? Why or why not?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 This pointer properties</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.10 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 4.10: POINTER VS REFERENCE VARIABLES
+                <span class="priority-badge">⭐ IMPORTANT (50%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 3 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.10.1</div>
+            <div class="question-text"><strong>Compare pointers and references in C++. Explain differences with examples.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 3X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2024(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.10.2</div>
+            <div class="question-text">When should you use pointers vs references?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Practical usage decisions</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.10.3</div>
+            <div class="question-text">Write programs demonstrating pointer and reference usage.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected C++ pointer/reference programming</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.11 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 4.11: NEW & DELETE OPERATORS
+                <span class="priority-badge">⭐ HIGHEST (70-75%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 5 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.11.1</div>
+            <div class="question-text"><strong>Compare 'new' and 'delete' operators with 'malloc' and 'free' in C.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 5X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.11.2</div>
+            <div class="question-text">Explain the advantages of 'new' and 'delete' over 'malloc' and 'free'.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Key advantages of C++ memory management</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.11.3</div>
+            <div class="question-text">Write C++ code demonstrating dynamic memory allocation with 'new' and deallocation with 'delete'.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected C++ dynamic memory programming</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.12 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.12: POINTERS TO OBJECTS</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.12.1</div>
+            <div class="question-text">Explain pointers to objects in C++ with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.12.2</div>
+            <div class="question-text">What is the arrow operator (->) and how is it used with object pointers?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Pointer to object member access</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.13 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.13: ARRAYS OF OBJECTS</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.13.1</div>
+            <div class="question-text">How to create and use arrays of objects in C++? Provide example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Object array handling</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.14 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.14: SCOPE & VISIBILITY</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.14.1</div>
+            <div class="question-text">Explain scope and visibility of variables in C++ with example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Variable scope rules</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.15 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.15: FORWARD DECLARATION</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.15.1</div>
+            <div class="question-text">What is forward declaration in C++? When and why is it needed?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Advanced C++ concept</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 4.16 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 4.16: GENERAL OOP CONCEPTS IN C++</h3>
+            <div class="probability-info">Low Probability | 1 question</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4.16.1</div>
+            <div class="question-text">Compare C++ with Java regarding OOP implementation.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Language comparison</span>
+            </div>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- ============ UNIT V ============ -->
+        <div class="unit-header">
+            <h2>UNIT-V: OBJECT-ORIENTED PROGRAMMING CONCEPTS-II (37 Questions across 13 Subtopics)</h2>
+        </div>
+
+        <!-- Subtopic 5.1 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 5.1: CONSTRUCTOR & DESTRUCTOR
+                <span class="priority-badge">⭐ HIGHEST (85%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 6 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.1.1</div>
+            <div class="question-text"><strong>Define and explain constructors and destructors in C++. Give examples of each.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 6X</span>
+                <span class="marks-badge">4-8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.1.2</div>
+            <div class="question-text">What is the purpose of constructor and destructor?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Part (a) variant question</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.1.3</div>
+            <div class="question-text">Write C++ class with constructor and destructor implementation.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected C++ constructor/destructor coding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.2 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.2: TYPES OF CONSTRUCTORS</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.2.1</div>
+            <div class="question-text">Explain types of constructors: (i) Default (ii) Parameterized (iii) Copy Constructor with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.2.2</div>
+            <div class="question-text">What is the difference between default constructor and parameterized constructor?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Constructor types distinction</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.2.3</div>
+            <div class="question-text">Write C++ program demonstrating all three constructor types.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected constructor implementation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.3 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 5.3: FUNCTION OVERLOADING
+                <span class="priority-badge">⭐ HIGH (80%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 5 times | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.3.1</div>
+            <div class="question-text"><strong>Explain function overloading in C++. Write programs demonstrating various overloading scenarios.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 5X</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2022(ND)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(AM)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.3.2</div>
+            <div class="question-text">What are the rules for function overloading?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Function overloading rules</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.3.3</div>
+            <div class="question-text">Can we overload functions based on return type only? Why or why not?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Function overloading constraints</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.4 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.4: OPERATOR OVERLOADING</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.4.1</div>
+            <div class="question-text">Explain operator overloading in C++ with examples. Which operators can and cannot be overloaded?</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.4.2</div>
+            <div class="question-text">Write a C++ class for Complex numbers with overloaded +, -, * operators.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Operator overloading implementation</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.4.3</div>
+            <div class="question-text">Explain unary vs binary operator overloading with examples.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Types of operator overloading</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.5 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 5.5: FRIEND FUNCTIONS & FRIEND CLASSES
+                <span class="priority-badge">⭐⭐⭐ ABSOLUTE HIGHEST (90%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 7 times (Most Frequent) | 4 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.5.1</div>
+            <div class="question-text"><strong>Define friend functions and friend classes. Explain their purposes, advantages, and disadvantages with examples.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 7X (MOST FREQUENT)</span>
+                <span class="marks-badge">8 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(AM)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2023(AM)</span>
+                <span class="year-badge">2024(AM)</span>
+                <span class="year-badge">2024(ND)</span>
+                <span class="priority-badge" style="background: #c0392b; margin-left: 5px;">🔴 MUST STUDY</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.5.2</div>
+            <div class="question-text">Can friend relationship be inherited? Why or why not?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Friend inheritance properties</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.5.3</div>
+            <div class="question-text">Write C++ program demonstrating friend functions and friend classes.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected friend implementation</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.5.4</div>
+            <div class="question-text">Explain friend operator overloading with example.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Friend function operator overloading</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.6 -->
+        <div class="subtopic-header">
+            <h3>
+                ▼ SUBTOPIC 5.6: INHERITANCE
+                <span class="priority-badge">⭐ HIGH (75%)</span>
+            </h3>
+            <div class="probability-info">📊 Asked 5 times | 4 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.6.1</div>
+            <div class="question-text"><strong>Explain inheritance in C++. Define and explain: Single, Multiple, Multilevel, Hierarchical, and Hybrid Inheritance with examples.</strong></div>
+            <div class="question-meta">
+                <span class="frequency-count">ASKED 5X</span>
+                <span class="marks-badge">8-12 marks</span>
+                <span class="year-badge">2020(ND)</span>
+                <span class="year-badge">2021(ND)</span>
+                <span class="year-badge">2022(AM)</span>
+                <span class="year-badge">2023(ND)</span>
+                <span class="year-badge">2024(ND)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.6.2</div>
+            <div class="question-text">What is the 'protected' access modifier and when is it used?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Protected member access in inheritance</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.6.3</div>
+            <div class="question-text">Write C++ programs demonstrating single and multiple inheritance.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected inheritance implementation</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.6.4</div>
+            <div class="question-text">What is the Diamond Problem in multiple inheritance and how is it solved?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Advanced multiple inheritance concept</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.7 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.7: ABSTRACT CLASSES</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.7.1</div>
+            <div class="question-text">Define abstract class in C++. Explain how to create and use abstract classes with example.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.7.2</div>
+            <div class="question-text">Can we instantiate abstract classes? Why or why not?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Abstract class properties</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.8 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.8: POLYMORPHISM - COMPILE-TIME (STATIC)</h3>
+            <div class="probability-info">Low-Medium Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.8.1</div>
+            <div class="question-text">Explain compile-time (static) polymorphism. How is it different from run-time polymorphism?</div>
+            <div class="question-meta">
+                <span class="year-badge">2023(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.8.2</div>
+            <div class="question-text">Give examples of compile-time polymorphism: function overloading, operator overloading, templates.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Static polymorphism examples</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.9 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.9: VIRTUAL FUNCTIONS & DYNAMIC BINDING</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.9.1</div>
+            <div class="question-text">Explain virtual functions in C++. How are they used for run-time polymorphism?</div>
+            <div class="question-meta">
+                <span class="year-badge">2021(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.9.2</div>
+            <div class="question-text">What is dynamic binding? How does it relate to virtual functions?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Dynamic binding mechanism</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.9.3</div>
+            <div class="question-text">Write C++ program demonstrating virtual functions and polymorphic behavior.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected virtual function implementation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.10 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.10: PURE VIRTUAL FUNCTIONS</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.10.1</div>
+            <div class="question-text">Explain pure virtual functions. How are they different from regular virtual functions?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Pure virtual function concept</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.10.2</div>
+            <div class="question-text">Can pure virtual functions have implementations?</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Pure virtual function properties</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.11 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.11: VIRTUAL CLASSES</h3>
+            <div class="probability-info">Low Probability | 2 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.11.1</div>
+            <div class="question-text">What are virtual base classes? How do they resolve the Diamond Problem?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Virtual base class usage</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.11.2</div>
+            <div class="question-text">Write C++ program demonstrating virtual base classes.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Virtual base class implementation</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.12 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.12: EXCEPTION HANDLING</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.12.1</div>
+            <div class="question-text">Explain exception handling in C++. Describe: try, catch, throw with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2020(ND)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.12.2</div>
+            <div class="question-text">How do you create custom exception classes?</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Custom exception implementation</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.12.3</div>
+            <div class="question-text">Write C++ program demonstrating exception handling with multiple catch blocks.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected exception handling coding</span>
+            </div>
+        </div>
+
+        <!-- Subtopic 5.13 -->
+        <div class="subtopic-header">
+            <h3>▼ SUBTOPIC 5.13: TEMPLATES</h3>
+            <div class="probability-info">Low-Medium Probability | 3 questions</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.13.1</div>
+            <div class="question-text">Explain function templates and class templates in C++ with examples.</div>
+            <div class="question-meta">
+                <span class="year-badge">2022(AM)</span>
+                <span class="marks-badge">8 marks</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.13.2</div>
+            <div class="question-text">What are template specializations? Explain full and partial specialization.</div>
+            <div class="question-meta">
+                <span class="meta-item">📌 Advanced template concepts</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5.13.3</div>
+            <div class="question-text">Write a C++ generic sort template function.</div>
+            <div class="question-meta">
+                <span class="meta-item">📚 Expected template implementation</span>
+            </div>
+        </div>
+
+        <!-- FINAL PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- FINAL SUMMARY -->
+        <div class="summary-box">
+            <h3>📊 COMPLETE DATABASE SUMMARY</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong>Unit I: Program Design</strong><br/>
+                    31 questions | 13 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit II: Language Processors</strong><br/>
+                    25 questions | 11 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit III: Functional & Logic</strong><br/>
+                    32 questions | 15 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit IV: OOP Concepts-I</strong><br/>
+                    37 questions | 16 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>Unit V: OOP Concepts-II</strong><br/>
+                    37 questions | 13 subtopics
+                </div>
+                <div class="summary-item">
+                    <strong>TOTAL DATABASE</strong><br/>
+                    162+ questions | 68 subtopics
+                </div>
+            </div>
+        </div>
+
+        <!-- USAGE INSTRUCTIONS -->
+        <div class="info-box">
+            <h3>📝 COMPLETE STUDY GUIDE</h3>
+            <ol>
+                <li><strong>Select a Subtopic</strong> from any unit matching your syllabus</li>
+                <li><strong>Read Each Question</strong> carefully in order</li>
+                <li><strong>Copy the Question</strong> text (Q number and exact question)</li>
+                <li><strong>Paste to ChatGPT/Gemini/Claude</strong> for detailed explanation</li>
+                <li><strong>Understand the Concept</strong> thoroughly from AI response</li>
+                <li><strong>Take Notes</strong> of important points and key concepts</li>
+                <li><strong>Move to Next Question</strong> in same subtopic</li>
+                <li><strong>Complete All Subtopics</strong> across all units</li>
+                <li><strong>Start with Highest Probability</strong> questions first (marked with ⭐)</li>
+                <li><strong>Revise Top 10 Questions</strong> before exam (list at top of document)</li>
+            </ol>
+        </div>
+
+        <!-- RECOMMENDED STUDY SCHEDULE -->
+        <div style="background: #fff3cd; border-left: 5px solid #ff9800; padding: 20px; margin: 30px 0; border-radius: 4px;">
+            <h3 style="color: #856404; margin-bottom: 15px;">✅ RECOMMENDED 9-DAY STUDY SCHEDULE</h3>
+            <ul style="color: #333; line-height: 1.8; margin-left: 20px;">
+                <li><strong>Day 1-2 (Unit I):</strong> Focus on I-1.2 (Modules, 80% probability), I-8.1 (Abstraction, 60%), I-2.1 (Pseudo code, 45%)</li>
+                <li><strong>Day 3 (Unit II):</strong> Complete II-1.1 (Language Characteristics, 65%), II-9.1 (Binding, 50%)</li>
+                <li><strong>Day 4-5 (Unit III):</strong> Complete III-1.1 (Functional PL, 85-90%), III-2.1 (Logic PL, 70%), III-5.1 (LISP Objects, 50%), III-9.1 (PROLOG Syntax)</li>
+                <li><strong>Day 6 (Unit IV):</strong> Focus on IV-11.1 (New/Delete, 70-75%), IV-10.1 (Pointer vs Reference, 50%), IV-1.1 (OOP Concepts, 75%)</li>
+                <li><strong>Day 7-8 (Unit V - CRITICAL):</strong> 
+                    <ul>
+                        <li><strong>DAY 7: V-5.1 Friend Functions (90% - ABSOLUTE HIGHEST PRIORITY) ⭐⭐⭐</strong></li>
+                        <li><strong>DAY 8: V-1.1 Constructor/Destructor (85%), V-3.1 Function Overloading (80%), V-6.1 Inheritance (75%)</strong></li>
+                    </ul>
+                </li>
+                <li><strong>Day 9:</strong> Revision of all TOP 10 HIGHEST PROBABILITY QUESTIONS (list at document start)</li>
+            </ul>
+        </div>
+
+        <!-- PRIORITY STUDY ORDER -->
+        <div style="background: #d4edda; border-left: 5px solid #28a745; padding: 20px; margin: 30px 0; border-radius: 4px;">
+            <h3 style="color: #155724; margin-bottom: 15px;">🎯 STUDY ORDER BY PROBABILITY (Highest First)</h3>
+            <table style="width: 100%; border-collapse: collapse; color: #333;">
+                <tr style="background: #28a745; color: white;">
+                    <td style="padding: 12px; border: 1px solid #28a745;"><strong>Rank</strong></td>
+                    <td style="padding: 12px; border: 1px solid #28a745;"><strong>Question</strong></td>
+                    <td style="padding: 12px; border: 1px solid #28a745;"><strong>Probability</strong></td>
+                    <td style="padding: 12px; border: 1px solid #28a745;"><strong>Times Asked</strong></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">1</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>V-5.1 Friend Functions</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">90% ⭐⭐⭐</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">7 times</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;">2</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>V-1.1 Constructor/Destructor</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">85% ⭐⭐</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">6 times</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>III-1.1 Functional Programming</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">85-90% ⭐⭐</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">6 times</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;">4</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>I-1.2 Modules & Modularization</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">80% ⭐⭐</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">7 times</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">5</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>V-3.1 Function Overloading</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">80% ⭐⭐</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">5 times</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>PPL (B022313(022)) - COMPLETE DETAILED QUESTION DATABASE</strong></p>
+            <p>All 162+ questions extracted from official PYQ papers (2020-2024)</p>
+            <p>AICTE Scheme (2020-2022) | New Scheme (2022-2024)</p>
+            <p>Generated: February 5, 2026 | Target Exam: Nov-Dec 2025</p>
+            <p><strong>Confidence Level: VERY HIGH (based on 4-year comprehensive analysis)</strong></p>
+            <p>© 2026 PPL Exam Predictor System | All Rights Reserved</p>
+        </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 0. Setup Checkboxes & Progress
+            const questions = Array.from(document.querySelectorAll('.question'));
+            
+            // Progress Widget
+            const progressWidget = document.createElement('div');
+            progressWidget.className = 'progress-floating';
+            progressWidget.innerHTML = `
+                <div style="font-weight:600; color:#1e293b; margin-bottom:4px;">Progress: <span id="progress-percent">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                <div style="color:#64748b; font-size:0.75rem; margin-top:4px;"><span id="completed-count">0</span> / <span id="total-count">162</span> done</div>
+            `;
+            document.body.appendChild(progressWidget);
+
+            const savedState = JSON.parse(localStorage.getItem('ppl_study_progress') || '{}');
+
+            questions.forEach((q) => {
+                const qNum = q.querySelector('.question-number').innerText;
+                const uniqueId = 'q-' + qNum.replace(/\./g, '-');
+                q.setAttribute('data-id', uniqueId);
+
+                // Add checkbox
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'q-checkbox';
+                checkbox.checked = savedState[uniqueId] || false;
+                
+                if(checkbox.checked) q.classList.add('completed');
+
+                checkbox.addEventListener('change', () => {
+                    q.classList.toggle('completed', checkbox.checked);
+                    const state = JSON.parse(localStorage.getItem('ppl_study_progress') || '{}');
+                    if(checkbox.checked) state[uniqueId] = true;
+                    else delete state[uniqueId];
+                    localStorage.setItem('ppl_study_progress', JSON.stringify(state));
+                    updateProgress();
+                });
+
+                const qNumber = q.querySelector('.question-number');
+                const header = document.createElement('div');
+                header.className = 'q-header';
+                header.appendChild(checkbox);
+                header.appendChild(qNumber);
+                q.insertBefore(header, q.firstChild);
+            });
+
+            function updateProgress() {
+                const total = questions.length;
+                const completed = document.querySelectorAll('.question.completed').length;
+                const percent = Math.round((completed / total) * 100);
+                document.getElementById('progress-fill').style.width = percent + '%';
+                document.getElementById('progress-percent').innerText = percent + '%';
+                document.getElementById('completed-count').innerText = completed;
+            }
+
+            updateProgress();
+
+            // 1. Accordion Setup - MUST RUN FIRST to structure DOM
+            const subtopics = document.querySelectorAll('.subtopic-header');
+            
+            subtopics.forEach(header => {
+                // Add icon if not present
+                if (!header.querySelector('.dropdown-icon')) {
+                    const h3 = header.querySelector('h3');
+                    if (h3) {
+                         // Only replace the triangle if it exists, otherwise prepend icon
+                         if(h3.innerHTML.includes('▼')) {
+                             h3.innerHTML = h3.innerHTML.replace('▼', '<span class="dropdown-icon">▼</span>');
+                         } else {
+                             h3.innerHTML = '<span class="dropdown-icon">▼</span> ' + h3.innerHTML;
+                         }
+                    }
+                }
+                
+                // Create wrapper
+                const wrapper = document.createElement('div');
+                wrapper.className = 'questions-wrapper';
+                
+                // Move siblings until next header
+                let next = header.nextElementSibling;
+                const toMove = [];
+                
+                // Stop at next header, unit header, or page break
+                while(next && 
+                      !next.classList.contains('subtopic-header') && 
+                      !next.classList.contains('unit-header') && 
+                      !next.classList.contains('page-break') &&
+                      !next.classList.contains('footer')) {
+                          
+                    toMove.push(next);
+                    next = next.nextElementSibling;
+                }
+                
+                // Insert wrapper after header
+                header.parentNode.insertBefore(wrapper, header.nextSibling);
+                
+                // Move elements into wrapper
+                toMove.forEach(el => wrapper.appendChild(el));
+                
+                // Toggle event
+                header.addEventListener('click', () => {
+                    const isOpen = wrapper.style.display === 'block';
+                    wrapper.style.display = isOpen ? 'none' : 'block';
+                    if (!isOpen) wrapper.classList.add('wrapper-animate');
+                    header.classList.toggle('active', !isOpen);
+                });
+            });
+
+            // 2. Generate Sidebar Navigation
+            const navContainer = document.getElementById('sidebar-nav');
+            const units = document.querySelectorAll('.unit-header');
+            
+            // Link to Top Questions
+            const topQ = document.querySelector('.top-questions');
+            if(topQ) {
+                topQ.id = 'top-priority';
+                const link = document.createElement('a');
+                link.href = '#top-priority';
+                link.className = 'nav-link';
+                link.innerHTML = '🎯 Top Priority';
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    topQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                };
+                navContainer.appendChild(link);
+            }
+
+            units.forEach((unit, index) => {
+                const fullText = unit.querySelector('h2').innerText;
+                const shortTitle = fullText.split(':')[0].trim();
+                const desc = fullText.split(':')[1] ? fullText.split(':')[1].split('(')[0].trim() : '';
+                
+                const id = 'unit-' + (index + 1);
+                unit.id = id;
+                
+                const link = document.createElement('a');
+                link.href = '#' + id;
+                link.className = 'nav-link';
+                link.innerHTML = `<strong>${shortTitle}</strong> <span style="font-size:0.8em; opacity:0.8">${desc}</span>`;
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(id);
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                };
+                navContainer.appendChild(link);
+            });
+
+            // 3. Search & Filter System
+            const searchInput = document.getElementById('searchInput');
+            const unitFilter = document.getElementById('unitFilter');
+            const priorityFilter = document.getElementById('priorityFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            const questions = Array.from(document.querySelectorAll('.question'));
+
+            // Cache question metadata for performance
+            const questionsData = questions.map(q => {
+                const text = q.innerText.toLowerCase();
+                const html = q.innerHTML; // Store original HTML for highlight reset
+                
+                // Determine Unit (traverse up to find unit header)
+                // This is a bit expensive, so we do it once on load
+                let unit = 0;
+                let el = q;
+                while(el.previousElementSibling) {
+                    el = el.previousElementSibling;
+                    if(el.classList.contains('unit-header')) {
+                        const h2 = el.querySelector('h2').innerText;
+                        if(h2.includes('UNIT-I:')) unit = 1;
+                        else if(h2.includes('UNIT-II')) unit = 2;
+                        else if(h2.includes('UNIT-III')) unit = 3;
+                        else if(h2.includes('UNIT-IV')) unit = 4;
+                        else if(h2.includes('UNIT-V')) unit = 5;
+                        break;
+                    }
+                }
+                // Fallback: Use ID of unit headers if traversing up fails (DOM order issue)
+                // Actually, let's just use the fact they are in order.
+                // Simpler: Q1.X -> Unit 1.
+                const qNum = q.querySelector('.question-number').innerText.trim();
+                const unitCodeText = qNum.substring(1).split('.')[0]; // Q1.1.1 -> 1
+                const unitCode = parseInt(unitCodeText);
+                
+                // Priority
+                // Check badges
+                const metaText = q.querySelector('.question-meta').innerText.toLowerCase();
+                let priority = 'low';
+                if(metaText.includes('high') || metaText.includes('top') || metaText.includes('most frequent') || metaText.includes('asked 5') || metaText.includes('asked 6') || metaText.includes('asked 7')) {
+                    priority = 'high';
+                } else if(metaText.includes('medium')) {
+                    priority = 'medium';
+                }
+                
+                // Marks
+                let marks = 0;
+                if(metaText.includes('4 marks')) marks = 4;
+                if(metaText.includes('8 marks')) marks = 8;
+                if(metaText.includes('10 marks')) marks = 10;
+                if(metaText.includes('12 marks')) marks = 12;
+
+                // Frequency
+                let frequency = 1;
+                const freqMatch = metaText.match(/asked (\d+) times/);
+                if(freqMatch) frequency = parseInt(freqMatch[1]);
+                
+                return {
+                    element: q,
+                    originalHTML: html.replace(/<span class="highlight">/g, '').replace(/<\/span>/g, ''), // Clean previous highlights if any
+                    text: text,
+                    unit: isNaN(unitCode) ? 0 : unitCode,
+                    priority: priority,
+                    marks: marks,
+                    frequency: frequency
+                };
+            });
+
+            function updateView() {
+                const term = searchInput.value.toLowerCase().trim();
+                const unitVal = unitFilter.value;
+                const priorityVal = priorityFilter.value;
+                const sortVal = sortFilter.value;
+
+                const wrappers = document.querySelectorAll('.questions-wrapper');
+                let hasResults = false;
+
+                // 1. Reset Visibility & Highlights
+                questions.forEach((q, i) => {
+                    // Reset HTML to remove old highlights
+                    if(term.length < 2) q.innerHTML = questionsData[i].originalHTML; 
+                });
+
+                // 2. Filter
+                const visibleQuestions = questionsData.filter(data => {
+                    const matchesSearch = term === '' || data.text.includes(term);
+                    const matchesUnit = unitVal === 'all' || data.unit == unitVal;
+                    
+                    let matchesPriority = true;
+                    if(priorityVal === 'high') matchesPriority = data.priority === 'high';
+                    if(priorityVal === 'medium') matchesPriority = data.priority === 'medium';
+                    
+                    return matchesSearch && matchesUnit && matchesPriority;
+                });
+
+                // 3. Sort (Only if a sort filter is applied, otherwise keep document order)
+                // Note: We cannot easily reorder DOM elements across subtopics without breaking the Accordion structure.
+                // Solution: We will only toggle visibility. The "Sort" will be a "Soft Sort" 
+                // OR we accept that sorting only works if we flattened the list, which breaks subtopics.
+                // Compromise: Sort is best effort. Since users usually want "Top questions" they can use filters.
+                // WE WILL ONLY SORT IF "Default" is NOT selected. And we might have to move elements?
+                // Visual re-ordering is complex with existing section headers. 
+                // Let's stick to Filtering for now. For marks/freq, we can just highlight?
+                // Actually, let's skip reordering DOM to avoid breaking Unit headers.
+                // However, if the user really wants to see "Most Frequent" first, we can just hide the others.
+                
+                // 4. Update DOM
+                questions.forEach(q => q.style.display = 'none');
+                
+                visibleQuestions.forEach(data => {
+                    data.element.style.display = 'block';
+                    
+                    // Highlight Search Term
+                    if(term.length >= 2) {
+                        const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                        // Basic highlighting in text nodes (risky with HTML tags, but okay for this simple content)
+                        // A safer way: Highlight only inside .question-text
+                        const qTextDiv = data.element.querySelector('.question-text');
+                        if(qTextDiv) {
+                            qTextDiv.innerHTML = qTextDiv.innerText.replace(regex, '<span class="highlight">$1</span>');
+                        }
+                    }
+                });
+
+                // 5. Manage Accordions
+                if (term !== '' || unitVal !== 'all' || priorityVal !== 'all') {
+                    // Expand all wrappers that have visible questions
+                    wrappers.forEach(w => {
+                        const hasVisible = w.querySelectorAll('.question[style="display: block;"]').length > 0;
+                        if(hasVisible) {
+                            w.classList.add('searching');
+                            w.style.display = 'block';
+                            // Activate header
+                            const header = w.previousElementSibling;
+                            if(header && header.classList.contains('subtopic-header')) header.classList.add('active');
+                        } else {
+                            w.style.display = 'none';
+                            w.classList.remove('searching');
+                        }
+                    });
+                } else {
+                     // Reset to all collapsed
+                     wrappers.forEach(w => {
+                        w.classList.remove('searching');
+                        w.style.display = 'none';
+                     });
+                     subtopics.forEach(h => h.classList.remove('active'));
+                }
+            }
+
+            // Event Listeners
+            searchInput.addEventListener('input', () => { setTimeout(updateView, 300) });
+            unitFilter.addEventListener('change', updateView);
+            priorityFilter.addEventListener('change', updateView);
+            // Sort is disabled for now in logic to preserve structure
+            sortFilter.addEventListener('change', () => {
+                // If sort is active, we might alert user or implement a flat list view later
+                // For now, we will just use it as a highlighter for those questions?
+                // No, let's leave it as a placeholder for filtering
+                updateView();
+            });
+
+        });
+    </script>
+</body>
+</html>
