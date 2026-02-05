@@ -1455,9 +1455,12 @@
             if (question.meta.marks) {
                 meta.innerHTML += `<span class="meta-badge badge-marks">${question.meta.marks} marks</span>`;
             }
+            if (question.meta.year) {
+                meta.innerHTML += `<span class="meta-badge badge-year">📅 ${question.meta.year}</span>`;
+            }
             if (question.meta.years) {
-                question.meta.years.slice(-3).forEach(year => {
-                    meta.innerHTML += `<span class="meta-badge badge-year">${year}</span>`;
+                question.meta.years.forEach(year => {
+                    meta.innerHTML += `<span class="meta-badge badge-year">📅 ${year}</span>`;
                 });
             }
             if (question.meta.priority === 'highest') {
