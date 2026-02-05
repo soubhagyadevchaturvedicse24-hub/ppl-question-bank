@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPL Question Bank - Home</title>
+    <title>PPL Question Intelligence Platform</title>
     <style>
         * {
             margin: 0;
@@ -12,139 +12,155 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            color: #1e293b;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 1.5rem;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .logo {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 4rem;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
 
         .subtitle {
-            color: #6c757d;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: #64748b;
+            font-weight: 400;
+            margin-bottom: 4rem;
+            line-height: 1.6;
         }
 
-        .stats {
+        .value-props {
+            margin-bottom: 4rem;
+        }
+
+        .prop {
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .prop-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .prop-desc {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .stat-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
+        .stat {
+            text-align: center;
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
+        .cta-section {
+            background: #1e293b;
+            padding: 3rem;
+            border-radius: 4px;
+            margin-top: 4rem;
         }
 
-        .link-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
-        }
-
-        .link-icon {
-            font-size: 2.5rem;
-        }
-
-        .link-content {
-            flex: 1;
-            text-align: left;
-        }
-
-        .link-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 0.25rem;
-        }
-
-        .link-desc {
-            color: #6c757d;
-            font-size: 0.95rem;
-        }
-
-        .features {
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .features h3 {
-            color: #667eea;
+        .cta-label {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 1rem;
         }
 
-        .features ul {
-            list-style: none;
-            padding-left: 0;
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.4;
         }
 
-        .features li {
-            padding: 0.5rem 0;
-            color: #495057;
+        .cta-description {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
-        .features li:before {
-            content: "✓ ";
-            color: #28a745;
-            font-weight: 700;
-            margin-right: 0.5rem;
+        .cta-button {
+            display: inline-block;
+            background: #0ea5e9;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #0284c7;
+        }
+
+        .footer {
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            .container {
+                padding: 4rem 1.5rem 3rem;
             }
 
             h1 {
@@ -216,54 +232,53 @@
 </head>
 <body>
     <div class="container">
-        <h1>📚 PPL Question Bank</h1>
-        <p class="subtitle">Complete Previous Year Questions Database (2020-2024)</p>
+        <div class="logo">PPL Intelligence</div>
 
-        <div class="stats">
-            <div class="stat-box">
+        <h1>Curated Insights for High-Probability Exam Success</h1>
+        
+        <p class="subtitle">A focused platform analyzing 162 previous year questions across 5 years of examination patterns, designed for structured exam preparation.</p>
+
+        <div class="value-props">
+            <div class="prop">
+                <div class="prop-title">Pattern Recognition</div>
+                <div class="prop-desc">Questions are analyzed by frequency, year distribution, and mark allocation to identify consistent examination trends.</div>
+            </div>
+
+            <div class="prop">
+                <div class="prop-title">Intelligent Organization</div>
+                <div class="prop-desc">68 subtopics across 5 units, each classified by priority and difficulty to guide your study decisions.</div>
+            </div>
+
+            <div class="prop">
+                <div class="prop-title">Evidence-Based Preparation</div>
+                <div class="prop-desc">Every question includes historical exam data (2020-2024), enabling you to focus on high-yield topics backed by actual examination records.</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat">
                 <div class="stat-value">162</div>
-                <div class="stat-label">Total Questions</div>
+                <div class="stat-label">Questions Analyzed</div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value">5</div>
-                <div class="stat-label">Units</div>
-            </div>
-            <div class="stat-box">
+            <div class="stat">
                 <div class="stat-value">68</div>
-                <div class="stat-label">Subtopics</div>
+                <div class="stat-label">Subtopics Mapped</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Years of Data</div>
             </div>
         </div>
 
-        <div class="links">
-            <a href="PPL_Interactive_QuestionBank.html" class="link-card">
-                <div class="link-icon">📝</div>
-                <div class="link-content">
-                    <div class="link-title">Interactive Question Bank</div>
-                    <div class="link-desc">Browse all questions with checkboxes, search, filters, and progress tracking</div>
-                </div>
-            </a>
-
-            <a href="PPL_Probability_Dashboard.html" class="link-card">
-                <div class="link-icon">📊</div>
-                <div class="link-content">
-                    <div class="link-title">Probability Dashboard</div>
-                    <div class="link-desc">Smart sorted & interactive exam predictions with probability percentages for Nov-Dec 2025</div>
-                </div>
-            </a>
+        <div class="cta-section">
+            <div class="cta-label">Structured Access</div>
+            <div class="cta-title">Access the Complete Question Checklist</div>
+            <div class="cta-description">If you want a structured checklist of high-probability questions with progress tracking, filtering, and search capabilities, proceed to the evaluation interface.</div>
+            <a href="PPL_Interactive_QuestionBank.html" class="cta-button">View Question Checklist</a>
         </div>
 
-        <div class="features">
-            <h3>✨ Key Features</h3>
-            <ul>
-                <li>Interactive checkboxes at Unit, Subtopic, and Question levels</li>
-                <li>Smart search and filtering system</li>
-                <li>Progress tracking with LocalStorage persistence</li>
-                <li>Probability analysis for upcoming exams</li>
-                <li>Mobile-responsive design</li>
-                <li>High-priority questions marked with ⭐⭐⭐</li>
-                <li>Frequency data (questions asked 5-7 times)</li>
-                <li>Complete PYQ coverage from 2020-2024</li>
-            </ul>
+        <div class="footer">
+            Programming Paradigms and Languages • Academic Year 2024-2026
         </div>
     </div>
 </body>

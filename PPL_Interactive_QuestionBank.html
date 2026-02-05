@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPL Interactive Question Bank - All 162 PYQ Questions</title>
+    <title>Question Evaluation Interface | PPL</title>
     <style>
         * {
             margin: 0;
@@ -12,71 +12,80 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #ffffff;
             min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
+            color: #1e293b;
+            line-height: 1.6;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1e293b;
             color: white;
-            padding: 2rem;
-            text-align: center;
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid #334155;
         }
 
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .header-top {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .header-subtitle {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-weight: 400;
         }
 
         .stats-bar {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            padding: 1.5rem 2rem;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
         }
 
         .stat-box {
-            text-align: center;
-            padding: 0.75rem;
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
         }
 
         .stat-value {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 700;
-            color: #667eea;
+            color: #0ea5e9;
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-top: 0.25rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
         }
 
         .controls {
             padding: 1.5rem 2rem;
-            background: #fff;
-            border-bottom: 1px solid #e9ecef;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .controls-inner {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -90,87 +99,96 @@
         }
 
         .control-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #495057;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
         }
 
         input[type="text"], select, button {
             padding: 0.5rem 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 0.5rem;
-            font-size: 0.95rem;
-            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            transition: border 0.2s;
+            background: white;
         }
 
         input[type="text"]:focus, select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #0ea5e9;
         }
 
         input[type="text"] {
-            min-width: 300px;
+            min-width: 250px;
+        }
+
+        select {
+            color: #1e293b;
         }
 
         button {
-            background: #667eea;
+            background: #1e293b;
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         button:hover {
-            background: #5568d3;
-            transform: translateY(-1px);
+            background: #334155;
         }
 
-        .content {
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 2rem;
         }
 
         .unit-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background: white;
         }
 
         .unit-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
+            background: #f8f9fa;
+            padding: 1.25rem 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s;
+            transition: background 0.2s;
             user-select: none;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .unit-header:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            background: #f1f5f9;
         }
 
         .unit-header.active {
-            border-radius: 0.75rem 0.75rem 0 0;
+            background: #1e293b;
+            color: white;
         }
 
         .unit-title {
             display: flex;
             align-items: center;
             gap: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
         }
 
         .unit-checkbox {
-            width: 24px;
-            height: 24px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
         }
 
         .unit-info {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.875rem;
+            opacity: 0.8;
         }
 
         .dropdown-icon {
@@ -184,11 +202,8 @@
 
         .unit-content {
             display: none;
-            border: 2px solid #667eea;
-            border-top: none;
-            border-radius: 0 0 0.75rem 0.75rem;
-            padding: 1rem;
-            background: #f8f9fa;
+            padding: 0;
+            background: white;
         }
 
         .unit-content.show {
@@ -196,55 +211,57 @@
         }
 
         .subtopic-section {
-            margin-bottom: 1rem;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .subtopic-section:last-child {
+            border-bottom: none;
         }
 
         .subtopic-header {
-            background: #e7e9fc;
-            padding: 0.75rem 1rem;
+            background: white;
+            padding: 1rem 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.2s;
+            transition: background 0.2s;
             user-select: none;
+            border-bottom: 1px solid #f8f9fa;
         }
 
         .subtopic-header:hover {
-            background: #d7d9ec;
+            background: #f8f9fa;
         }
 
         .subtopic-header.active {
-            background: #667eea;
-            color: white;
+            background: #f1f5f9;
         }
 
         .subtopic-title {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            color: #1e293b;
         }
 
         .subtopic-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
         }
 
         .subtopic-stats {
-            font-size: 0.85rem;
-            opacity: 0.8;
+            font-size: 0.8125rem;
+            color: #64748b;
         }
 
         .subtopic-content {
             display: none;
-            padding: 1rem;
+            padding: 1rem 1.5rem 1.5rem;
+            background: #fafbfc;
         }
 
         .subtopic-content.show {
@@ -253,21 +270,20 @@
 
         .question-item {
             background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
             padding: 1rem;
             margin-bottom: 0.75rem;
-            transition: all 0.3s;
+            transition: border 0.2s;
         }
 
         .question-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
         }
 
         .question-item.completed {
-            background: #d4edda;
-            border-color: #28a745;
+            background: #f0fdf4;
+            border-color: #86efac;
         }
 
         .question-header {
@@ -278,25 +294,26 @@
         }
 
         .question-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
-            margin-top: 2px;
+            margin-top: 3px;
             flex-shrink: 0;
         }
 
         .question-id {
-            font-weight: 700;
-            color: #667eea;
-            font-size: 1rem;
-            min-width: 80px;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.8125rem;
+            min-width: 70px;
             flex-shrink: 0;
         }
 
         .question-text {
             flex: 1;
             line-height: 1.6;
-            color: #212529;
+            color: #1e293b;
+            font-size: 0.9375rem;
         }
 
         .question-meta {
@@ -305,39 +322,40 @@
             gap: 0.5rem;
             margin-top: 0.75rem;
             padding-top: 0.75rem;
-            border-top: 1px solid #e9ecef;
+            border-top: 1px solid #f1f5f9;
         }
 
         .meta-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #e7e9fc;
-            color: #667eea;
-            border-radius: 0.25rem;
-            font-size: 0.8rem;
+            padding: 0.25rem 0.625rem;
+            background: #f1f5f9;
+            color: #64748b;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
 
         .badge-frequency {
-            background: #fee;
-            color: #dc3545;
+            background: #fef2f2;
+            color: #dc2626;
             font-weight: 600;
         }
 
         .badge-marks {
-            background: #d4edda;
-            color: #28a745;
+            background: #ecfdf5;
+            color: #059669;
             font-weight: 600;
         }
 
         .badge-year {
-            background: #fff3cd;
-            color: #856404;
+            background: #eff6ff;
+            color: #0ea5e9;
         }
 
         .badge-high {
-            background: #dc3545;
+            background: #1e293b;
             color: white;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .progress-panel {
@@ -346,90 +364,93 @@
             right: 2rem;
             background: white;
             padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            min-width: 250px;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 240px;
             z-index: 1000;
+            border: 1px solid #e2e8f0;
         }
 
         .progress-title {
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: #212529;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .progress-bar-container {
-            background: #e9ecef;
-            height: 12px;
-            border-radius: 6px;
+            background: #f1f5f9;
+            height: 8px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: #0ea5e9;
             transition: width 0.3s;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         .progress-text {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #667eea;
+            color: #1e293b;
             margin-bottom: 0.5rem;
         }
 
         .progress-details {
-            font-size: 0.9rem;
-            color: #6c757d;
+            font-size: 0.8125rem;
+            color: #64748b;
+            text-align: center;
         }
 
         .no-results {
             text-align: center;
-            padding: 3rem;
-            color: #6c757d;
+            padding: 4rem 2rem;
+            color: #64748b;
         }
 
         .highlight {
-            background: yellow;
+            background: #fef08a;
             padding: 0 2px;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 0.5rem;
+            .header {
+                padding: 1.5rem 1rem 1rem;
             }
 
-            .header h1 {
-                font-size: 1.4rem;
+            .header-title {
+                font-size: 1.125rem;
             }
 
-            .header p {
-                font-size: 0.9rem;
+            .header-subtitle {
+                font-size: 0.8125rem;
             }
 
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-                padding: 1rem;
-            }
-
-            .stat-box {
-                padding: 0.5rem;
+                gap: 1rem;
             }
 
             .stat-value {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
 
             .stat-label {
-                font-size: 0.75rem;
+                font-size: 0.6875rem;
             }
 
             .controls {
                 padding: 1rem;
+            }
+
+            .controls-inner {
                 flex-direction: column;
                 align-items: stretch;
             }
@@ -441,96 +462,57 @@
             }
 
             .control-label {
-                font-size: 0.85rem;
-                margin-bottom: 0.25rem;
+                font-size: 0.8125rem;
+                margin-bottom: 0.375rem;
             }
 
             input[type="text"] {
                 min-width: 100%;
                 width: 100%;
-                font-size: 0.9rem;
             }
 
             select, button {
                 width: 100%;
-                font-size: 0.9rem;
-                padding: 0.6rem 0.75rem;
             }
 
-            .content {
+            .container {
                 padding: 1rem;
             }
 
             .unit-header {
-                padding: 0.75rem 1rem;
-                font-size: 0.95rem;
+                padding: 1rem;
             }
 
             .unit-title {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+                font-size: 0.9375rem;
             }
 
-            .unit-info {
-                font-size: 0.8rem;
+            .subtopic-header {
+                padding: 0.875rem 1rem;
             }
 
-            .unit-checkbox {
+            .subtopic-title {
+                font-size: 0.875rem;
+            }            .unit-checkbox {
                 width: 20px;
                 height: 20px;
             }
 
-            .subtopic-header {
-                padding: 0.6rem 0.75rem;
-            }
-
-            .subtopic-title {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-                font-size: 0.9rem;
-            }
-
-            .subtopic-checkbox {
-                width: 18px;
-                height: 18px;
-            }
-
-            .subtopic-stats {
-                font-size: 0.75rem;
-            }
-
             .question-item {
-                padding: 0.75rem;
-            }
-
-            .question-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .question-checkbox {
-                width: 18px;
-                height: 18px;
+                padding: 0.875rem;
             }
 
             .question-id {
-                font-size: 0.9rem;
+                font-size: 0.8125rem;
                 min-width: auto;
             }
 
             .question-text {
-                font-size: 0.9rem;
-            }
-
-            .question-meta {
-                gap: 0.4rem;
+                font-size: 0.875rem;
             }
 
             .meta-badge {
-                font-size: 0.7rem;
+                font-size: 0.6875rem;
                 padding: 0.2rem 0.5rem;
             }
 
@@ -544,30 +526,32 @@
             }
 
             .progress-title {
-                font-size: 0.9rem;
+                font-size: 0.8125rem;
             }
 
             .progress-text {
-                font-size: 1rem;
+                font-size: 1.25rem;
             }
 
             .progress-details {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📚 PPL Interactive Question Bank</h1>
-            <p>All 162 Previous Year Questions (2020-2024) | Nov-Dec 2025 Exam Prep</p>
+    <div class="header">
+        <div class="header-top">
+            <div>
+                <div class="header-title">Question Evaluation Interface</div>
+                <div class="header-subtitle">162 PYQ Questions • 2020-2024 Data</div>
+            </div>
         </div>
 
         <div class="stats-bar">
             <div class="stat-box">
                 <div class="stat-value" id="totalQuestions">162</div>
-                <div class="stat-label">Total Questions</div>
+                <div class="stat-label">Total</div>
             </div>
             <div class="stat-box">
                 <div class="stat-value" id="completedQuestions">0</div>
@@ -581,6 +565,11 @@
                 <div class="stat-value" id="progressPercent">0%</div>
                 <div class="stat-label">Progress</div>
             </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="controls-inner">
             <div class="stat-box">
                 <div class="stat-value" id="unitsCompleted">0/5</div>
                 <div class="stat-label">Units Done</div>
@@ -608,30 +597,46 @@
                 <select id="priorityFilter">
                     <option value="all">All Priorities</option>
                     <option value="high">High Priority Only</option>
+            <div class="control-group">
+                <label class="control-label">Search:</label>
+                <input type="text" id="searchBox" placeholder="Search questions...">
+            </div>
+            <div class="control-group">
+                <label class="control-label">Unit:</label>
+                <select id="unitFilter">
+                    <option value="all">All Units</option>
+                    <option value="Unit I">Unit I</option>
+                    <option value="Unit II">Unit II</option>
+                    <option value="Unit III">Unit III</option>
+                    <option value="Unit IV">Unit IV</option>
+                    <option value="Unit V">Unit V</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Priority:</label>
+                <select id="priorityFilter">
+                    <option value="all">All Priorities</option>
+                    <option value="high">High Priority</option>
                     <option value="medium">Medium Priority</option>
                     <option value="low">Low Priority</option>
                 </select>
             </div>
             <button id="expandAll">Expand All</button>
             <button id="collapseAll">Collapse All</button>
-            <button id="resetProgress">Reset Progress</button>
+            <button id="resetProgress">Reset</button>
         </div>
-
-        <div class="content" id="questionBank"></div>
     </div>
 
+    <div class="container" id="questionBank"></div>
+
     <div class="progress-panel">
-        <div class="progress-title">📊 Your Progress</div>
+        <div class="progress-title">Progress</div>
         <div class="progress-bar-container">
             <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
         </div>
         <div class="progress-text" id="progressPanelPercent">0%</div>
         <div class="progress-details">
-            <div><strong id="progressPanelCompleted">0</strong> of <strong>162</strong> questions completed</div>
-            <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #e9ecef;">
-                <div>✅ Units: <strong id="progressUnits">0/5</strong></div>
-                <div>📝 Subtopics: <strong id="progressSubtopics">0/68</strong></div>
-            </div>
+            <div><strong id="progressPanelCompleted">0</strong> / 162</div>
         </div>
     </div>
 
