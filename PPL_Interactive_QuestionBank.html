@@ -1279,8 +1279,47 @@
             }
         };
 
+        // Cookie management functions
+        function setCookie(name, value, days = 365) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const cookies = document.cookie.split(';');
+            for(let i = 0; i < cookies.length; i++) {
+                let c = cookies[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function saveProgress(data) {
+            const jsonString = JSON.stringify(data);
+            // Save to both localStorage and cookies for redundancy
+            localStorage.setItem('ppl_progress', jsonString);
+            setCookie('ppl_progress', jsonString, 365);
+        }
+
+        function loadProgress() {
+            // Try localStorage first, then cookies
+            let data = localStorage.getItem('ppl_progress');
+            if (!data) {
+                data = getCookie('ppl_progress');
+                if (data) {
+                    // Restore to localStorage if found in cookies
+                    localStorage.setItem('ppl_progress', data);
+                }
+            }
+            return JSON.parse(data || '{}');
+        }
+
         // Initialize the application
-        let progressData = JSON.parse(localStorage.getItem('ppl_progress') || '{}');
+        let progressData = loadProgress();
 
         function renderQuestionBank() {
             const container = document.getElementById('questionBank');
@@ -1343,7 +1382,7 @@
                         progressData[q.id] = checked;
                     });
                 });
-                localStorage.setItem('ppl_progress', JSON.stringify(progressData));
+                saveProgress(progressData);
                 renderQuestionBank();
             });
 
@@ -1396,7 +1435,7 @@
                 subtopicData.questions.forEach(q => {
                     progressData[q.id] = checked;
                 });
-                localStorage.setItem('ppl_progress', JSON.stringify(progressData));
+                saveProgress(progressData);
                 renderQuestionBank();
             });
 
@@ -1424,7 +1463,7 @@
             
             checkbox.addEventListener('change', (e) => {
                 progressData[question.id] = e.target.checked;
-                localStorage.setItem('ppl_progress', JSON.stringify(progressData));
+                saveProgress(progressData);
                 item.classList.toggle('completed', e.target.checked);
                 updateStats();
             });
@@ -1518,7 +1557,7 @@
         document.getElementById('resetProgress').addEventListener('click', () => {
             if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
                 progressData = {};
-                localStorage.setItem('ppl_progress', JSON.stringify(progressData));
+                saveProgress(progressData);
                 renderQuestionBank();
             }
         });
