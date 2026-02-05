@@ -143,12 +143,73 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
             }
 
             .container {
-                padding: 2rem;
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .stat-box {
+                padding: 1rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .link-card {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .link-icon {
+                font-size: 2rem;
+            }
+
+            .link-content {
+                text-align: center;
+            }
+
+            .link-title {
+                font-size: 1.1rem;
+            }
+
+            .link-desc {
+                font-size: 0.85rem;
+            }
+
+            .features {
+                margin-top: 1.5rem;
+            }
+
+            .features h3 {
+                font-size: 1rem;
+            }
+
+            .features li {
+                font-size: 0.9rem;
+                padding: 0.4rem 0;
             }
         }
     </style>

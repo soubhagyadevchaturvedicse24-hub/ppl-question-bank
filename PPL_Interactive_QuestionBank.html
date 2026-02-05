@@ -399,18 +399,37 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 1rem;
+                padding: 0.5rem;
             }
 
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
-            input[type="text"] {
-                min-width: 100%;
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .stat-box {
+                padding: 0.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.3rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
             }
 
             .controls {
+                padding: 1rem;
                 flex-direction: column;
                 align-items: stretch;
             }
@@ -418,12 +437,122 @@
             .control-group {
                 flex-direction: column;
                 align-items: stretch;
+                width: 100%;
+            }
+
+            .control-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.25rem;
+            }
+
+            input[type="text"] {
+                min-width: 100%;
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            select, button {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.75rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .unit-header {
+                padding: 0.75rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .unit-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .unit-info {
+                font-size: 0.8rem;
+            }
+
+            .unit-checkbox {
+                width: 20px;
+                height: 20px;
+            }
+
+            .subtopic-header {
+                padding: 0.6rem 0.75rem;
+            }
+
+            .subtopic-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .subtopic-checkbox {
+                width: 18px;
+                height: 18px;
+            }
+
+            .subtopic-stats {
+                font-size: 0.75rem;
+            }
+
+            .question-item {
+                padding: 0.75rem;
+            }
+
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .question-checkbox {
+                width: 18px;
+                height: 18px;
+            }
+
+            .question-id {
+                font-size: 0.9rem;
+                min-width: auto;
+            }
+
+            .question-text {
+                font-size: 0.9rem;
+            }
+
+            .question-meta {
+                gap: 0.4rem;
+            }
+
+            .meta-badge {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
             }
 
             .progress-panel {
-                bottom: 1rem;
-                right: 1rem;
-                left: 1rem;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 0;
+                padding: 1rem;
+                min-width: 100%;
+            }
+
+            .progress-title {
+                font-size: 0.9rem;
+            }
+
+            .progress-text {
+                font-size: 1rem;
+            }
+
+            .progress-details {
+                font-size: 0.8rem;
             }
         }
     </style>
