@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Evaluation Interface | Operating System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1e293b;
+            color: white;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .header-left {
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .header-subtitle {
+            font-size: 0.8125rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .header-progress {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .header-progress-bar {
+            background: #334155;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .header-progress-fill {
+            height: 100%;
+            background: #0ea5e9;
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+
+        .header-progress-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.6875rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #f8f9fa;
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-label {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #64748b;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"], select, button {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            transition: border 0.2s;
+            background: white;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #0ea5e9;
+        }
+
+        select {
+            color: #1e293b;
+        }
+
+        button {
+            background: #1e293b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        button:hover {
+            background: #334155;
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .unit-section {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .unit-header {
+            background: #f8f9fa;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            user-select: none;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .unit-header:hover {
+            background: #f1f5f9;
+        }
+
+        .unit-header.active {
+            background: #1e293b;
+            color: white;
+        }
+
+        .unit-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .unit-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .unit-info {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .dropdown-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .unit-header.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .unit-content {
+            display: none;
+            padding: 0;
+            background: white;
+        }
+
+        .unit-content.show {
+            display: block;
+        }
+
+        .subtopic-section {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .subtopic-section:last-child {
+            border-bottom: none;
+        }
+
+        .subtopic-header {
+            background: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            user-select: none;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .subtopic-header:hover {
+            background: #f8f9fa;
+        }
+
+        .subtopic-header.active {
+            background: #f1f5f9;
+        }
+
+        .subtopic-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            color: #1e293b;
+        }
+
+        .subtopic-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .subtopic-stats {
+            font-size: 0.8125rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .subtopic-dropdown-icon {
+            font-size: 1rem;
+            transition: transform 0.3s;
+            color: #64748b;
+        }
+
+        .subtopic-header.active .subtopic-dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .subtopic-content {
+            display: none;
+            padding: 1rem 1.5rem 1.5rem;
+            background: #fafbfc;
+        }
+
+        .subtopic-content.show {
+            display: block;
+        }
+
+        .question-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: border 0.2s;
+        }
+
+        .question-item:hover {
+            border-color: #cbd5e1;
+        }
+
+        .question-item.completed {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .question-header {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .question-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .question-id {
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.8125rem;
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+
+        .question-text {
+            flex: 1;
+            line-height: 1.6;
+            color: #1e293b;
+            font-size: 0.9375rem;
+        }
+
+        .question-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .meta-badge {
+            display: inline-block;
+            padding: 0.25rem 0.625rem;
+            background: #f1f5f9;
+            color: #64748b;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-frequency {
+            background: #fef2f2;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .badge-marks {
+            background: #ecfdf5;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .badge-year {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .badge-high {
+            background: #fef3c7;
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .header {
+                flex-wrap: wrap;
+            }
+
+            .header-progress {
+                order: 3;
+                max-width: 100%;
+            }
+
+            .main-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .header-stats {
+                gap: 1rem;
+            }
+
+            .content-area {
+                padding: 1rem;
+            }
+
+            .sidebar {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="header-title">Operating System | B022315(022)</div>
+            <div class="header-subtitle">Previous Year Questions 2020-2024</div>
+        </div>
+
+        <div class="header-progress">
+            <div class="header-progress-bar">
+                <div id="headerProgressFill" class="header-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div id="headerProgressText" class="header-progress-text">0 of 170 completed</div>
+        </div>
+
+        <div class="header-stats">
+            <div class="stat-box">
+                <div id="totalQuestions" class="stat-value">170</div>
+                <div class="stat-label">Questions</div>
+            </div>
+            <div class="stat-box">
+                <div id="completedQuestions" class="stat-value">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-box">
+                <div id="progressPercent" class="stat-value">0%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Search & Filter</div>
+                
+                <div class="control-group">
+                    <label class="control-label">Search Questions</label>
+                    <input type="text" id="searchBox" placeholder="Type to search...">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Filter by Unit</label>
+                    <select id="unitFilter">
+                        <option value="all">All Units</option>
+                        <option value="Unit 1">Unit I: Introduction to OS</option>
+                        <option value="Unit 2">Unit II: Processes & CPU Scheduling</option>
+                        <option value="Unit 3">Unit III: Deadlocks</option>
+                        <option value="Unit 4">Unit IV: Memory Management</option>
+                        <option value="Unit 5">Unit V: I/O & File Systems</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Filter by Priority</label>
+                    <select id="priorityFilter">
+                        <option value="all">All Priorities</option>
+                        <option value="highest">Highest Priority</option>
+                        <option value="high">High Priority</option>
+                        <option value="medium">Medium Priority</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Filter by Year</label>
+                    <select id="yearFilter">
+                        <option value="all">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Controls</div>
+                <button id="expandAll">Expand All</button>
+                <button id="collapseAll">Collapse All</button>
+                <button id="resetProgress">Reset Progress</button>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div id="questionBank" class="container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Question Database
+        const questionDatabase = {
+            "unit1": {
+                name: "Unit I: Introduction to Operating Systems",
+                subtopics: {
+                    "1.1": {
+                        name: "Operating System Basics & Objectives",
+                        questions: [
+                            {
+                                id: "Q1.1",
+                                text: "What do you mean by time sharing operating system? Give an example.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.2",
+                                text: "What are the objective of Operating System.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.3",
+                                text: "Explain how operating system act as a Resource Manager?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.4",
+                                text: "What are the 3 main purposes of an Operating System?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.5",
+                                text: "Define Kernel.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q1.6",
+                                text: "Explain how an operating system tasks control?",
+                                frequency: 2,
+                                marks: 4,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.7",
+                                text: "What is an operating system, explain.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.8",
+                                text: "What is an Operating System? What it does as a Resource Manager?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "1.2": {
+                        name: "Operating System Functions & Services",
+                        questions: [
+                            {
+                                id: "Q1.9",
+                                text: "What are the functions of operating system? Explain in brief.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.10",
+                                text: "The services and functions provided by an operating system can be divided into different components. Briefly explain all the components of Operating System.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.11",
+                                text: "What are the services of Operating System? Explain briefly.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.12",
+                                text: "What are the various operating system services?",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.13",
+                                text: "Briefly describe the various services of an operating system.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.14",
+                                text: "Briefly explain any 5 services of Operating System, how it provides convenience to the user.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "1.3": {
+                        name: "Operating System Structure & Architecture",
+                        questions: [
+                            {
+                                id: "Q1.15",
+                                text: "Explain the working and architecture of an operating system in detail.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.16",
+                                text: "Explain operating system structure.",
+                                frequency: 3,
+                                marks: 8,
+                                years: ["2022(AM)", "2024(AM)", "2024(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q1.17",
+                                text: "Explain Operating system structure with suitable diagram.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.18",
+                                text: "Explain Layered Approach of Operating System.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "medium"
+                            }
+                        ]
+                    },
+                    "1.4": {
+                        name: "Types of Operating Systems",
+                        questions: [
+                            {
+                                id: "Q1.19",
+                                text: "Differentiate between time sharing system and Real time system.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.20",
+                                text: "Analyze different types of operating systems with an example. Which type of operating system is most suitable for the modern computer system and why?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q1.21",
+                                text: "Explain time sharing and real time operating system.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.22",
+                                text: "Define multiprogramming and real time operating system.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.23",
+                                text: "Compare tightly coupled systems with loosely coupled systems.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q1.24",
+                                text: "Distinguish among the following terminologies associated with the operating system and explain each of them in detail: Multiprograming systems, Multitasking systems, Multiprocessor systems.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.25",
+                                text: "What are the different types of operating system?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.26",
+                                text: "What are the problem in Batch Operating System? Write down their solution with the proper explanation.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "medium"
+                            }
+                        ]
+                    },
+                    "1.5": {
+                        name: "System Calls & Distributed Computing",
+                        questions: [
+                            {
+                                id: "Q1.27",
+                                text: "Explain Distributed Computing.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q1.28",
+                                text: "Explain the various system calls in an operating system.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.29",
+                                text: "Name and discuss the range of system calls that may be supplied by an operating system under various circumstances. List the sequence of system call required to copy content of a file to another file.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.30",
+                                text: "What do you mean by system call? Explain with example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q1.31",
+                                text: "Describe the main developments of operating system that occurred at each computer generation.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "medium"
+                            }
+                        ]
+                    }
+                }
+            },
+            "unit2": {
+                name: "Unit II: Concurrent Processes & CPU Scheduling",
+                subtopics: {
+                    "2.1": {
+                        name: "Process Concepts & Process Control Block",
+                        questions: [
+                            {
+                                id: "Q2.1",
+                                text: "Define process control block with proper diagram.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.2",
+                                text: "What is Process. Draw & explain the process state transition.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.3",
+                                text: "Give Five State model of process state transition.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.4",
+                                text: "What do you mean by PCB? Where is it used? What are its contents? Explain.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.5",
+                                text: "Define Race condition with example.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.6",
+                                text: "Demonstrate race condition.",
+                                frequency: 2,
+                                marks: 4,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.7",
+                                text: "What is difference between Independent process and dependent process?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q2.8",
+                                text: "Draw and briefly explain Process State Transition diagram.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.9",
+                                text: "Explain Short Term, Long Term and Medium Term Scheduler.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.10",
+                                text: "What are the different states of process explain each of them briefly.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.11",
+                                text: "Write the difference between process and thread.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.12",
+                                text: "Explain various states of a process with state transition diagram.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.13",
+                                text: "Explain process control block.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.14",
+                                text: "Describe the objectives of Scheduling. Explain the structure of PCB.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.15",
+                                text: "Write short notes on: (i) The process control block (ii) The critical section problem",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "2.2": {
+                        name: "Inter-Process Communication & Synchronization",
+                        questions: [
+                            {
+                                id: "Q2.16",
+                                text: "What are the two models of inter-process communication? What are the strengths and weakness of the two approaches?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q2.17",
+                                text: "Give a mutual-exclusion solution for Producer-consumer problem of critical section with algorithm and example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "2.3": {
+                        name: "Semaphores & Critical Section",
+                        questions: [
+                            {
+                                id: "Q2.18",
+                                text: "Define Semaphore? Give the solution of producer consumer problem using semaphore.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.19",
+                                text: "Discuss critical section problem and how this can be overcome using semaphores. Write the solution for achieving mutual exclusion requirement in a producer consumer problem.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.20",
+                                text: "Explain semaphore. How can semaphore be used to Enforce mutual-exclusion? Give a suitable example to explain.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2022(AM)", "2024(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "2.4": {
+                        name: "Classical Concurrency Problems",
+                        questions: [
+                            {
+                                id: "Q2.21",
+                                text: "What do you mean by Dining Philosopher method? Explain with suitable diagram.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.22",
+                                text: "Explain Producer-Consumer problem in detail.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.23",
+                                text: "Explain the concept of Dining Philosopher problem with suitable diagram and representation.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q2.24",
+                                text: "Explain Dining philosopher problem with its possible solution.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "2.5": {
+                        name: "CPU Scheduling Algorithms",
+                        questions: [
+                            {
+                                id: "Q2.25",
+                                text: "Consider the above set of processes that arrive at time zero. Calculate the average waiting time, average turnaround time and throughput with FCFS and SJF. Process: P1=5, P2=24, P3=16, P4=10, P5=3",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.26",
+                                text: "Consider the set of 5 process whose arrival time & burst time are given below. Calculate: (i) Average waiting time (ii) Turn around time (iii) Average turn around time (iv) Through put for shortest remaining time first algorithm. Processes: P1(0,4), P2(1,5), P3(2,2), P4(3,1), P5(4,6)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.27",
+                                text: "What is CPU scheduling? If the different jobs and their arrival time and burst time are given below, find the average turnaround time, average waiting time and throughput using Round Robin (with time quantum = 2) and SRTF. Processes: P1(0,6), P2(1,4), P3(2,3), P4(3,1), P5(4,9), P6(5,1)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.28",
+                                text: "Consider the following 4 processes with length of cpu burst time given in milliseconds. Draw Gantt's chart and find out the average waiting time for SJF processor scheduling algorithm. Processes: P1(1,3), P2(4,1), P3(2,4), P4(6,0), P5(3,2)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.29",
+                                text: "Consider a system with set of processes with burst time (in ms) and priorities. Draw Gantt chart and find Average waiting time for pre-emptive priority scheduling. Processes: P1(10,3,0), P2(5,2,1), P3(2,1,2)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.30",
+                                text: "Consider the following set of processes having their burst in ms. Calculate the avg waiting time and turn-around time for SJF (non preemptive). Processes: P1(10,0), P2(1,1), P3(2,2), P4(1,3), P5(5,4)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.31",
+                                text: "Consider the following set of processes having their burst in ms. Calculate the avg waiting time and turnaround time for SJF (non preemptive). Processes: P1(1,3), P2(3,0), P3(2,4), P4(6,0), P5(3,2)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.32",
+                                text: "If the different jobs and their arrival time and burst time is given below find average waiting time using FCFS & preemptive SJF (SRTF). Processes: P1(8,0), P2(4,1), P3(9,2), P4(5,3)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q2.33",
+                                text: "What is CPU scheduling? If the different jobs and their arrival time and burst time is given below find the average turnaround time and average waiting time using FCFS and SJF. Processes: P1(4,0), P2(5,1), P3(2,2), P4(3,3), P5(6,4)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "highest"
+                            }
+                        ]
+                    }
+                }
+            },
+            "unit3": {
+                name: "Unit III: Deadlocks",
+                subtopics: {
+                    "3.1": {
+                        name: "Deadlock Basics & Characteristics",
+                        questions: [
+                            {
+                                id: "Q3.1",
+                                text: "Define resource allocation graph with suitable diagram.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.2",
+                                text: "What is safe and unsafe state.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.3",
+                                text: "What is Deadlock? Give characteristics of deadlock.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.4",
+                                text: "Define Deadlock.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.5",
+                                text: "What is Deadlock? Draw suitable diagram.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.6",
+                                text: "Writing necessary conditions for deadlock.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.7",
+                                text: "Define deadlock with example.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.8",
+                                text: "What is deadlock? Give any real life example of deadlock.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.9",
+                                text: "What are the four necessary conditions required to hold a deadlock?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.10",
+                                text: "What are the four necessary conditions for characterizing deadlock? What is the only reasonable condition that can be used to prevent deadlocks from occurring?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.11",
+                                text: "What are the four necessary conditions for deadlock occurrence? Explain.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "3.2": {
+                        name: "Deadlock Prevention",
+                        questions: [
+                            {
+                                id: "Q3.12",
+                                text: "Explain the method used in deadlock prevention.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.13",
+                                text: "Explain how the deadlock can be prevented.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.14",
+                                text: "Explain how deadlock can be prevented on the basis of all 4 deadlock conditions.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.15",
+                                text: "Explain Deadlock prevention in detail.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.16",
+                                text: "Explain various methods to avoid deadlock with example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.17",
+                                text: "How will you avoid deadlock?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "3.3": {
+                        name: "Deadlock Avoidance - Banker's Algorithm",
+                        questions: [
+                            {
+                                id: "Q3.18",
+                                text: "An operating system uses the banker's algorithm for deadlock avoidance when managing the allocation of three resource types X, Y, and Z to three processes P0, P1 and P2. Given allocation and max matrices. Consider independent requests REQ 1 and REQ 2.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.19",
+                                text: "A single processor system has 3 resource types x, y, z which are shared by 3 processes. There are 5 units of each resource type. Which of these processes will last finish and are the system is in safe state.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.20",
+                                text: "Explain Banker's algorithm and safety algorithm with pseudo code.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.21",
+                                text: "Consider the following snapshot of a system. Using Bankers algorithm find: (i) Content of Need Matrix (ii) Is the system in a safe state? If yes then what is the safe sequence.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.22",
+                                text: "Analyze the following snapshot of a system. (i) Calculate the content of need matrix. (ii) Is the system in a safe state?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.23",
+                                text: "Consider the following snapshot of a system. Answer the following using Banker's algorithm: (i) What is the content of matrix needed? (ii) Is the system in a safe state?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.24",
+                                text: "Explain Banker's algorithm & Safety algorithm.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.25",
+                                text: "Consider following current allocation. (i) Is the current allocation state safe (ii) Would the following request be granted in the current state: Process P1 request (1, 1, 0), Process P2 request (0, 1, 0), Process P3 request (0, 1, 0)",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.26",
+                                text: "Determine whether a given system is in a deadlock. Answer using Banker's algorithm: (i) Is the system in a safe state? (ii) If Yes, mention the safe sequence. (iii) If a process P2 makes a request of one additional request for an instance of type C, will the system lead to deadlock state then.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q3.27",
+                                text: "Determine whether a given system is in a deadlock. Answer the following using Banker's algorithm: (i) What would be the need matrix? (ii) Is the system in a safe state? (iii) If a request from process P1 arrives for (1,0,2) can be granted immediately? (iv) Explain various methods for recovery from deadlock.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "highest"
+                            }
+                        ]
+                    },
+                    "3.4": {
+                        name: "Deadlock Detection & Recovery",
+                        questions: [
+                            {
+                                id: "Q3.28",
+                                text: "Write an algorithm to determine whether a given system is in a deadlock and explain.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q3.29",
+                                text: "Explain the deadlock recovery method.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2022(ND)", "2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.30",
+                                text: "Explain the resource allocation graph.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q3.31",
+                                text: "Write short notes on: (i) Resource Allocation Graph (ii) Recovery from deadlock",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.32",
+                                text: "Why is deadlock state more critical than starvation? Describe resource allocation graph with a deadlock, with a cycle but no deadlock.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q3.33",
+                                text: "Explain dead lock avoidance algorithm.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q3.34",
+                                text: "Write short notes on: (i) Circular wait (ii) Safe and unsafe state",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    }
+                }
+            },
+            "unit4": {
+                name: "Unit IV: Memory Management",
+                subtopics: {
+                    "4.1": {
+                        name: "Memory Management Basics",
+                        questions: [
+                            {
+                                id: "Q4.1",
+                                text: "Define resident monitor.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.2",
+                                text: "What is virtual memory?",
+                                frequency: 2,
+                                marks: 4,
+                                years: ["2022(ND)", "2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.3",
+                                text: "What is Paging and Swapping?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.4",
+                                text: "Define Logical and Physical Address.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.5",
+                                text: "Define Virtual Address.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.6",
+                                text: "What is Resident Monitor?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.7",
+                                text: "Explain the main function of the memory management unit.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.8",
+                                text: "Why do we need paging?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "4.2": {
+                        name: "Address Translation & Partitioning",
+                        questions: [
+                            {
+                                id: "Q4.9",
+                                text: "Explain address translation from logical address to physical address.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2021(ND)", "2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.10",
+                                text: "Explain multiprogramming with fixed partition with suitable example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.11",
+                                text: "Explain the difference between internal and external fragmentation. Given five variable sized memory partitions of 100 kb, 500 kb, 200 kb, 300 kb, 600 kb (in order), how would each of the first fit, best fit and worst fit algorithm place processes of 212 kb, 417 kb, 112 kb and 426 kb (in order)? Which algorithm makes most efficient use of memory?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.12",
+                                text: "Define external fragmentation. What are the causes for external fragmentation?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.13",
+                                text: "Explain fragmentation with its types and solution.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.14",
+                                text: "Consider a swapping system in which memory consists of the following hole size in memory order 10 kB, 4 kB, 20 kB, 18 kB, 7 kB, 9 KB, 12 kB and 15 kB. Which hole in taken for successive segment requests of: (i) 12 kB (ii) 10 kB (iii) 9 kB For first fit, best fit?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "highest"
+                            }
+                        ]
+                    },
+                    "4.3": {
+                        name: "Paging & Segmentation",
+                        questions: [
+                            {
+                                id: "Q4.15",
+                                text: "Write short notes on: (i) Paging (ii) Segmentation",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.16",
+                                text: "Why are segmentation and paging sometimes combined into one scheme? Explain the paged segmentation.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.17",
+                                text: "Explain paging with example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.18",
+                                text: "Explain the concept of Segmentation with suitable diagrams.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.19",
+                                text: "Explain the concept of paging and segmentation.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "4.4": {
+                        name: "Virtual Memory & Demand Paging",
+                        questions: [
+                            {
+                                id: "Q4.20",
+                                text: "Explain demand paging with an example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.21",
+                                text: "What is virtual memory? How it implemented using demand Paging explain?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.22",
+                                text: "What is Virtual Memory? Explain overlays method with the help of example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q4.23",
+                                text: "Write short notes on: (i) Virtual memory (ii) Cache memory",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "4.5": {
+                        name: "Page Replacement Algorithms",
+                        questions: [
+                            {
+                                id: "Q4.24",
+                                text: "What is page replacement algorithm? Explain any one algorithm with example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.25",
+                                text: "What is the need of page replacement? Consider the following page references string: 1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6. Find out the no. of page fault by LRU, OPT replacement, FIFO algorithm. Assume there are four page frames.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.26",
+                                text: "Consider a reference string 4, 7, 6, 1, 7, 6, 1, 2, 7, 2. The number of frames in the memory is 3 find out the number of page faults respective to (i) optimal (ii) FIFO (iii) LRU.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.27",
+                                text: "Calculate the Number of page fault having 3 frames available in Memory, when reference to pages Occur in order: 2,3,2,1,5,2,4,5,3,2,5,2",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.28",
+                                text: "Consider the following page reference string 1, 1, 2, 2, 1, 4, 2, 3, 3, 5, 5, 4. Assume 3 page frame, calculate the page faults using following algorithm: (i) FIFO (ii) OPR",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.29",
+                                text: "Consider the following page reference string 4,7, 6, 1, 7, 6, 1, 2, 7, 2. Assume 3 page frames and pure demand paging, How many page faults would occur for: (i) FIFO (ii) Optimal",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q4.30",
+                                text: "What is the need of Page replacement? Explain any one page replacement algorithm with suitable example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "4.6": {
+                        name: "Thrashing",
+                        questions: [
+                            {
+                                id: "Q4.31",
+                                text: "What is thrashing? State the cause of thrashing.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.32",
+                                text: "What is Thrashing? What are the causes for thrashing?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.33",
+                                text: "What is Thrashing? How does the system detect thrashing?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.34",
+                                text: "Explain the concept of thrashing with example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q4.35",
+                                text: "What is Thrashing? State the cause of thrashing.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "high"
+                            }
+                        ]
+                    }
+                }
+            },
+            "unit5": {
+                name: "Unit V: I/O Management, File Systems & Disk Scheduling",
+                subtopics: {
+                    "5.1": {
+                        name: "I/O Management & Buffering",
+                        questions: [
+                            {
+                                id: "Q5.1",
+                                text: "What is buffering?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.2",
+                                text: "What is DMA.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.3",
+                                text: "Define logical and physical address space.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2021(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.4",
+                                text: "What is Address Binding?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2022(AM)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.5",
+                                text: "Explain blocked I/O devices.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.6",
+                                text: "What are the different operations performed on file?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.7",
+                                text: "Differentiate between program driven and interrupt driven input/output.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.8",
+                                text: "Explain virtual machine operating system.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.9",
+                                text: "Explain the different types of buffering.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.10",
+                                text: "What do you mean by Input/Output Buffering? Explain with their types.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "medium"
+                            }
+                        ]
+                    },
+                    "5.2": {
+                        name: "File System Concepts",
+                        questions: [
+                            {
+                                id: "Q5.11",
+                                text: "What are the different files allocation methods?",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2020(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.12",
+                                text: "Define File and its attributes.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.13",
+                                text: "Explain file organization and access mechanism.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.14",
+                                text: "Explain the following: (i) file types (ii) file operation (iii) file attributes",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.15",
+                                text: "Describe File Access methods in detail.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.16",
+                                text: "Describe file allocation methods.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.17",
+                                text: "Write in detail about File Access Mechanism.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.18",
+                                text: "Write different file atttributes and operations.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.19",
+                                text: "Describe various file accessing methods with its advantages and disadvantages.",
+                                frequency: 2,
+                                marks: 8,
+                                years: ["2020(ND)", "2023(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.20",
+                                text: "Write different types of file access methods with suitable diagram.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.21",
+                                text: "Explain free space management and its techniques.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.22",
+                                text: "Write short notes on: (i) File sharing (ii) Virtual O.S.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(ND)"],
+                                priority: "medium"
+                            }
+                        ]
+                    },
+                    "5.3": {
+                        name: "UNIX/Linux File System",
+                        questions: [
+                            {
+                                id: "Q5.23",
+                                text: "Explain Kernel and Buffer cache architecture of Unix Operating System.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "medium"
+                            },
+                            {
+                                id: "Q5.24",
+                                text: "What is inode? Write about namei algorithm.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.25",
+                                text: "Explain the concept of Inode.",
+                                frequency: 1,
+                                marks: 4,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            },
+                            {
+                                id: "Q5.26",
+                                text: "Explain the namei algorithm with the help of example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "high"
+                            }
+                        ]
+                    },
+                    "5.4": {
+                        name: "Disk Scheduling Algorithms",
+                        questions: [
+                            {
+                                id: "Q5.27",
+                                text: "Explain the various disk scheduling algorithm with suitable example.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.28",
+                                text: "Consider a disk with 200 tracks and the queue has random requests from different processes in the order: 55, 58, 38, 18, 90, 160, 150, 38, 184 initially aim is at 100. Find the average seek length using FIFO, SSTF, Scan and C-scan algorithm.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.29",
+                                text: "Considering SCAN disk scheduling algorithm. How much time will be required to serve all the pending requests if each track-to-track seek takes 5 milliseconds?",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.30",
+                                text: "Suppose that the Request sequence= {176, 79, 34, 60, 92, 11, 41, 114} Initial head position = 50, Direction = left (We are moving from right to left). Find out the total seek count using SCAN disk scheduling algorithm.",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2021(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.31",
+                                text: "Suppose the moving head disk with 200 tracks is currently serving a request for track 143. If the queue request is kept in FIFO order: 86,147,91,177,94,150. What is the total head movement for the following scheduling schemes: (i) FCFS (ii) SSTF",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2024(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.32",
+                                text: "On a disk with 200 cylinders, compute the number of tracks the disk arm must move to satisfy all the request in the disk queue. Assume the current position is at 53 track are: 98, 183, 37, 122, 14, 124, 65, 67. Identify the total head movement for the following algorithm: (i) FIFO (ii) SSTF",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2022(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.33",
+                                text: "Suppose that a disk drive has 181 cylinders, numbered 0 to 180. The drive is currently serving a request at cylinder 60, and the previous request was at cylinder 50. The queue of pending request, in FIFO order is 87, 170, 40, 150, 36, 72, 66, 14. Starting from the head position, what is the average head movement and what is the total no. of head movement needed to satisfy these request for the following disk scheduling algorithm: (i) FCFS (ii) SSTF (iii) SCAN",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2023(AM)"],
+                                priority: "highest"
+                            },
+                            {
+                                id: "Q5.34",
+                                text: "Suppose that a disk head of a moving head disk with 200 tracks, 0 to 199, is currently serving a request at 143 and has just finished a request at track 125, The queue of request is kept in FIFO order 86, 147, 91, 177, 94, 130, 102, 175, 130. What is the total number of head movement needed to specify these request for the following disk scheduling algorithms? (i) SSTF scheduling (ii) SCAN scheduling",
+                                frequency: 1,
+                                marks: 8,
+                                years: ["2020(ND)"],
+                                priority: "highest"
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+
+        // Progress tracking
+        let progressData = {};
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('os_progress');
+            if (saved) {
+                progressData = JSON.parse(saved);
+            }
+        }
+
+        function saveProgress(data) {
+            progressData = data;
+            localStorage.setItem('os_progress', JSON.stringify(data));
+        }
+
+        loadProgress();
+
+        // Render question bank
+        function renderQuestionBank() {
+            const container = document.getElementById('questionBank');
+            container.innerHTML = '';
+
+            Object.keys(questionDatabase).forEach((unitKey, idx) => {
+                const unitData = questionDatabase[unitKey];
+                const unitSection = document.createElement('div');
+                unitSection.className = 'unit-section';
+
+                // Count total questions and completed
+                let totalQs = 0;
+                let completedQs = 0;
+                Object.values(unitData.subtopics).forEach(subtopic => {
+                    totalQs += subtopic.questions.length;
+                    subtopic.questions.forEach(q => {
+                        if (progressData[q.id]) completedQs++;
+                    });
+                });
+
+                const unitHeader = document.createElement('div');
+                unitHeader.className = 'unit-header';
+                unitHeader.innerHTML = `
+                    <div class="unit-title">
+                        <input type="checkbox" class="unit-checkbox" data-unit="${unitKey}">
+                        <span>${unitData.name}</span>
+                    </div>
+                    <div class="unit-info">${completedQs}/${totalQs} completed</div>
+                    <div class="dropdown-icon">▼</div>
+                `;
+
+                unitHeader.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('unit-checkbox')) {
+                        unitHeader.classList.toggle('active');
+                        unitContent.classList.toggle('show');
+                    }
+                });
+
+                const unitContent = document.createElement('div');
+                unitContent.className = 'unit-content';
+
+                // Render subtopics
+                Object.keys(unitData.subtopics).forEach(subtopicKey => {
+                    const subtopicData = unitData.subtopics[subtopicKey];
+                    const subtopicSection = document.createElement('div');
+                    subtopicSection.className = 'subtopic-section';
+
+                    // Count completed in this subtopic
+                    let subCompleted = 0;
+                    subtopicData.questions.forEach(q => {
+                        if (progressData[q.id]) subCompleted++;
+                    });
+
+                    const subtopicHeader = document.createElement('div');
+                    subtopicHeader.className = 'subtopic-header';
+                    subtopicHeader.innerHTML = `
+                        <div class="subtopic-title">
+                            <input type="checkbox" class="subtopic-checkbox" data-unit="${unitKey}" data-subtopic="${subtopicKey}">
+                            <span>${subtopicData.name}</span>
+                        </div>
+                        <div class="subtopic-stats">
+                            <span>${subCompleted}/${subtopicData.questions.length}</span>
+                            <span class="subtopic-dropdown-icon">▼</span>
+                        </div>
+                    `;
+
+                    subtopicHeader.addEventListener('click', (e) => {
+                        if (!e.target.classList.contains('subtopic-checkbox')) {
+                            subtopicHeader.classList.toggle('active');
+                            subtopicContent.classList.toggle('show');
+                        }
+                    });
+
+                    const subtopicContent = document.createElement('div');
+                    subtopicContent.className = 'subtopic-content';
+
+                    // Render questions
+                    subtopicData.questions.forEach(question => {
+                        const questionItem = createQuestionItem(question, unitKey);
+                        subtopicContent.appendChild(questionItem);
+                    });
+
+                    subtopicSection.appendChild(subtopicHeader);
+                    subtopicSection.appendChild(subtopicContent);
+                    unitContent.appendChild(subtopicSection);
+                });
+
+                unitSection.appendChild(unitHeader);
+                unitSection.appendChild(unitContent);
+                container.appendChild(unitSection);
+            });
+
+            updateStats();
+            updateCheckboxStates();
+        }
+
+        function updateCheckboxStates() {
+            // Update unit checkboxes
+            document.querySelectorAll('.unit-checkbox').forEach(checkbox => {
+                const unitKey = checkbox.dataset.unit;
+                const unitData = questionDatabase[unitKey];
+                let allCompleted = true;
+                let anyCompleted = false;
+
+                Object.values(unitData.subtopics).forEach(subtopic => {
+                    subtopic.questions.forEach(q => {
+                        if (progressData[q.id]) {
+                            anyCompleted = true;
+                        } else {
+                            allCompleted = false;
+                        }
+                    });
+                });
+
+                checkbox.checked = allCompleted;
+                checkbox.indeterminate = anyCompleted && !allCompleted;
+            });
+
+            // Update subtopic checkboxes
+            document.querySelectorAll('.subtopic-checkbox').forEach(checkbox => {
+                const unitKey = checkbox.dataset.unit;
+                const subtopicKey = checkbox.dataset.subtopic;
+                const subtopicData = questionDatabase[unitKey].subtopics[subtopicKey];
+                
+                let allCompleted = true;
+                let anyCompleted = false;
+
+                subtopicData.questions.forEach(q => {
+                    if (progressData[q.id]) {
+                        anyCompleted = true;
+                    } else {
+                        allCompleted = false;
+                    }
+                });
+
+                checkbox.checked = allCompleted;
+                checkbox.indeterminate = anyCompleted && !allCompleted;
+            });
+        }
+
+        function createQuestionItem(question, unitKey) {
+            const item = document.createElement('div');
+            item.className = 'question-item';
+            item.dataset.qid = question.id;
+            item.dataset.unit = unitKey;
+            
+            if (progressData[question.id]) {
+                item.classList.add('completed');
+            }
+
+            const header = document.createElement('div');
+            header.className = 'question-header';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'question-checkbox';
+            checkbox.checked = progressData[question.id] || false;
+            checkbox.addEventListener('change', (e) => {
+                progressData[question.id] = e.target.checked;
+                saveProgress(progressData);
+                item.classList.toggle('completed', e.target.checked);
+                updateStats();
+                updateCheckboxStates();
+            });
+
+            const qid = document.createElement('span');
+            qid.className = 'question-id';
+            qid.textContent = question.id;
+
+            const qtext = document.createElement('div');
+            qtext.className = 'question-text';
+            qtext.textContent = question.text;
+
+            header.appendChild(checkbox);
+            header.appendChild(qid);
+            header.appendChild(qtext);
+
+            const meta = document.createElement('div');
+            meta.className = 'question-meta';
+
+            // Display frequency
+            if (question.frequency && question.frequency > 1) {
+                meta.innerHTML += `<span class="meta-badge badge-frequency">Asked ${question.frequency}x</span>`;
+            }
+            
+            // Display marks
+            if (question.marks) {
+                meta.innerHTML += `<span class="meta-badge badge-marks">${question.marks} marks</span>`;
+            }
+            
+            // Display years
+            if (question.years && question.years.length > 0) {
+                meta.innerHTML += `<span class="meta-badge badge-year">${question.years.join(', ')}</span>`;
+            }
+            
+            // Display priority badge
+            if (question.priority === 'highest') {
+                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGHEST PRIORITY</span>`;
+            } else if (question.priority === 'high') {
+                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGH PRIORITY</span>`;
+            }
+
+            item.appendChild(header);
+            item.appendChild(meta);
+            return item;
+        }
+
+        function updateStats() {
+            const totalQuestions = getTotalQuestions();
+            const completedQuestions = Object.values(progressData).filter(v => v === true).length;
+            const percent = totalQuestions > 0 ? Math.round((completedQuestions / totalQuestions) * 100) : 0;
+
+            // Update header stats
+            document.getElementById('totalQuestions').textContent = totalQuestions;
+            document.getElementById('completedQuestions').textContent = completedQuestions;
+            document.getElementById('progressPercent').textContent = percent + '%';
+
+            // Update header progress bar and text
+            document.getElementById('headerProgressFill').style.width = percent + '%';
+            document.getElementById('headerProgressText').textContent = `${completedQuestions} of ${totalQuestions} completed`;
+        }
+
+        function getTotalQuestions() {
+            let total = 0;
+            Object.values(questionDatabase).forEach(unitData => {
+                Object.values(unitData.subtopics).forEach(subtopicData => {
+                    total += subtopicData.questions.length;
+                });
+            });
+            return total;
+        }
+
+        // Control buttons
+        document.getElementById('expandAll').addEventListener('click', () => {
+            document.querySelectorAll('.unit-header').forEach(h => {
+                h.classList.add('active');
+                h.nextElementSibling.classList.add('show');
+            });
+            document.querySelectorAll('.subtopic-header').forEach(h => {
+                h.classList.add('active');
+                h.nextElementSibling.classList.add('show');
+            });
+        });
+
+        document.getElementById('collapseAll').addEventListener('click', () => {
+            document.querySelectorAll('.unit-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('show');
+            });
+            document.querySelectorAll('.subtopic-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('show');
+            });
+        });
+
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                progressData = {};
+                saveProgress(progressData);
+                renderQuestionBank();
+            }
+        });
+
+        // Unit checkbox - select/deselect all questions in unit
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('unit-checkbox')) {
+                const unitKey = e.target.dataset.unit;
+                const isChecked = e.target.checked;
+                const unitData = questionDatabase[unitKey];
+                
+                // Update all questions in this unit
+                Object.values(unitData.subtopics).forEach(subtopic => {
+                    subtopic.questions.forEach(q => {
+                        progressData[q.id] = isChecked;
+                    });
+                });
+                
+                saveProgress(progressData);
+                updateStats();
+                
+                // Update all question checkboxes and visual states
+                document.querySelectorAll(`.question-item[data-unit="${unitKey}"]`).forEach(item => {
+                    const checkbox = item.querySelector('.question-checkbox');
+                    if (checkbox) checkbox.checked = isChecked;
+                    item.classList.toggle('completed', isChecked);
+                });
+                
+                // Update subtopic checkboxes
+                updateCheckboxStates();
+            }
+            
+            // Subtopic checkbox - select/deselect all questions in subtopic
+            if (e.target.classList.contains('subtopic-checkbox')) {
+                const unitKey = e.target.dataset.unit;
+                const subtopicKey = e.target.dataset.subtopic;
+                const isChecked = e.target.checked;
+                const subtopicData = questionDatabase[unitKey].subtopics[subtopicKey];
+                
+                // Update all questions in this subtopic
+                subtopicData.questions.forEach(q => {
+                    progressData[q.id] = isChecked;
+                });
+                
+                saveProgress(progressData);
+                updateStats();
+                
+                // Update question checkboxes and visual states for this subtopic
+                subtopicData.questions.forEach(q => {
+                    const item = document.querySelector(`.question-item[data-qid="${q.id}"]`);
+                    if (item) {
+                        const checkbox = item.querySelector('.question-checkbox');
+                        if (checkbox) checkbox.checked = isChecked;
+                        item.classList.toggle('completed', isChecked);
+                    }
+                });
+                
+                // Update unit checkbox state
+                updateCheckboxStates();
+            }
+        });
+
+        // Search and filters
+        document.getElementById('searchBox').addEventListener('input', applyFilters);
+        document.getElementById('unitFilter').addEventListener('change', applyFilters);
+        document.getElementById('priorityFilter').addEventListener('change', applyFilters);
+        document.getElementById('yearFilter').addEventListener('change', applyFilters);
+
+        function applyFilters() {
+            const search = document.getElementById('searchBox').value.toLowerCase();
+            const unitFilter = document.getElementById('unitFilter').value;
+            const priorityFilter = document.getElementById('priorityFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+
+            document.querySelectorAll('.unit-section').forEach((unitSection, idx) => {
+                const unitKey = Object.keys(questionDatabase)[idx];
+                const unitData = questionDatabase[unitKey];
+                
+                // Match unit filter - check both unit key and unit name
+                let showUnit = unitFilter === 'all';
+                if (!showUnit) {
+                    // Extract unit number from filter (e.g., "Unit 1" -> "1")
+                    const filterNum = unitFilter.match(/Unit (\d+|I|II|III|IV|V)/);
+                    if (filterNum) {
+                        const romanToNumber = {'I': '1', 'II': '2', 'III': '3', 'IV': '4', 'V': '5'};
+                        const filterNumConverted = romanToNumber[filterNum[1]] || filterNum[1];
+                        if (unitKey === `unit${filterNumConverted}`) {
+                            showUnit = true;
+                        }
+                    }
+                }
+
+                let unitHasResults = false;
+
+                unitSection.querySelectorAll('.subtopic-section').forEach(subtopicSection => {
+                    let subtopicHasResults = false;
+
+                    subtopicSection.querySelectorAll('.question-item').forEach(questionItem => {
+                        const qid = questionItem.dataset.qid;
+                        
+                        // Find the actual question data
+                        let questionData = null;
+                        Object.values(unitData.subtopics).forEach(subtopic => {
+                            const found = subtopic.questions.find(q => q.id === qid);
+                            if (found) questionData = found;
+                        });
+                        
+                        if (!questionData) return;
+                        
+                        // Search filter
+                        const text = questionItem.textContent.toLowerCase();
+                        const matchesSearch = search === '' || text.includes(search);
+
+                        // Priority filter
+                        let matchesPriority = true;
+                        if (priorityFilter !== 'all') {
+                            if (priorityFilter === 'highest') {
+                                matchesPriority = questionData.priority === 'highest';
+                            } else if (priorityFilter === 'high') {
+                                matchesPriority = questionData.priority === 'high' || questionData.priority === 'highest';
+                            } else if (priorityFilter === 'medium') {
+                                matchesPriority = questionData.priority === 'medium';
+                            }
+                        }
+                        
+                        // Year filter
+                        let matchesYear = true;
+                        if (yearFilter !== 'all' && questionData.years) {
+                            matchesYear = questionData.years.some(year => year.includes(yearFilter));
+                        }
+                        
+                        if (matchesSearch && matchesPriority && matchesYear && showUnit) {
+                            questionItem.style.display = 'block';
+                            subtopicHasResults = true;
+                            unitHasResults = true;
+                        } else {
+                            questionItem.style.display = 'none';
+                        }
+                    });
+
+                    subtopicSection.style.display = subtopicHasResults ? 'block' : 'none';
+                });
+
+                unitSection.style.display = unitHasResults ? 'block' : 'none';
+            });
+
+            // Auto-expand if filtering
+            if (search !== '' || unitFilter !== 'all' || priorityFilter !== 'all' || yearFilter !== 'all') {
+                document.querySelectorAll('.unit-header').forEach(h => {
+                    if (h.parentElement.style.display !== 'none') {
+                        h.classList.add('active');
+                        h.nextElementSibling.classList.add('show');
+                    }
+                });
+                document.querySelectorAll('.subtopic-header').forEach(h => {
+                    if (h.parentElement.style.display !== 'none') {
+                        h.classList.add('active');
+                        h.nextElementSibling.classList.add('show');
+                    }
+                });
+            }
+        }
+
+        // Initialize
+        renderQuestionBank();
+        
+        // Auto-expand first unit on load
+        setTimeout(() => {
+            const firstUnit = document.querySelector('.unit-header');
+            if (firstUnit) {
+                firstUnit.classList.add('active');
+                firstUnit.nextElementSibling.classList.add('show');
+            }
+        }, 100);
+    </script>
+</body>
+</html>
