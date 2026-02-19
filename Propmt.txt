@@ -1,0 +1,44 @@
+I have attached a PYQ (Previous Year Questions) paper PDF for [SUBJECT NAME]. 
+
+Please analyze this PDF and add it as a new subject to our existing PYQ web application with EXACTLY the same UI/UX as the current DELD subject.
+
+**Requirements:**
+
+1. **Extract all questions** from the attached PDF including:
+   - Question text
+   - Marks allocation
+   - Year of examination
+   - Any sub-parts (a, b, c, etc.)
+
+2. **Create a new subject card** on the homepage with:
+   - Subject name: [SUBJECT NAME]
+   - Subject code: [SUBJECT CODE if available]
+   - Same card design and hover effects as DELD
+   - Appropriate icon/emoji for the subject
+
+3. **Maintain exact same features:**
+   - Question filtering by year
+   - Question filtering by marks
+   - Search functionality
+   - Tag-based categorization
+   - Bookmark feature
+   - Smart recommendation system
+   - Practice mode
+   - Same color scheme and animations
+
+4. **Organize questions by topics/units** as mentioned in the PDF
+
+5. **Add subject-specific tags** based on the question content
+
+6. **Provide complete updated code** for:
+   - index.html (updated homepage with new subject card)
+   - [subject-code].html (new subject page)
+   - Any updated CSS/JS files
+
+**Please ensure:**
+- Zero deviation from existing UI/UX
+- All interactive features work identically
+- Responsive design is maintained
+- Code is clean and follows the same structure
+
+[ATTACH PDF HERE]

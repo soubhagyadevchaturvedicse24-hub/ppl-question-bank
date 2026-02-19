@@ -342,15 +342,31 @@
         .question-header {
             display: flex;
             gap: 0.75rem;
-            align-items: flex-start;
-            margin-bottom: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .question-left {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .question-right {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .question-checkbox {
             width: 16px;
             height: 16px;
             cursor: pointer;
-            margin-top: 3px;
             flex-shrink: 0;
         }
 
@@ -367,15 +383,13 @@
             line-height: 1.6;
             color: #1e293b;
             font-size: 0.9375rem;
+            min-width: 0;
         }
 
         .question-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #f1f5f9;
         }
 
         .meta-badge {
@@ -457,6 +471,40 @@
 
             .content-area {
                 padding: 1rem;
+            }
+
+            .question-item {
+                padding: 0.75rem;
+            }
+
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .question-left {
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .question-right {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .question-id {
+                font-size: 0.75rem;
+                min-width: auto;
+            }
+
+            .question-text {
+                font-size: 0.8125rem;
+            }
+
+            .meta-badge {
+                font-size: 0.6875rem;
+                padding: 0.2rem 0.5rem;
             }
         }
     </style>
@@ -2088,6 +2136,9 @@
             const header = document.createElement('div');
             header.className = 'question-header';
 
+            const leftSection = document.createElement('div');
+            leftSection.className = 'question-left';
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.className = 'question-checkbox';
@@ -2108,21 +2159,26 @@
             qtext.className = 'question-text';
             qtext.textContent = question.text;
 
-            header.appendChild(checkbox);
-            header.appendChild(qid);
-            header.appendChild(qtext);
+            leftSection.appendChild(checkbox);
+            leftSection.appendChild(qid);
+            leftSection.appendChild(qtext);
+
+            const rightSection = document.createElement('div');
+            rightSection.className = 'question-right';
 
             const meta = document.createElement('div');
             meta.className = 'question-meta';
 
+            // Display priority badge first
+            if (question.priority === 'highest') {
+                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGHEST PRIORITY</span>`;
+            } else if (question.priority === 'high') {
+                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGH PRIORITY</span>`;
+            }
+
             // Display frequency
             if (question.frequency && question.frequency > 1) {
                 meta.innerHTML += `<span class="meta-badge badge-frequency">Asked ${question.frequency}x</span>`;
-            }
-            
-            // Display marks
-            if (question.marks) {
-                meta.innerHTML += `<span class="meta-badge badge-marks">${question.marks} marks</span>`;
             }
             
             // Display years
@@ -2130,13 +2186,14 @@
                 meta.innerHTML += `<span class="meta-badge badge-year">${question.years.join(', ')}</span>`;
             }
             
-            // Display priority badge
-            if (question.priority === 'highest') {
-                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGHEST PRIORITY</span>`;
-            } else if (question.priority === 'high') {
-                meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGH PRIORITY</span>`;
+            // Display marks
+            if (question.marks) {
+                meta.innerHTML += `<span class="meta-badge badge-marks">${question.marks} marks</span>`;
             }
 
+            rightSection.appendChild(meta);
+            header.appendChild(leftSection);
+            header.appendChild(rightSection);
             item.appendChild(header);
             item.appendChild(meta);
             return item;

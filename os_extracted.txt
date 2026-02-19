@@ -1,0 +1,1134 @@
+
+
+--- PAGE 1 ---
+
+CChhhhaattttiissggaarrhh SSwwaammii VViivveekkaannaannddaa TTeecchhnniiccaall UUnniviveersrsiittyy,, BBhhiillaaii ((CC..GG..))
+Program / Semester: B.Tech (IIT) Branch: Computer Science &Engineering
+Subject: OOppeerraattiinngg SSyysstteemm Coouurrssee Code: BB002222331155((002222))
+Toottaall // MMiinniimmuumm--PPaassss MMaarrkkss (End Semester | L:3T:1P:0 Credits:4
+Exam): 110000 // 3355
+Class Tests & Assignments to be conducted: 2 each Duration (End Semester Exam): 03 Hours
+UNIT- I Introduction: Operation System objectives and functions, The Evolution of operating Systems, Batch
+Systems, interactive systems, time sharing and real time systems, Protection. Operating System Structure, System
+Components, operating system service, System structure. Distributed Computing.
+UNIT-II Concurrent Processes: Process concept: Introduction, Definitions, Process States, Process State
+Transitions, The process Control Block, Operations on Processes, Suspend and Resume, Interrupt Processing.
+Mutual Exclusion, the Producer / Consumer problem, the critical section problem, Semaphores, Classical problems
+in concurrency, inter process communication. CPU scheduling: concepts, performance criteria, and scheduling
+Algorithms. Algorithm evaluation, Multiprocessor scheduling.
+UNIT- III Dead Locks: System model, Deadlock characterization. Prevention, Avoidance and Detection, Recovery
+from deadlock, combined approach.
+UNIT-IV Memory Management: Base machine, Resident Monitor, multiprogramming with fixed partition,
+Multiprogramming with variable partitions, Paging, Segmentation, paged - segmentation, virtual Memory
+concepts, Demand paging, performance, Page Replacement algorithms, Allocation of frames, Thrashing, cache
+memory organization.
+UNIT-V I/O Management & Disk Scheduling: I/O system Interrupts Direct Memory Access, I/O Buffering, File
+system: File Concepts - File organization and Access mechanism, File Directories, File sharing, Implementation
+issues. Disk Scheduling algorithms. Case Study on LINUX: Kernel and Buffer Cache Architecture, concept of inode
+file & directory structure, Basic system calls (Open, Read, Write, namei, File and Record Close, File Creation,
+Creation of Special Files, Change Directory and Change Root, Change Owner and Change Mode
+Text Books:
+1. Operating system concepts Galvin by Silberschatz, John Wiley & Sons
+2. Operating System Design & Implementation by Tanenbaum, A.S., PHI.
+3. The Design of Unix Operating System, Maurice J. Bach, Pearson Education.
+Reference Books :
+1. Modern Operating System: Andrew S. Tanenbaum, PPEEAARRSSOONN EEDDUUCCAATTIIOONN IINNTTEERRNNAATTIIOONNAALL
+2. Operating System concepts by Silberscatz A and Peterson, J.L, PE- LPE.
+3. Operating systems: Internals & Design Principles, William Stallings, PHI.
+Course Outcomes [After undergoing the course, students will be able to::]]
+1. Identify the role of operating system in making computers execute data-processing jobs.
+2. Realize managing computer’s resource complexity during concurrent process execution through OS layers.
+3. Analyse the reasons of resource bottlenecks-concurrency, deadlock and various synchronization
+mechanisms available.
+4. Understand the functioning of operating system components in Memory Management techniques, Virtual
+Memory Management.
+55.. UUnnddeerrssttaanndd ddiisskk oorrggaanniizzaattiioonn,, ffiillee ssyysstteemm ssttrruuccttuurree,, SSeeccoonnddaarryy SSttoorraaggee MMaannaaggeemmeenntt ffuunnccttiioonnss ooff OOSS..
+
+--- PAGE 2 ---
+
+CChhhhaattttiissggaarrhh SSwwaammii VViivveekkaannaannddaa TTeecchhnniiccaall UUnniviveersrsiittyy,, BBhhiillaaii ((CC..GG..))
+Program / Semester: B.Tech (IIT) Branch: Computer Science &Engineering
+Subject: OOppeerraattiinngg SSyysstteemmss ((UUNNIIXX)) LLaabboorraattoorryy Coouurrssee Code: BB002222332233((002222))
+Toottaall // MMiinniimmuumm--PPaassss MMaarrkkss (End Semester | L:0T:0P:2 Credit(s):1
+Exam): 4400 // 2200
+LLiisstt ooff EExxppeerriimmeennttss:: ((AAtt lleeaasstt 1100 eexxppeerriimmeennttss aarree ttoo bbee ppeerrffoorrmmeedd bbyy eeaacchh ssttuuddeenntt))
+1. Practice session: Study the features of Linux environment, basic Linux commands (echo, who, date, pwd, cd,
+mkdir, rmdir, ls, cp, mv, rm, cat, more, we, find, tail, head, sort, nl, uniq, grep, egrep, fgrep, cut, paste, join, tee,
+comm, cmp, diff, tr); also document the syntax and semantics of those commands.
+Write a shell script that accepts a name from the user and displays whether it is a file, directory or something
+else.
+Write a shell script that creates users; also check if a particular user has logged in or not. If not, continue the
+loop till he/she logins. Once the required user logins, display a message.
+Write a shell script that searches for a given string in a text input file.
+Write a shell script that compiles all C files in your home directory and creates executable files.
+Write a shell script that given a filename as argument, deletes all even lines in a file & removes duplicate lines
+from a file.
+Write a shell script that enhances find command by adding error messages that explain why the command
+failed.
+Write a shell script to input marks of five subjects Physics, Chemistry, Biology, Mathematics and Computer.
+Calculate percentage and grade according to following logic:
+Percentage >= 90% : Grade A, Percentage >= 80% : Grade B, Percentage >= 70% : Grade C, Percentage >=
+60% : Grade D, Percentage >= 40% : Grade E, Percentage < 40% : Grade F.
+Write a shell script to accept the name, grade, and basic salary from the user. Write the details into a file called
+employee, separating the fields with a colon (,) continue the process till the user wants.
+10. Write an Awk’ script to count the number of lines in a file that do not contain vowels.
+11. Write an Awk’ script to find the number of characters, words and lines in a file.
+12. Write a C program to simulate following non-preemptive CPU scheduling algorithms: a) FCFS b) SJF c) Round
+Robin (pre-emptive) d) Priority scheduling techniques.
+a. to find average turnaround times and waiting times;
+b. to display / print Gantt Chart (in any convenient format).
+13. Implement the Producer - Consumer problem using semaphores (using UNIX system calls).
+14. Write a C program to simulate disk-scheduling algorithms: a) FCFS b) SCAN c) C-SCAN techniques.
+15. Write a C program to simulate page replacement algorithms: a) FIFO b) LRU c) LFU d) OPT techniques.
+Remarks: The laboratory experiments may be performed in with of the LINUX shell environments: BOURNE Shell
+/ KORN Shell / ‘C’ Shell.
+Laboratory Outcomes [After undergoing the course, students will be able to::]]
+1. Understand the concept of Unix and shell programming.
+2. Learn the working of Linux OS Kernel.
+3. Analyse the differences between features provided in Windows and Linux operating system.
+4. Learn the concept of loops and decision-making statements.
+5. Analyse the logic & procedure of problem solving through Scripts.
+SNY
+RW
+Understand the concept of Unix and shell programming.
+Learn the working of Linux OS Kernel.
+Analyse the differences between features provided in Windows and Linux operating system.
+Learn the concept of loops and decision-making statements.
+Analyse the logic & procedure of problem solving through Scripts.
+Recommended Books:
+1. Advance UNIX, a Programmer’s Guide, S. Prata, BPB Publications, New Delhi.
+2. The Complete Reference Unix, Rosen, Host, Klee, Farber, Rosinski, Second Edition, TMH.
+
+--- PAGE 3 ---
+
+Printed Pages — 5 ROUND. © ssessssscsssessessesssssnionsnsoonsness
+B022315(022)
+B022315(022)
+B. Tech. (Third Semester) Examination,
+Nov.-Dec. 2021
+AJCTE (New Scheme)
+(CSE Branch)
+OPERATING SYSTEMS
+Time Allowed : Three hours
+Maximum Marks : 100
+Mimmumn Res Yorks 35
+Note : Attempt all questions. Part (a) of each
+question is compulsory. Attempt any two from
+(b), (c) and (d) parts of each question.
+Part (a) carry 4 marks each and part (b), {c)
+and (d) carry 8 marks each.
+Unit-I
+1. (a) What do you mean by time sharing operating? Give
+an example,
+:
+B022315(022)
+B022315(022)
+
+--- PAGE 4 ---
+
+[2]
+(b) What are the functions of operating system? Explain
+in brief.
+(c) Explain the working and architecture of an operating
+system in detail.
+(d) Explain the various system calls in an operating
+system.
+Unit-
+2. (a) Define process control block with proper diagram.
+(b) Consider the above set of processes that arrive at
+time zero. Calculate the average waiting time, average
+turnaround time and throughtput with FCFS and
+SJF.
+Process Burst time
+P, 5
+24
+16
+10
+3
+oN
+o
+t
+w
+w
+O oT
+A
+7
+yaw
+[3]
+(c) What do you mean by Dining Philosopher method?
+Explain with suitable diagram.
+(d) Explain Producer-Consumer problem in detail.
+Unit-l
+. (a) Define resource allocation graph with suitable
+diagram.
+a,
+(b) Explain the method used in deadlock prevention.
+(c) What are the four necessary conditions required to
+hold a deadlock?
+(d) An operating system uses the banker’s algorithm for
+deadlock avoidance when managing the allocation
+of three resource types X, Y, and Z to three
+processes PO, P1 and P2. The table given below
+presents the current system state. Here, the allocation ~
+matrix shows the current number of resources of
+each type allocated to each process and the max
+matrix shows the maximum number of resources of
+each type required by each process during its
+execution.
+B022315(22) B022315(22) PTO
+
+--- PAGE 5 ---
+
+[4] [5]
+Allocation Max (c) What is page replacemént algorithm? Explain any
+one algorithm with example.
+x Y Z xX| Y Z
+(d) What is thrashing? State the cause of thrashing.
+PO} 0 0 1 8 4 3
+Unit-V
+Pl] 3 2 0 6 2 0
+(a) What is buffering?
+P2]| 2 1 1 3 3 3
+(b) Explain virtual machine operating system.
+There are 3 units of type X, 2 units of type Y and 2
+units of type Z still available. The system is currently in (c) Explain file organization and access mechanism.
+safe state. Consider the following independent requests
+(d) Explain the various disk scheduling algorithm with
+for additional resources in the current state :
+suitable example.
+REQ 1 : PO requests 0 units of X, 0 units of Y and
+2 units of Z
+REQ 2 : PI requests 2 units of X, 0 units of Y and
+0 units of Z
+Unit-IV
+. (a) Define resident monitor.
+(b) Explain address translation from logical address to
+physical address.
+100]
+B022315(22)
+B022315(22)
+
+--- PAGE 6 ---
+
+- B022315(22)
+B. Tech. (Third Semester) Examination, -
+Noy.-Dec. 2022
+(CSE Branch)
+(New Scheme)
+OPERATING SYSTEMS
+Time Allowed : Three hours
+Maximum Marks : 100
+‘Minimum Pass nats : 35
+Note; Attempt all questions. Part (a) of each question is
+compulsory & carry equal 4 marks. Attempt any
+two from (b), (c) and (d) & carry equal 8 marks.
+Unit-I
+1. (a) What are the objective of Operating System.
+(b) Differantiate between time sharing system and Real
+time system.
+B022315(22) PTO
+
+--- PAGE 7 ---
+
+124 | mee _ [3]
+(c) Explain Distributed Computing.
+| (i)‘ Average waiting time
+(d) What are the problem in Batch Operating System?
+. (ii) Turn around time
+Write down their solntion-with the proper explanation.
+(iii) Average turn around time
+“Unit-Il (iv) Through put
+2. (a) What is Process. Draw & explain the process state, for shortest remaining time first algorithm.
+aie Unit-II
+(b) Write short notes on :
+() The process control block
+Gi) The critical section problem
+ew
+. (a) What is safe and unsafe state.
+(b) Explain the deadlock recovery method.
+(c) Define Semaphore? Give the solution of prodvene (c) Explain how the deadlock can be prevented.
+consumer problem using semophere.
+(d) A single processor system has 3 resource types x,
+(d) Consider the set of5 process whose arrival time & y, 2 which are shared by 3 processes. There are 5
+burst time are given below : units of each resource type. Consider the following
+Process No. Arrival time Burst time scenario, where the column allocation denotes the
+P, 0 4 number of units of each resource type allocated to
+. 5 6 each process and the coloumn request denotes the
+2 4 number of units of each resource type requested by
+P, 4
+a progess in order to complete execution. Which of
+; 6 5 these processes will last finist and are the system is
+P, 8 2 in safe state.
+022315(22)
+B022315(22) _ FTO
+ee
+
+--- PAGE 8 ---
+
+14)
+* Allocation Request _.~(b) Differentiate between program driven and interrupt
+xXx y 2 x ry driven input/output.
+Po 2 l 0 (c) Explain Kemel and Buffer cache architecture of Unix
+Py 2 0 l 0 | Operating System.
+re es ce a ae teed
+(d) Consider a disk with 200 tracks and the queue has
+Unit-IV random requests from different processes in the
+order :
+4. (a) What is virtual memory? ;
+55, 58, 38, 18, 90, 160, 150, 38, 184
+(b) Explain the address translation from logical to initially aim is at 100. Find the average seck length
+physical address. | using FIFO, SSTF, Scan and C-scan alorithm.
+(c) Write short notes on : :
+(i) Paging
+(ii) Segmentation
+(d) Consider a reference string 4, 7, 6, 1, 7, 6, 1, 2, 7,
+2. the number of frames in the memory is 3 find out
+the number of page faults respective to (i) optimal
+(ii) FIFO (iii) LRU.
+.
+Unit-V
+5. (a) What is DMA. %
+BQ32345(22) : 2340) B022315(22)
+
+--- PAGE 9 ---
+
+B022315(022)
+B. Tech: (Third Seniester) Examination,
+ian a Nov.-Dec. 2020
+(CSE' Branch) -
+‘(Specialization i CSE) |
+OPERATING SYSTEMS
+Time Allowed : Three hours
+Note : Attempt, all, questions. Part (a) af each
+_.. questioni,s c ompulsory. Attempt any twa parts
+from (b), (c) and (d). °
+ca
+1. (a) Explain how'opetating system'act‘'dss ‘a Resource
+fe Manager? LAWPEIN OMAN Y 4
+(b) The services and functions provided by an operating
+B022315(022) PTO
+
+--- PAGE 10 ---
+
+[2]
+[3]
+system can be divided into different components. (d) What is CPU scheduling? If the different jobs and
+Briefly explain all the components of Operating their arrival time and burst time are given below :
+System. 8 a —
+" P, No Arrival time Burst time
+(c) Analyze different types of operating systems with an ] 0 6
+example. Which type of operating system is most 5) 1 4
+suitable for the modern computer system and why? 8 37 =. 9 sealicddal Oi 3 J
+(d) Name and discuss the range of system calls that may 4 3 1
+be supplied by an operating system under various 5 4 9
+circumstances. List the sequence of system call required 6 5 1
+to copy content of a file to another file. 8
+Find the average turnaround time, average waiting
+Unit-IT time and throughput using Round Robin (with time
+; ; _ quantum = 2) and SRTF. 8
+2. (a) Give Five State model of process state transition. 4
+(b) What are the two models of inter-proces communication? Unit-I
+What are the strengths and weakeness of the two 3. (a) What is Deadlock? Give characteristics of deadlock. 4
+approaches? 8 |
+(b) What are the four necessary conditions for |
+(c) Discuss critical section problem and how this can characterizing deadlock? What is the only reasonable |
+be overcome using semaphores. Write the solution condition that can be used to prevent deadlocks from
+for achieving mutual exclusion requirement in a occurring? 8
+producer consumer problem. 8
+(c) Explain Banker’s algorithm and safety algorithm with
+pseudo code, 8
+B022315(022)
+B022315(022) PTO
+
+--- PAGE 11 ---
+
+[4]
+[5]
+(d) Write an algorithm to determine whether a given (b) What is the need of page replacement? Consider
+system is in a deadlock and explain. Consider the following page references string:
+resouAr hcaes total 7 instances, B has 2 instances 1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6.
+and C has 6 instances the following snapshot of a Find out the no. of page fault by LRU, OPT
+a a 5 come replacement, FIFO algorithm. Assume there are four
+Process | Allocation Request | Available| page frames. 8
+= = ABC A B name AB C (c) Explain the difference between internal and external
+Py 0 1 0 0 00 0 0 0 fragmentation :
+P, 20 0 2-2 Given five variable sized memory partitions of 100
+P, 3 0 3 0 00 kb, 500 kb, 200 kb, 300 kb, 600 kb (in order),
+P, 211 100 how would each of the first fit, best fit and worst fit
+P, 002 a algorithm place processes of ou kb, til kb, 112
+kb and 426 kb (in order)? Which algorithm makes
+Answer the following using Banker’s algorithm : most efficient use of memory? 8
+(i) Is the system in a safe state?
+:
+(d) Why are segmentation and paging sometimes
+(it) If Yes, mention the safe sequence. combined into one scheme? Explain the paged seg-
+(ai) Ifa process P2 makes a request of one additional mentation. 8
+request for an instance of type C, will the system
+lead to deadlock state then. 8 Unit-V
+; S. (a) What are the different files allocation methods? 4
+Unit-IV
+4. (a) What is virtual memory?: 4 (b) Considering SCAN disk scheduling algorithm. How
+B022315(022) B022315(022) PTO
+
+--- PAGE 12 ---
+
+(c) Describe various file accessing methods with its
+-sdvahtages anid a yond
+(d) Suppose that ifs head of a moving head disk with
+200 tracks, 0 to 199, is currently serving a pequest
+at 143 and has just finished’a request at'frack 125,
+The queue of request is kept in FIFO order 86,
+147,°91;'177, 94 130, 102, 175, 130. What is the
+total nuriber of head movement needed'to specify
+‘these tequest for the following ¢d iskS cheduling
+i ie
+algorithms?
+0) STF’ scheduling cia Th a c a
+(i) SCAN scheduling .
+100} B022315(022)
+
+--- PAGE 13 ---
+
+Printed Pages — 4 ROM NO, Siesssssasssvscsvizerosewnaveanenauseaees
+BO222 IS(22)
+BQ22345@2) |
+B. Tech. (Third Semester) Examination,
+April-May 2021
+(AICTE Scheme)
+(CSE Branch)
+OPERATING SYSTEMS
+Time Allowed : Three hours
+Maximum Marks : 100
+Note : Attempt all questions. Part (a) of each
+question is compulsory. Attempt any two from
+(b), (c) and (d) parts of each question.
+Part (a) carry 4 marks each and part (b), (c)
+and (d) carry 8 marks each.
+Unit-I
+1. (a) What are the 3 main purposes of an Operating
+System? 4
+BOZ23TS(22}- PTO
+RO22%8 IS(e22)
+
+--- PAGE 14 ---
+
+[2] [3]
+(b) Compare tighty coupled systems with loosely Process Burst time Arrival time
+coupled systems.
+Pl 1 3
+P2 4 1
+(c) Write a brief note on different operating system
+P3 2 4
+structures.
+P4 6 0
+(d) Distinguish among the following terminolgies asso- P5 3 2
+ciated with the operating system and explain each of
+Draw Gantt’s chart and find out the average waiting
+them in detail. time for SJF processor scheduling algorithm. 8
+Multiprograming systems, Multitasking systems,
+Unit-DI
+Multiprocessor systems.
+3. (a) What is Deadlock? Explain the necessary conditions
+Unit-I
+for its occurence. 4
+2. (a) What do you mean by PCB? Where is it used?
+(b) Explain the resource allocation graph. 8
+What are its contents? Explain.
+(c) Write down the different techniques which we can
+(b) Explain Short Term, Long Term and Medium Term
+incorporate to prevent deadlock. 8
+Scheduler.
+(d) Why is deadlock state more critical than starvation?
+(c) What are the different states of process explain each
+Describe resource allocation graph with a deadlock,
+of them briefly.
+with a cycle but no deadlock. 8
+(d) Consider the following 4 processes with length of
+Unit-IV
+cpu burst time given in milliseconds :
+4, (a) What is Paging and Swapping? 4
+“BARS 15(22) 2) B02231502)- PTO
+Bo2w23)S (02 RO2B321IT (22)
+
+--- PAGE 15 ---
+
+[4]
+(b) Define external fragmentation. What are the causes
+for external fragmentation?
+(c) Explain demand paging with an example.
+(d) What is Thrashing? What are the causes for thra-
+shing?
+Unit-V
+5. (a) Define logical and physical address space.
+(b) Explain the following :
+(t) file types
+(ii) file operation
+(iti) file attributes
+(c) What is Virtual Memory? Explain overlays method
+with the help of example:
+© Suppose that the Request sequence= {176, 79,
+34, 60, 92, 11, 41, 114}
+Initial head position = 50
+Direction = left (We are moving from right to left)
+Find out the total seek count using SCAN disk
+scheduling algorithm.
+100] BH22315 02)
+0509 21022)
+
+--- PAGE 16 ---
+
+Printed Pages — 4 RoIENo. sf
+B022315(022)
+B. Tech. (Third Semester) Examination,
+April-May 2024
+(New Scheme)
+(CSE Branch)
+OPERATING SYSTEM
+Time Allowed’: Three hours
+| Maximum Marks : 100
+Minimum Pass Marks : 35
+Note : Attempt all questions.Part(a) of each
+question in compulsory carrying 4 marks.
+Attempt any two parts from parts (b), (c)
+and (d) carrying 8 marks each.
+1. (a) Define Kernel.
+(b) Explain Operating system structure with suitable
+diagram.
+B022315(022) PTO
+
+--- PAGE 17 ---
+
+ot
+[3]
+[2]
+(c) What are the services of Operating System? Explain (c) Consider the following system with Processes from
+brefly. P, to P,.
+(d) Explain time sharing and real time operating system. Process Allocation Max Available
+(a) Detine Race condition with example.
+0 | 0 7 53 332
+(b) Write the difference between process and thread. P,
+(c) Explain the concept of Dining Philosopher problem P,
+With suitable diagram and representation. P,
+2 14 222
+P,
+(d) Consider a system with set of processes with burst
+002 433
+time (in ms) and priorities (consider 1 to be highest). P,
+Using Bankers algorithm find the following:
+Draw Gantt chart and find Average waiting time for
+pre-emptive priority scheduling. (i) Content of Need Matrix
+Process Burst time Priority —- Arrival Time (i) Is the system ina safe state? If ves then what
+is the safe sequence.
+Pl 10 3 0
+(d) Write short notes on:
+p2 5 2 |
+P3 2 | 2 (i) Resource Allocation Graph
+3. (a) Define Deadlock. (ii) Recovery from deadlock
+(b) Explain how deadlock can be prevented on the 4, (a) Define Logical and Physical Address.
+basis of all 4 deadlock conditions, (b) Explain the concept of Segmentation with suitable
+diagrams,
+B022315(022)
+B022315(022) PTO
+
+--- PAGE 18 ---
+
+)a
+| 4 | —
+(c) “SCTE thes
+_ Nuinber of pag: e fault having 3 frames
+avail
+aval able j .
+"Memory, when reference to pages Occur
+order :
+(d)
+W ‘haat is vi rtual memory? How it implemented usi. ng
+demand Paging explain?
+(a) Define File and its attributes.
+(b)
+Describe File Access methods in detail.
+(c) Suppose the moving head disk with 200 tracks is
+currently serving a request for track 143. If the
+queue request is kept in FIFO order :
+86,147,91,177,94,150;
+What is the total head movement for the following
+scheduling schemes :
+(i)
+FCFS
+(ii)
+SSTF
+What is inode? Write about name? algorithm.
+(d)
+€ a
+13022315(022)
+570]
+
+--- PAGE 19 ---
+
+Printed Pages — 4 ROM NO, | 1.20201 -rnsonanaavenvensnermeronenes
+2022318 (e22)
+B. Tech. (Third Semester) Examination,
+April-May 2022
+(AICTE Scheme)
+(Computer Science Engg. Branch)
+OPERATING SYSTEMS
+Time Allowed : Three hours
+Maximum Marks : 100
+Mmimum Poss Morxs; 55°
+Note : Attempt all questions. Part (a) of each
+question is compulsory. Attempt any two from
+(b), (c) and (d) parts of each question.
+Part (a) carry 4 marks each and part (b), (c)
+and (d) carry 8 marks each.
+Unit-I
+1. (a) Explain how an operating system tasks control?
+(b) Explain operating system structure.
+B022315(22) PTO
+
+--- PAGE 20 ---
+
+[2] [3]
+(c) What the various operating system services? Unit-I0
+(d) Define multiprogramming and real time operating 3. (a) What is Deadlock? Draw suitable diagram.
+system.
+(b) Explain dead lock avoidance algorithm.
+Unit-I (c) Analyze the following snapshot of a system.
+. (a) Demostrate race condition. ALLOCATION | MAXIMUM AVAILABLE
+A|BIC A|BIC A|BIC
+(b) Describe the objectives of Scheduling. Explain the PO} O} 1 | 0 7 | 5 | 3 2 | 3 | 0
+Pl} 2] 0] 0 3. | 2] 2 7
+structure of PCB.
+P2} 3 | 0} 2 91; 0] 2
+P3} 2} 11) 1 212 | 2
+(c) Explain semaphore. How can semaphore be used
+P4| 0] 0] 2 4| 3] 3
+to Enforce mutual — exclusion? Give a suitable
+(i) Calculate the content of need matrix.
+example to explain.
+(ii) Is the system in a safe state?
+@
+(d) Consider the following set of processes having their
+(d) Explain Deadlock prevention in detail.
+burst in ms. calculate the avg waiting time and turn-
+around time for SJF (non preemptive)
+Unit-IV
+Process Burst time Arrival time
+4, (a) Define Virtual Address.
+Pl 10 0
+(b) Explain fragmentation with its types and solution.
+P2 1 ]
+P3 2 2
+(c) Consider the following page reference string
+P4 1 3
+1, 1, 2, 2, 1, 4, 2, 3, 3, 5, 5, 4
+P5 5 4
+B022315(22) B022315(22) PTO
+
+--- PAGE 21 ---
+
+[4]
+Assume 3 page frame, calculate the page faults using
+following algorithm.
+(i) FIFO
+(ii) OPR
+(d) Explain the concept of paging and segmentation.
+Unit-V
+5, (a) What is Address Binding?
+(b) Ona disk with 200 cylinders, compute the number
+of tracks the disk arm must move to satisfy all the
+request in the disk queue. Assume the current
+position is at 53 track are : 98, 183, 37, 122, 14,
+124, 65, 67. Identify the total head movement for
+the following algorithm,
+(i) FIFO
+(ii) SSTF
+(c) Describe file allocation methods.
+(d) Write in detail about File Access Mechanism.
+100] B022315(22)
+
+--- PAGE 22 ---
+
+Printed Pages on & Roll IAG: fF ititiesrasteesetecacinarcesiness
+B022315(022)
+B. Tech. (Third Semester) Examination,
+Nov.-Dec. 2024
+(CSE Branch)
+(New Scheme)
+OPERATING SYSTEMS
+Time Allowed : Three hours —
+Maximum Marks : 100
+Minimum Pass Marks : 35
+Note : Attempt all questions. Part (a) of each question is
+compulsory & carries equal 4 marks each, Attempt
+any two from (b), (c) and (d) & carries equal 8
+marks each, |
+Unit-I
+1. (a) Explain how an operating system tasks control? 4
+(b) Explain operating system structure. 8
+B022315(022) PTO
+
+--- PAGE 23 ---
+
+[2]
+Sey What are the various operating system services? 8
+G1D efine multiprogramming and real time operating
+system.
+Unit-L
+fe
+2,/) Demonstrate race condition.
+‘Describe the objectives of scheduling. Explain the
+structure of PCB.
+(c) Explain semaphore. How can semaphore be used
+to enforce mutual-exclusion? Give suitable example
+to explain.
+<@ Consider the following set of processes having their
+burst in ms. Calculate the avg waiting time and
+turnaround time for SJF (non preemptive).
+Process | Burst time | Arrival time
+Peo es | 3
+Bo 4
+P, 2 4
+P, 6 0
+P, 3 ,
+~-B022315(022)
+
+--- PAGE 24 ---
+
+[3]
+Unit-IT]
+3. (a) Writing necessary conditions for deadlock. 4.
+_e0y Consider the following snapshot ofa system : 8
+‘Allocation =Max Available
+ABC ABC ABC
+Py 6 yee ee 2
+P, a ee
+P, 302 90.2
+P, 40°41 eg
+eee er ee eee.
+Answer the following using Banker’s algorithm.
+(i) What is the content of matrix needed?
+(ii) Is the system in a safe state?
+(c) Explain the deadlock recovery method. 8
+Lar Write short notes on :
+— (i) Circular wait
+(ii) Safe and unsafe state
+Unit-IV
+B022315(022) PTO.
+
+--- PAGE 25 ---
+
+14]
+4. (a) What is Resident Monitor?
+(b) Explain multiprogramming with fixed partition with
+suitable example. ,
+AS Consider the following page reference string ;
+4,7, 6, 1, 7, 6, 1, 2, 7,2
+Assume 3 page frames and pure demand paging,
+How many page faults would occur for :
+(i) FIFO
+Gi) Optimal
+(c) What is Thrashing? How does the system detect
+thrashing? |
+Unit-V
+5. (a) Explain blocked I/O devices.
+(b) Explain the different types of buffering.
+(c) Write different types of file access methods with
+suitable diagram.
+(d) Write short notes on :
+(i) File sharing
+(ii) Virtual O.S.
+2,230] B022315(022)
+
+--- PAGE 26 ---
+
+19010WHO
+RAIPUR
+Printed Pages -- 4
+Printed Pages ~ 4 RolRlo lNl oN.o . : :
+ey
+LIBRARY
+RAIPURc.G)
+B022315(22)
+B022315(22)
+BB.. TTeecchh.. ((TThihrirdd SS eemmesetseterr)) EExxaamminiantaitioonn,,
+AApprriill--MMaayy 22002233
+((CCSSEE BBrraanncchh))
+((NNeeww SScchheemmee))
+OOPPEERRAATTIINNGG SSYYSSTTEEMMSS
+TTiimmee AAlllloowweedd : : TThhrreeee hhoouurrss
+MMaaxxiimmuumm MMaarrkkss :: 110000
+MMiinniimmuumm PPaassss MMaarrkkss :: 3355
+N
+No
+o
+t
+te
+e :
+: AAtttteemmpptt aallll qquueestsitioonnss.. PPaarrtt ((aa)) ooff eeaacchh qquueessttiioonn iiss
+ccoommppuullssoorryy && ccaa rrrryy eeqquuaall 44 mmaarrkkss . . A At tt t e e m m p p t t a a n n y y
+ttwwoo frformom ((bb)),, ((cc)) aanndd ((dd)) && ccaarrrryy eeqquuaall 88 mmaarrkkss..
+SSttaattee a assssuummppttiioonnss cclleeaarrllyy ((ifi af nanyv))..
+Unit-l
+Unit-I
+1 1. . ((aa)) WWhahatt isi sa ann ooppcerraattinigng ssyysstetmem,, e e x x p p l l a a in i . n .
+(b (b)) BBrriieefflyly d deessccrribibee t htehe vvaarrioiuouss s seervrvicicees s o o f f a a n n o o p p e e r r a a t t in i g ng
+sysystsetmem. .
+(c ( ) c ) DDeessccrribieb et hteh e mmaaiinnd deevvcelolpompmeennttss o 0f fo op p e e r r a a ti t n i g n g s y s s y t s e t m e m
+thtahta to occccuurrrerde da ta tc aec a h c h c o c m om p p u u t t e e r r g g e e n n c e r r a a ti t o i n on . .
+PTO
+B022315(22)
+B022315(22) PTO
+
+--- PAGE 27 ---
+
+[| 22]|
+|
+1
+3
+3
+|
+]
+( ( d d ) ) W Wh h a a t t d d o o y y o o u u m m e e a a n n b b y y s s y y s s te t m em c c a a l l l l ? ? EExxppllaaiinn wwiitthh ((cc)) EExxppllaaiinn BBaannkkeerr’'ss aalglgoorirtihtmhm & & SSaaffeetyty a alglgoorirtihtmhm. .
+example.
+example.
+((dd)) CCoonnssiiddeerr ffoolllolwowiinngg ccuurrrreenntt aallloloccaattioionn : |
+UUnniitt--lIl PPrroocceessss AAllllooccaattiioonn MMaaxx AAvvaaiillaabbllee |
+2 2 . . ( ( a a ) ) W Wh haatt iiss ddiifffeferernenccee bbeettwweeeenn IInnddeeppeennddeenntt pprroocceessss RR,, RR,, RR, RR,, RR,R R,, RR,, RR, RR,, |
+a a n n d d d d e e p p e e n n d d eenntt p p r r o o cceessss?? PP,, 22 22 33 33 6688 7777 1100
+( ( b b) ) E E x xp p l la a i i n n v v a a r r i i o o u u s s ssttaatteess ooff aa pprroocceessss wwiitthh ssttaattee PP2, 22 00 33 44 33 33
+t t r r a a n n s s i i t t io io n n d d i i a a g g r r a a m m . . PP,, 11 22 44 33 .44 44
+(c) Explain process control block. ((ii)) IIss tthhee ccuurrrreenntt aallllooccaattiioonn ssttaattee ssaaffee
+(c) Explain process control block.
+((iiii)) WWoouulldd tthhee ffoolllolowwiinngg rreeqquueesstt bbee ggrraanntteedd
+(
+(
+d
+d
+)
+)
+I
+I
+f
+f
+t
+t
+h
+h
+e
+e
+d
+di
+if
+f
+f
+f
+e
+e
+r
+r
+e
+e
+n
+n
+t
+t j
+jo
+o
+b
+b
+s
+s
+a
+a
+n
+n
+d
+d
+t
+t
+h
+h
+e
+ei
+ir
+r aarrrriivvaall ttimimee aanndd bbuurrsstt
+oo. ae . IInn tthhee ccuurrrreenntt ssttaattee
+ttiimmee iiss ggiivveenn bbeellooww ffiinndd aavveerraaggee wwaaiittiinngg ttiimmee uussiinngg
+FCFS & preemptive SJF (SRTF). PPrroocceessss PP,, rreeqquueesstt ((11,, 11,, 00))
+FCFS & preemptive SJF (SRTF).
+Process P, request (0, 1, 0)
+P
+Pr
+r
+o
+o
+c
+c
+e
+e
+s
+s
+s
+s
+N
+N
+o
+o
+.
+.
+A
+A
+r
+r
+r
+r
+i
+i
+v
+v
+a
+a
+l
+l
+t
+ti
+i
+m
+m
+e
+e BBuurrsstt ttiimmee Process P, request (0, 1, 0)
+Fi 8 Unit-IV
+P Unit-IV
+PP2, ; 4 44.. ((aa)) EExxppllaaiinn tthhee mmaaiinn ffuunnccttiioonn ooff tthhee m meemmoorryy mmaannaaggeemmeenntt
+P P 3 , 2 2 99 uunniitt,.
+Py : 3 55 ((bb)) EExpxlpalianin tt hhee c coonncceepptt ooff t th hr ra a s s h h i i n n g g w w i i t th h e e x x a am mp p l l e e
+Unit-T ((cc)) CCoonnssiiddeerr aa sswwaappppiinngg ssyysstteemm iinn wwhhiicchh mmeemmoorryy
+Unit-III
+ccoonnssiissttss oofft thhee ffoolliloowwiinngg hhoollee ssiizzee iinn mmeemmoorryy oorrddeerr
+3. (a) Define deadlock with example.
+3. (a) Define deadlock with example. 1100 k kBB,, 44 kkBB,, 2200 kkBB,, 1188 kkBB,, 77 kkBB,, 99 KkBB,, 1122 kkBB
+(b) How will you avoid deadlock? aanndd 1185 kkBB.. WWhihicchh hhoollee iinn ttaakkeenn ffoorr ssuucccceessssiivvee
+(b) How will you avoid deadlock?
+sseeggmmeenntt rreeqquueessttss ooff;:
+B022315(22) BB0O222321351(52(222)) PPTTOO
+B022315(22)
+
+--- PAGE 28 ---
+
+{|44 |
+(i() ) 121 2k BkB
+(ü) 10 kB
+(i) 10 kB
+im()i )9 9 k kBB
+F F o o r r f i f r i s r t s t fift.i tb, ebste stf fiit??
+((dd)) EExpxlpalaiinn ppaaggiinngg wwitithh exeaxmapmlpel.e .
+Unit-V
+5. (a) Explain thc concept of Inode.
+(b) Write different file atttributes and operations.
+(c) Explain the namei algorthm with the help ofexanpke
+(d) Suppose that a disk drive has 181 cylinders,
+nunbered 0 to 180. The drive is currently serving
+request at cylinder 60, and the previOus request
+was at cylinder 50. The queue of pending request,
+n FIFO order is 87, 170, 40, 150, 36, 72, 66, I5
+Startng from the head poston what s the average
+hcad movement akÍ what Is the total no. of head
+movement nceded to satisfy these rquest for the
+kolkowmg donk whadulg alg ithIN
+(B) SSTI
+B0221522)
+”‘
+Unit-V
+(a) Explain the concept of Inode.
+(b) Write different file atttributes and operations.
+ic) Explain the namet algorithm wath the help of exarnpie
+(d) Suppose that a disk drive has 181 cylinders,
+numbered 0 to 180. The drive ts currently serving a
+request at cylinder 60, and the previous request
+was at cylinder 50. The queue of pending request,
+in FIFO order is 87, 170, 40, 150, 36, 72, 66, 14
+Siwrling trom the head postion. what ts the average
+head movement and what is the total no. of head
+reverent needed to sates ty these request for the
+jolbowiny dink wheahubrg aigsot thane
+ii) FOES
+isi SST
+(tat Saati
+7748 MEIDIINI2)
+
+--- PAGE 29 ---
+
+ONHD
+RAIPUP
+TE
+PPriinntteedd PPaaggeess —- 44 RRoollll NNoo.. :: .........0
+LIEKAY
+RAIPUR. /C.G.)
+B022315(22)
+B022315(22)
+BB.. TTeecchh.. ((TThhiirrdd SSeemmesetsteerr)) EExxaammininataitioonn,,
+NNoovv..--DDeecc.. 22002233
+((CCSSEE BBrraanncchh))
+((NNeeww SScchheemmee))
+OPERATING SYSTEMS
+OPERATING SYSTEMS
+TTiimmee AAllloowweedd :: TThhrreeee hhoouurrss
+MMaaxxiimmuumm MMaarrkkss :: 110000
+MMiinniimmuumm PPaassss MaMrakrkss : : 3355
+NNoottee :: AAtttteemmpptt aallll qquueessttiioonnss.. PPaarrtt ((aa)) ooff eeaacchh qquueessttiioonn iiss
+ccoommppuullssoorryy && ccaarrrryy eeqquuaall 44 mmaarrkkss.. AAtttteemmpptt aannyy
+two from (b), (c) and (d) & carry equal 8 marks.
+two from (b), (c) and (d) & carry equal &m arks.
+UUnniitt--II
+11.. ((aa)) WWhhaatt iiss aann OOppeerraattiinngg SSyysstteemm?? WWhhaatt iitt ddooeess aass aa
+RReessoouurrccee MMaannaaggeerr??
+((bb)) BBrriieeffllyy cexxppllaaiinn aannyy 55 sseerrvviicceess ooff OOppeerraattiinngg SSyysstteemm,,
+hhooww iitt pprroovviiddeess ccoonnvveenniieennccee ttoo tthhee uusseerr..
+B022315(22) PTO
+BO22315(22)
+PTO
+
+--- PAGE 30 ---
+
+1| 22 )|
+((cc)) WWhhaatt a arree t hthee d diifffefererenntt t ytyppeess o off o oppeerraattiningg ssyysstetmem?? ” |3[31]
+UUnniitt--IIIII
+( ( d d ) ) E E x x p pl la a i i n n L L a a y y e e r r eedd A A p p pprrooaacchh ooff O Oppeerraattiinngg SSyysstteemm.. 33.. ((aa)) WWhhaatt isi s ddeeaaddlloocckk?? GGiivvee aannyy rreeaall llifiefe eexxaammppiiee ooff
+ddeeaaddlloocckk..
+UUnniitt--III]
+2. - ( ( a a ) ) D Dt ta a w w- a a n n d d b b r r i i e e f f l l y y eexxppllaaiinn PPrroocceessss SSttaattee TTrraannssiittioionn ((bb)) WWhhaatt aarree tthhee ffoouurr n neecceessssaarryy ccoonnddiittiio o n n s s ffoorr ddeea a d d l l o o c c k k
+diagram. oOccccuurrrreennccee?? EExxppllaaiinn..
+diagram.
+( ( b b ) ) E Ex x p p l la a i i n n D Di in n i i n n g g p p h hi il l o o s s o o p p h h e e r r p p r r o o b b l l em em w wi it t h h i i t t s s p po o s s s s i ib b llee ((cc)) EExxppllaaiinn vvaarriioouuss mmeetthhooddss ooff aavvooiidd ddeeaaddl l o o c c k k w wi it t h h
+solution. eexxaamippllee..
+solution.
+( ( c c ) ) G Gi iv v e e a a m mu u t t u u a a l l - - e e x xcclluussiioonn ssoolluuttiioonn ffoorr PPrroodduucceerr- ((dd)) DDeetteerrmmiinnee wwhheetthheerr aa ggiivveenn ssyystsemte iimss iint t4å dd eeaaddlloocckk..
+c c o o n n s s u u m me e r r p p r r o o b b lleemm ooff ccrriittiiccaall sseeccttiioonn wwiitthh aallg goorriithtmhm CCoonnssiiddeerr tthhee ffoolllolowwiinngg ssnnaappsshhoott ooff aa ss yysstteemm ::
+a a n n d d e e x x a a mmppllee.. PPrroocceessss AAllllooccaattiioonn MMaaxx AAvvaaiill
+a
+a
+b
+b
+l
+le
+e
+( (d d) ) W W h h a a t t i is s C C P PUU ss cchheedduulliinngg?? IIff tthhee ddiiffffeerreenntt jjoobbss aanndd A À B B C C A A B B C C AA BB CC
+t th he e i ir r a a r r r ri i v va a l l t tiimmee aanndd bbuurrsstt ttiimmee iiss ggiivveenn bbeellooww ffiinndd R Po P O 0 1 1 0 0 7 7 5 5 3 3 33 33 22
+t th h e e a a v v e e r ra a g ge e t t u u r r n n a a rroouunndd ttiimmee aanndd aavveerraaggee wwaaiittiinngg P P, 2 2 0 0 0 0 3 3 2 2 2 2
+t ti i m me e u u s s i in n g g F F C C F F S S a a n n d d SSJJFF.. P P 2 , 3 3 0 0 2 2 9 9 0 0 2 2
+P P r r o o c c e e s s s s N N o o . . AArrrriivvaall ttiimmee BBuurrsstt ttiimmee P P 3 , 2 2 1 1 1 1 # 2 2 2 2 2 2
+0 0 4 4 P P 4 , 000 0 22 4 4 3 3 33
+1 1 1 1 5 5 AAnnsswweerr tthhee ffoolllloowwiinngg uussiinngg BBaanknekre’rs's aallggoorriitthhmm..
+2 2 2 2 2 2 ((i)) WWhahtat wwoouulldd bbee tthhee nneeeedd mmatartriixx??
+3 3 3 3 3 ((i)) IIss tthhee ssyysstteemm iinn aa s saaffee ssttaattee??
+4 4 4 4 6 6
+B B 0 O 22 2 3 2 1 3 5 1 ( 5 2 (2 2 2 ) ) BB0O222321351(52(222)) PP T T O O
+
+--- PAGE 31 ---
+
+[144)|
+(
+(
+m
+ii
+)
+)
+I
+I
+f
+f
+a r
+a
+e
+r
+q
+eq
+u
+u
+e
+e
+s
+s
+t
+t ffrormom pprrooccecssss PP1l a arrrriivveess ffoorr ((11,,00,,22)) ccaann
+be granted immediately?
+be granted immediately?
+((iviv)) EExxppllaaiinn vvaarrioiouuSs mmeetthhooddss ffoorr rreeccoovveerryy ffrormom ddeeaaddlloocckk..
+Unit-IV
+Unit-IV
+. (a) Why do we need paging?
+4. (a) Why do we need paging?
+(b) What is the need of Page replacement? Explain any
+(b) What is the need of Page replacement? Explain any
+o
+o
+n
+n
+e
+e
+p
+p
+a
+a
+g
+g
+e
+e
+r
+r
+e
+e
+p
+p
+l
+l
+a
+a
+c
+c
+e
+e
+m
+m
+e
+e
+n
+nt
+t a
+a
+l
+l
+g
+g
+o
+o
+r
+r
+i
+i
+th
+t
+m
+hm
+w
+wi
+i
+t
+th
+h ssuuiittaabbllee
+example.
+example.
+((cc)) WWhhaatt iiss TThhrraasshhiinngg?? SSttaattee tthhee ccaauussee ooff tthhrraasshhiinngg..
+((cc)) WWririttee sshhoorrtt nnootteess oonn ::
+(i) Virtual memory
+) Virtual memory
+(ii) Cache memory
+() Cache memory
+UUnniitt--VV
+5.. ((aa) ) WWhhaatt aarree tthhee dd iiffffeerreenntt ooppeerraattiioonnss ppeerrffoorrmmeedd oonn ffiillee??
+((bb) )E Exxppllaaiinn ffrreeee ssppaaccee mmaannaaggeemmeenntt aanndd iittss tteecchhnniiqquueess..
+((cc)) DDesesccrriibbee vvaarriioouuss ffiillee aacccceessssiinngg mmetethhooddss wwitithh iittss
+aaddvvaannttaaggeess aanndd ddiissaaddvvaannttaaggeess..
+((dd)) WWhahtat ddoo yyoouu mmeeaann bbyy IInnppuutt/OOuuttppuutt BBufufffeerriinngg??
+EExxpplalaiinn wwitithh tthheeiirr ttyyppeess..
+1980) BB00222233151(52(222))
+1980)
