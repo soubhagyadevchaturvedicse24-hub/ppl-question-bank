@@ -215,22 +215,51 @@ function createQuestionItem(question, progressData, storageKey, onSave) {
     // Support both formats: question.meta.X and question.X
     const metadata = question.meta || question;
     
+    // Priority badge (highest priority at top)
     if (metadata.priority === 'highest') {
-        meta.innerHTML += `<span class="meta-badge badge-high">⭐ HIGHEST PRIORITY</span>`;
+        meta.innerHTML += `<span class="meta-badge badge-high" title="Highest Priority Question">⭐ HIGH</span>`;
+    } else if (metadata.priority === 'high') {
+        meta.innerHTML += `<span class="meta-badge badge-priority-high" title="High Priority">HIGH</span>`;
+    } else if (metadata.priority === 'medium') {
+        meta.innerHTML += `<span class="meta-badge badge-priority-medium" title="Medium Priority">MED</span>`;
     }
-    if (metadata.frequency) {
-        meta.innerHTML += `<span class="meta-badge badge-frequency">Asked ${metadata.frequency}x</span>`;
+    
+    // Frequency/Repeat count badge
+    if (metadata.frequency && metadata.frequency > 1) {
+        meta.innerHTML += `<span class="meta-badge badge-repeat" title="Asked ${metadata.frequency} times">${metadata.frequency}×</span>`;
     }
-    if (metadata.year) {
-        meta.innerHTML += `<span class="meta-badge badge-year">📅 ${metadata.year}</span>`;
-    }
-    if (metadata.years) {
-        metadata.years.forEach(year => {
-            meta.innerHTML += `<span class="meta-badge badge-year">📅 ${year}</span>`;
-        });
-    }
+    
+    // Marks badge
     if (metadata.marks) {
-        meta.innerHTML += `<span class="meta-badge badge-marks">${metadata.marks} marks</span>`;
+        meta.innerHTML += `<span class="meta-badge badge-marks" title="${metadata.marks} marks">${metadata.marks}M</span>`;
+    }
+    
+    // Year chips with overflow handling (max 3 years, rest as +N)
+    const MAX_YEAR_CHIPS = 3;
+    let years = [];
+    
+    if (metadata.year) {
+        years.push(metadata.year);
+    }
+    if (metadata.years && Array.isArray(metadata.years)) {
+        years = [...years, ...metadata.years];
+    }
+    
+    // Remove duplicates and sort
+    years = [...new Set(years)].sort().reverse();
+    
+    if (years.length > 0) {
+        const visibleYears = years.slice(0, MAX_YEAR_CHIPS);
+        const hiddenYears = years.slice(MAX_YEAR_CHIPS);
+        
+        visibleYears.forEach(year => {
+            meta.innerHTML += `<span class="meta-badge badge-year" title="Year ${year}">${year}</span>`;
+        });
+        
+        if (hiddenYears.length > 0) {
+            const allYears = years.join(', ');
+            meta.innerHTML += `<span class="meta-badge badge-overflow" title="Also in: ${hiddenYears.join(', ')}">+${hiddenYears.length}</span>`;
+        }
     }
 
     rightSection.appendChild(meta);
