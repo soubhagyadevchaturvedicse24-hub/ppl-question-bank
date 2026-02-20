@@ -1,0 +1,1161 @@
+
+--- PAGE 1 ---
+Chhattisgarh Swami Vivekananda Technical University, Bhilai (C.G.) 
+Program / Semester: B.Tech (IV) 
+Branch: Computer Science &Engineering 
+Subject: Design & Analysis of Algorithms 
+Course Code: B022415(022) 
+Total / Minimum-Pass Marks (End Semester Exam): 
+100 / 35 
+L: 2 T: 1 P: 0      Credits: 3 
+Class Tests & Assignments to be conducted: 2 each 
+Duration (End Semester Exam): 03 Hours 
+ 
+UNIT I Algorithms: Definitions and Application of notations, Asymptotic notations: big oh, small oh, omega and 
+theta notations, worst case, best case and average case analysis. solving recurrence equations: General recurrence 
+equation, Master Method, Recursive Tree Method, substitution method, analysing control structures. Analysis of 
+Sorting and Searching: Heap, insertion, selection and bubble sort; sequential, binary and Fibonacci search. 
+ 
+UNIT II Divide-Conquer & Greedy Paradigm: Introduction to Divide and conquer paradigm, Quick and merge 
+sorting techniques, the basic divide and conquer algorithm for matrix multiplication, Greedy Method: The basic 
+greedy strategy & computing minimum spanning trees, Algorithms of Kruskal and Prims, use of greedy strategy in 
+algorithms for the Knapsack problem and Huffman trees. 
+ 
+UNIT III Dynamic Programming and String-Matching Algorithms: The basic dynamic programming 
+paradigm, Dynamic programming solution to the optimal matrix chain multiplication and the longest common 
+subsequence problems, String matching algorithm: The general string problem as a finite automata, Knuth Morris 
+and Pratt algorithms, Boyer-Moore Algorithm, linear time analysis of KMP algorithm and Boyer-Moore algorithm. 
+ 
+UNIT IV Backtracking: Back tracking and Recursive back tracking, the general method, 8-queens problem, sum 
+of subsets, graph coloring, Hamiltonian cycle, Knapsack problem 
+ 
+UNIT V Branch and Bound & NP Complete Problem: General method, applications: Travelling sales person 
+problem, 0/1 knapsack problem, LC (Least-cost search), FIFO Branch and Bound solution. NP-Hard and NP-
+Complete problems: Basic concepts, non-deterministic algorithms, NP – Hard and NP-Complete classes, Cook’s 
+theorem. 
+Text Books: 
+1. Cormen, Lelserson, Rivert, “Introduction to Algorithms”, Second Edition, PHI.  
+2. Ellis Horowitz, Sartaj Sahni, Sanguthevar Rajasekaran, “Fundamentals of Computer Algorithms”, Galgotia 
+Publications Pvt. Ltd., 2008 
+ 
+Reference Books: 
+1. Paneerselvam, “Design and Analysis of Algorithms”, Prentice-Hall of India, 2006 
+2. Anany Levitin, “Introduction to the Design and Analysis of Algorithms”, Pearson Education, 2005. 
+3. Gilles Brassard and Paul Bratley, “Fundamentals of Algorithms”, Prentice-Hall of India, 1997 
+ 
+Course Outcomes: [The students should be able to]: 
+1. Calculate the Time complexity of Insertion sort, Heap sort, Bubble sort, Linear and Binary search algorithms.  
+2. Apply the algorithms and design techniques to solve problems related to divide and conquer and Greedy 
+Algorithm  
+3. Analyse Dynamic programming problems including Matrix chain multiplication, Longest Common 
+subsequence and Knapsack Problem. 
+ 
+4. Understand the implementation of Backtracking and Recursive Backtracking Methods. 
+ 
+5. Understand the basic concepts of NP-Hard, NP-Complete and Branch and Bound methods. 
+ 
+ 
+ 
+ 
+ 
+Chhattisgarh Swami Vivekananda Technical University, Bhilai (C.G.) 
+Program 
+/ Semester: B.Tech (IV) 
+Branch: Computer Science & Engineering 
+Subject: Design & Analysis of Algorithms 
+Course Code: B022415(022) 
+Total / Minimum-Pass Marks (End Semester Exam): | L:2T:1P:0 
+Credits: 3 
+100 / 35 
+Class Tests & Assignments to be conducted: 2 each 
+Duration (End Semester Exam): 03 Hours 
+UNIT I Algorithms: Definitions and Application of notations, Asymptotic notations: big oh, small oh, omega and 
+theta notations, worst case, best case and average case analysis. solving recurrence equations: General recurrence 
+equation, Master Method, Recursive Tree Method, substitution method, analysing control structures. Analysis of 
+Sorting and Searching: Heap, insertion, selection and bubble sort; sequential, binary and Fibonacci search. 
+UNIT II Divide-Conquer & Greedy Paradigm: Introduction to Divide and conquer paradigm, Quick and merge 
+sorting techniques, the basic divide and conquer algorithm for matrix multiplication, Greedy Method: The basic 
+greedy strategy & computing minimum spanning trees, Algorithms of Kruskal and Prims, use of greedy strategy in 
+algorithms for the Knapsack problem and Huffman trees. 
+UNIT II Dynamic Programming and String-Matching Algorithms: The basic dynamic programming 
+paradigm, Dynamic programming solution to the optimal matrix chain multiplication and the longest common 
+subsequence problems, String matching algorithm: The general string problem as a finite automata, Knuth Morris 
+and Pratt algorithms, Boyer-Moore Algorithm, linear time analysis of KMP algorithm and Boyer-Moore algorithm. 
+UNIT IV Backtracking: Back tracking and Recursive back tracking, the general method, 8-queens problem, sum 
+of subsets, graph coloring, Hamiltonian cycle, Knapsack problem 
+UNIT V Branch and Bound & NP Complete Problem: General method, applications: Travelling sales person 
+problem, 0/1 knapsack problem, LC (Least-cost search), FIFO Branch and Bound solution. NP-Hard and NP- 
+Complete problems: Basic concepts, non-deterministic algorithms, NP — Hard and NP-Complete classes, Cook’s 
+theorem. 
+Text Books: 
+1. Cormen, Lelserson, Rivert, “Introduction to Algorithms”, Second Edition, PHI. 
+2. Ellis Horowitz, Sartaj Sahni, Sanguthevar Rajasekaran, “Fundamentals of Computer Algorithms”, Galgotia 
+Publications Pvt. Ltd., 2008 
+Reference Books: 
+1. Paneerselvam, “Design and Analysis of Algorithms”, Prentice-Hall of India, 2006 
+2. Anany Levitin, “Introduction to the Design and Analysis of Algorithms”, Pearson Education, 2005. 
+3. Gilles Brassard and Paul Bratley, “Fundamentals of Algorithms”, Prentice-Hall of India, 1997 
+Course Outcomes: [The students should be able to]: 
+1. 
+Calculate the Time complexity of Insertion sort, Heap sort, Bubble sort, Linear and Binary search algorithms. 
+2. Apply the algorithms and design techniques to solve problems related to divide and conquer and Greedy 
+Algorithm 
+3. Analyse Dynamic programming problems including Matrix chain multiplication, Longest Common 
+subsequence and Knapsack Problem. 
+4. Understand the implementation of Backtracking and Recursive Backtracking Methods. 
+Understand the basic concepts of NP-Hard, NP-Complete and Branch and Bound methods. 
+Nn 
+
+--- PAGE 2 ---
+Printed Pages - 5+ J-8 
+Roll 
+ts 
+~\* 
+~ 
+. 
+B022415(022) 
+' . . . 
+B. Tech. {Fourth Semester) Examination, 
+April-May 2023 
+I 
+(AICTE Scheme) 
+(Computer Science Enq~ Branch) 
+' 
+I
+', 
+DESIGN & ANALYS1s·or ALGORITHMS 
+1i111e Allowed : Three hours 
+' 
+Maxi11111111 t(arks : JOO 
+Minilllfllll Marls : 35 
+Note : Attemp( all questions. Part (a) is compulsory 
+from each unit. Attempt any two part from 
+(b), (c) and (d). 
+Unit-I 
+t. (a) Define different asymptomatic notatiQns with 
+examples. 
+4 
+(b) Using master method find the solution· of the 
+following recurrence equations : 
+8 
+8022415(022) 
+PIO 
+
+--- PAGE 3 ---
+\11 
+6) r(n)===9T(n/3)+" 
+(i) r(n) :::T(2n/3)+ \ 
+. 
+: 
+. 
+sort and tind its 
+· mm for seb:Cµot\ 
+s 
+( c) -Write an algon 
+. 
+. cc,npleXity. 
+~ u .no recursion tree find 
+· 
+. 
+. ion tree'? 
+St.PC 
+8 
+( d) What )S. a recUIS. \)OUJld for the equation : 
+the asympt()ID1\t1C 
+r(n) = 3T(ln/~1)+ 0 (n
+2
+) 
+unit-II 
+.-
+. 
+t,etween Divide &conquer 
+1. · (a) Explain the difference 
+4 
+paradigm and greedy inet}lod. 
+·lication~and 
+. 
+. suasseo's matrix mu\tlp 
+(b) Explain 
+· 
+ftbe algorithm-
+analyze the efficiellCY 0 
+8 
+. 
+. 
+th lrfl..:ansack instanCCS 
+. 
+nntimal solution to e l!t.l""t' 
+8 
+(c) Find an uy--~:-
+n == 7' m = 1_5 . -
+Profit= {lo, s, _is, , • 6, is, 3} 
+Weight= l2, 3, 5, 7, l, 4, 1} 
+8021415(921)
+I l I 
+( d) Construct the minimum 91'11ffl'qtg tree (MS'D for the 
+given graph using Prim's and Kruskal's algorithm. 
+8 
+Unit-m 
+3. (a) What is dynamic programming concept? Give an 
+example. 
+4 
+(b) Find an opt~mal paranthesiz.ation of a matrix chain 
+product whose sequence of dimensions is <5. 10, 
+3, 12, s, so, 6>. 
+8 
+(c) Explain Knuth Morris ahd Pratt (KMP) algorithm 
+with suitable example. 
+8 
+(d) Explain Boyer Moore algorithm. Apply it to search 
+for the pattern in the t~xt given below : 
+8 
+BOll''~'O"'\ 
+
+--- PAGE 4 ---
+I 4 I 
+T 
+0 
+2 3 4 
+5 6 
+7 8 9 
+a b a c a a b a c c 
+p 
+0 
+2 3 4 
+5 
+a 
+b a 
+c 
+a 
+b 
+Unit-IV 
+4. (a) What is backtracking and recursive backtracking? 
+4 
+(b) What is a Hamiltonian cycJe? How does one apply 
+backtracking algorithm to find Hamiltonian path and 
+cycJe? Explain. 
+(c) What is chro~atic numbe;? Give the state space 
+tree for 4-colorlng problem. Expfaln graph coloring 
+problem. 
+(d) What is knapsack problem? Let us consider that 
+the capacity of the knapsack w = 60 and the list of 
+8 
+8 
+provided items are shown in the folJowing table : 
+8 
+lttm 
+Profit 
+Weight 
+A 
+B 
+C 
+D 
+280 
+100 
+120 
+120 
+40 
+10 
+20 
+24 
+What is the optimal solution and maximum profit? 
+B022415(821) 
+I. 5 1 
+Unit-V 
+5. (a) Differentiate between P and NP problems. 
+(b) Explain the use of branch and bound method to 
+solve I 5 puzzle problem with least cost search. 
+( c) Define the traveling salesman problem. Illustrate the 
+steps to solve the TSP given below : 
+(d) State and pro~e the cooks theorem. 
+1,9701 
+8022415(022) 
+4 
+8 
+8 
+8 
+
+--- PAGE 5 ---
+__ .... . ·~ ·-... 
+-
+· ·-...: 
+Printed Pages - 4 
+Roll No. : ... 
+·, E OJ: r, "'-:, .. , 
+r~ 
+~~ , 
+~ 
+r·· 
+9: 
+l8AAR 
+8 
+--5. . 
+'"'" 
+B022415(022) 
+~~~~~ 
+B. Tech. (Fourth Semester) Examination, 
+Nov.-Dec. 2023 
+(New Scheme) 
+(Computer Science Engg. Branch)_ 
+DESIGN & ANALYSIS OF ALGORJT.HMS 
+Time Allowed : Three hours 
+Maxi11ium Marks : JOO 
+Mini111u1n Marks : 35 
+Note : Ansvver all questions. Part (a) of each 
+question is compulso,y and of 4 marks. 
+Answer a,~,v nvo parts .fi~om part (b), (c) and 
+(d), which is of 8 marks each. 
+1. (a) What do you mean by an Algorithm? Write the 
+characteristics of the algorithm in brier 
+(b) What do you mean by order of magnitude? Explain 
+8022415(022) 
+PTO 
+·~ 
+i 
+
+--- PAGE 6 ---
+I 2 I 
+, anou" types of asYmptotic notations v- ith suitable 
+srraph:,. 
+(c) State the Master theorem in detail with example. 
+(d) What do you mean by sorting. Explain Heap Son 
+with an algorithm in detail. 
+2. (a) What do you mean by greedy approach? Describe 
+in brief 
+(b) Write the detailed difference between quick so11 
+and merge son. 
+( c) Find the optimal solution for the fractional knapsack 
+problem by making use of the greedy approach 
+Consider : 
+11 = 5 
+w = 60kg 
+{1rl, 11·2y3, 11A, \1'5) = (5, 10, 15, 22, 25) 
+(h l,h2,h3,h4,b5) = (30, 40, 45, 77, 90) 
+(d) What is the Spanning tree? Consider the fo llowing 
+B02H 15(022) 
+13 I 
+graph and find the Minimum spanning tree. 
+3. (a) What do you mean by dynamic programming'1 
+Explain in brief 
+(b) Explain Boyer-Moore Algorithm in detail 
+(c) Explain Knuth Morris and Pratt algorithms in detail 
+( d) Write short notes on · 
+(i) Longest common subsequence problems 
+(ii) Finite Automata for string matching problem 
+4. (a) Explain backtraking and recursi,·e bad.tracknig in 
+b1ief 
+B012-t 15(022) 
+PTO 
+
+--- PAGE 7 ---
+[ 4 ] 
+(b) Discµss the 8-queens problen1 with a suitable 
+example. 
+( c) Explain the Hanu1tonian cycle in detail ,vith a suit.able 
+diagran1. 
+(d) Explain graph coloring in detail. 
+5. (a) State Cook's theorem in brief 
+7101 
+(b) What do you n1ean by NP-Hard problem? Explain 
+at least one NP-hard problem in detail. 
+(c) Explain Least-Cost Search vvith example. 
+(d) Write the difference between NP-Hard and NP-
+Complete classes in detail. 
+H0224 I 5(022) 
+
+--- PAGE 8 ---
+Printed Pages -- 4 
+R.oll No.: .......... .. 
+B022415(022) 
+B. Tech. (Fourth Semester) Examination, 
+April-May 2024 
+(New Scheme) 
+(Computer Science & Engineering Branch) 
+DESIGN & ANALYSIS-OF ALGORITHM 
+Tbne Allotved : Three hours 
+Maximum Marks: JOO 
+Mininiu,n Pass Marks : 35 
+Note : Question (a) is co,npulsory and attempt any 
+two questions fron1 (b), (c) & (d) in each 
+unit. 
+Unit-I 
+1. (a) What do you mean ·by tin1e con1plexity of .an 
+algorithn1? 
+4 
+(b) Explain Substitution method with ·exrunple. 
+8 
+(c) What is asy1nptotic notation? Explain it's different 
+B0224.15(0~2) . 
+pro 
+
+--- PAGE 9 ---
+I 2 I 
+types. 
+8 
+(d) Illustrate the operation of inse1tion smting and define 
+the complexity for worst case. 
+8 
+Unit-II 
+2. (a) What is Divide and Conquer strategy? 
+4 
+(b) Explain merge sort alg01ithm and apply it to sort 
+<1,6,3,2, 7,5,8,4>. 
+8 
+(c) What is minimum spanning tree? 
+Give the prims algorithm for finding minimum 
+spanning tree for the-given undirected graph. find 
+the minimum spanning tree, their weight are attached 
+with each edge. 
+8 
+( d) Explain Knapsack problem with exan1ple. 
+8 
+Unit-IlJ 
+13022415(022) 
+I 3 I 
+3. (a) Cla5sify the steps used for development _of dyrunruc 
+programming. 
+4 
+(b) Write down the algorithm for finding longest 
+common subsequence and obtain the LCS for. 
+X = {B,A,C,D,B}, Y = {B:--0,C,B} 
+( c) Explain Boyer-Moore Algorithm with an example. 
+8 
+( d) Write short notes on : 
+(i) Matrix Chain multiplication. 
+(iIJ String matching algorithm. 
+Unit-IV 
+4. (a) What is the meaning of backtracking in field of 
+algorithm? 
+4 
+(b) Design a back tracking algorithm for the Hamiltonian 
+Cycle. 
+8 
+(c) Solve the 8-queen problem usino backtrack.ino 
+0 
+0 
+method 
+8 
+(d) Write an algorithm for sum of subsets. Solve the 
+8022415(022) 
+PTO 
+
+--- PAGE 10 ---
+5. (n) 
+(b) 
+(c) 
+r 4 I 
+follo,ving prohlc,n M !_;• 30 \V ~ { 5, IO, 1 J , 15, 18 J • 
+8 
+Unit .. v 
+\VJ1a1 is least-cost search? 
+4 
+Expla1n FIFO branch & bound. 
+8 
+\V1ite shott notes on : 
+8 
+(i) NP- co1npleteness 
+(ii) Cook's theorem 
+(d) Analyze J\rr-bard and NP-completeness with an 
+example. 
+8 
+80224.15(022) 
+1s10J 
+
+--- PAGE 11 ---
+PrinuJf Pugcs - S 
+8022415(022) 
+B. Tech. (Fourth Sen1cstcr) Exan1ination, 
+Nov.-Dec. 2024 
+(Ne,v Schen1e) 
+(Computer Science Engg. Branch) 
+DESIGN & ANi\LYSIS OF ALGORITJ-lMS 
+Tbne Allolved : Three hours 
+1Waxi11u11n 1Warks: JOO 
+Minb11u111 Jlfarks: 35 
+!Vote : Answer all questions. Part (a) o_f each 
+question is co1npulso1JJ and of 4 ,narks. 
+Answer any two parts jiv,n part (b), (c) and 
+(d), which is of· 8 111arks each. 
+1. (a) What do you n1can by Asyn1ptolic Notations? Also 
+write types of notations. 
+(b) Consider the follo,ving lhnctions and solve thcn1 
+using Master's thcorcrn 
+B022415(022) 
+4 
+8 
+PTO 
+
+--- PAGE 12 ---
+2. 
+(c} 
+(d) 
+I 2 I 
+(i) T (II) = 4 t ( 11/2 )-1- II 
+(ii) f (11) = 2 J'(n/2) + II 
+Illustrate the fullowing an-ay elements and re-arrange 
+them in ascending order using l11Sertion Sort. 
+16, 15, 4, 13, 2, 1 
+Consider the following array elements and find the 
+location of key element from the array, where key 
+element= 20. 
+I 0, 50, 30, 70, 80, 60, 20, 90, 40 
+using binary search algorithm. 
+(a) Write difference between Kruskal & Prims algorithm. 
+(b) Sort the following element using Merge Sort 
+algorithm 
+20, 30, 50, I 0, 5, 60, 80, 8, 64, 75, 32, 69 
+(c) Sort the following element using Quick Sort algorithm. 
+3, 4, 7, I, 5, 9, 2, 8, 4 
+B022-' 15(022) 
+8 
+8 
+4 
+8 
+8 
+I 3 I 
+(d) Solve the following by Krnskal algorithm. 
+8 
+,/f,:;1; 
+?,-©-- "' 
+'.3 
+, 
+3. (a) Discuss basic divide & conquer for matrix multi-
+plication. 
+4 
+(b) Discuss KMP algorithm and compute the following: 
+T:ababcabcabababd 
+P:ababd 
+8 
+(c) For the given sequence {4, IO, 3, 12, 20 and 7}. 
+The matrices have size 4 x I 0, I0 x 3, 3 x 12, 
+12 x 20, 20 x 7. Find out optimal matrix chain multi-
+plication sequence dynamic programming. 
+8 
+J '' 
+(d) Discuss Boyer Moore pattern searching algorithm 
+and compute the following : 
+T : This is a test 
+P: test 
+8 
+i . 
+8022415(022) 
+PTO 
+1. J 
+
+--- PAGE 13 ---
+I 2 I 
+(i) T(11)=41'(11/2)+11 
+(ii) r ( ") = 2 r ( 11/2) + 11 
+r,, 
+(c) 
+111ustrate the following am1y elements and re-arrange 
+them in ascending order using lnsertio'n Sort. 
+16, 15, 4, 13, 2, l 
+(d) Consider the following array elements and find the 
+location of key element from the array, where key 
+element= 20. 
+I 0, 50, 30, 70, 80, 60, 20, 90, 40 
+8 
+using binary search algorithm. 
+8 
+2. (a) Write difference between KruskaJ & Prims algorithm. 
+4 
+(b) Sort the following element using Merg~ Sort 
+algorithm. 
+8 
+20, 30, 50, l 0, 5, 60, 80, 8, 64, 75, 32, 69 
+( c) Sort the following element using Quick Sort algorithm. 
+3, 4, 7, I, 5, 9, 2, 8, 4 
+B022-t 15(022) 
+8 
+3. 
+I
+. 
+1 
+IA 
+I 3 I 
+(d) Solve the following by Kruskal algorithm. 
+8 
+~~--~~~ 
+_fI>--'D 
+, 
+(a) Discuss basic divide & conquer for matrix multi-
+plication. 
+4 
+(b) Discuss KMP algorithm and compute the following: 
+T:ababcabcabababd 
+P:ababd 
+8 
+(c) For the given sequence {4, 10, 3, 12, 20 and 7}. 
+The matrices have size 4 x 10, }Ox 3, 3x 12, 
+12 x 20, 20 x 7. Find out optimal matrix chain multi-
+plication sequence dynamic programming. 
+8 
+(d) Discuss Boyer Moore pattern searching algorithm 
+and compute the following : 
+T : This is a test 
+P: test 
+8 
+8022415(022) 
+PTO 
+
+--- PAGE 14 ---
+I -' l 
+4. (a) Whal do ~1.111 llntkt!-tnnd hv Bncktrucking in 
+algt'nlhnf' 
+(b) Consider the fl,tkm ing St't S . l 1. J. 4. -"} and sum 
+= S Find the ~ubset(~). 
+(c) fo1m a Hamilto111an cycle/circuit from the given 
+undiree.cd graph 
+(d) Color the following undirected graph, using Graph 
+" 
+8 
+8 
+Coloring concept where chromatic no.is 3. 
+8 
+5. (a) Define FIFO and U ' (Le111>t-Cost) senn.:11. 
+4 
+OUlU 15(11?2) 
+I ~ I 
+(b) Write short notes on the following 
+8 
+<i) P-Class 
+(ii} NP-Clase; 
+(rii) NP-Hard 
+(iv) NP-Complete 
+(c) Explain Cook's theorem in details. 
+8 
+(d) Consider the following valut!s/distanc(!S of the city, 
+find the optimal solution for the travelling salesman 
+problem. 
+8 
+ti 
+B (' 
+[) 
+T 
+10 5 >l 
+fJ s 
+'::t::: 
+9 
+:J 
+(' 
+I 
+6 
+C 
+/) 2 
+-' 
+8 
+
+--- PAGE 15 ---
+Printed Pages - 4 
+RoU No. : ............ ?.~.~.?> 
+B022415(022) 
+B. Tech. (Fourth Semester) Examination, 
+April-May 2025 
+(New Scheme) 
+(Computer Science Engg. Branch) 
+DESIGN & ANALYSIS of ALGORITHMS 
+Time Allowed : Three hours 
+Maximu,n Marks: JOO 
+Minimu,n Marks : 3 5 
+Note : Attempt all questions. Part (~) is con1pulso1y 
+from each unit. Attempt any two parts from 
+(b), (c) and (d). 
+Unit-I 
+1. (') What is Big O notation? 
+()f,) State the master theorem and explain it ,vith 
+exan1plcs. 
+4 
+8 
+8022415(022) 
+PTO 
+') 
+( 
+\ 
+
+--- PAGE 16 ---
+l 2 I 
+( c) Explain heap s011 algorithm with example. 
+8 
+(07 Solve the following recursion equation by using 
+master method : 
+(1) T(n) =3T(n/2)+,,2 
+(ii) T ( 11) = 2T ( n/2) + 11 log 11 
+Unit-TI 
+2. (aj Differentiate between divide and conquer algorithm 
+and Greedy method. 
+<P, Explain & analyse merge sort algorithm. 
+8 
+4 
+8 
+( c) Explain Huffu1ann algorithm with suitable example. 8 
+(ft) Explain in short Kruskal & prims algorithm with 
+example. 
+Unit-DI 
+8 
+3. (a) What is dynarnic programming? 
+4 
+(b) Explain Boyer-Moore algorithm with example. 
+8 
+8022415(022) 
+
+--- PAGE 17 ---
+I C: . 
+[ J ) 
+(c) Write short note on Knuth Morris and Pratt 
+algorithms. 
+8 
+(d) Explain the following by using Matrix chain 
+multiplication. { 4, I 0, 3, 12, 20, 7} . 
+8 
+Unit-IV 
+4. (a) What is backtracking? Write any two application of 
+backtracking. 
+4 
+(b) Design a back tracking algorithn1 for Hamiltonia cycle 
+proble1n. 
+8 
+I 
+( c) Find all the possible solution for 8 > 8 chess board, 
+8 Queen problem. 
+8 
+(d) Write short notes on : 
+8 
+(i) Sun1 of subset 
+(ii) Graph coloring 
+Unit-V 
+5. (a) What do you 1nean by LC (Least Cost) search: 
+4 
+8022415(022) 
+PTO 
+
+--- PAGE 18 ---
+l 4 I 
+(b) Explain TSP with example. 
+8 
+(c) Write a. short note on fo11owing: 
+8 
+(i) NP-con1pleteness 
+(ii) Cook's theorem 
+(d) Explain 15 puzzle problem with suitable example. 
+8 
+-
+2030] 
+8022415(022) 
+
+--- PAGE 19 ---
+---
+' 
+' ~ 
+t.;, 
+~ 
+~~ : 
+Roll r·,11r i .. -~nnili 
+~ 
+0 
+. 
+. 
+B022415(022) 
+B. Tech. (Fourth Seruester) Examination, 
+Nov.-Dec. 2025 
+(Ne,v Scheme) 
+(Computer Science Engg. Branch) 
+DESIGN & ANALYSIS of ALGORITHMS 
+TiTne Allowed : Three hours 
+Jl1axb11u111 Jlfarks : 100 
+Minin1u111 Marks: 35 
+Note : Auenzpt all questions. Part (a) is co111pu/son· 
+from each unit canJ' 4 marks. Attempt any 
+two parts ji·om (b), (c) and (cl) cany 8 mark~. 
+Unit-I 
+J. (a) \Vhat is Algorithm? Write its criteria and distinct 
+area? 
+(b) What are asy1nptotic notations'? Explain di ffercnt 
+types of Asymptotic notations. 
+8022415(022) 
+4 
+8 
+
+--- PAGE 20 ---
+I 2 I 
+f' (n) :::. 2T(11/'2)+ 11: 
+tdl ~1.1h -: th.' ti.,l10wing Rttun\'.11ce by l'vlnstcr i\ kt hod : 8 . 
+til 7(11)= -ff (n/ 2)+11' 
+tiil fl11)= 32T(n/ 2) + 11' 
+10) T(n) =9T(n/3) +n 
+Unit-II 
+2. 1a, Explain di,·ide and conqm:r approach for solving 
+~~~-
+4 
+(b) Find thi: minimal spanning Tree Using Prim 's 
+algorithm for following graph : 
+18 
+11022415(022) 
+8 
+I 3 I 
+(<.:) Conc;icJer 5 items along their rcspcctj ve \\CigJ1ts and 
+values: 
+I = < 11 . 12. 13, 14. f 5 > 
+W = < 5. I 0, 20. 30, -40 > 
+V = < 30. 20, 100, 90. 160 > 
+The capacity of Knapsack W= 60. Find the solu1ion 
+to the fractional: Knapsack probkm. 
+(d) Sort the fol!ovving elemenrs using radix sort. 
+170, 45. 75, 90. 802. 2-t 2. 66 
+Unit-DI 
+3. (a) Explain D)11amic Programming. 
+8 
+8 
+(h) Explain Boy~r-Moon: algorithm \\ith its complex it:. 8 
+(c} Explain Knuth i\lorris and Pratt algorithms. 
+(d) Using D) namic Programming to find the LCS t\\ O 
+S(XjllL'llCl;S an: : 
+X : 1\ C t\DB 
+Y : C BDA 
+g 
+8 
+1101:?-' l~(0:?2) 
+0~~ PTO 
+m 
+
+--- PAGE 21 ---
+f 4 l 
+l hrh-J\ · 
+4. (;i) l ·\pbin Back tracking. 
+tb) E, pln1n ~-queens problc1n nnd solve it U'-'i1ng 
+backtrack technique. 
+8 
+(c) E\.plain Graph Colorings ·1ncthod with example. 
+R 
+( d) Gi\ en a set S = { 5, l 0, 12. l J, 15. I 8} and 
+d = 30 obtain the subset stun using backtrack 
+appror1ch. 
+. Unit-V 
+8 
+5. (a) Explain NP-Hard and N P co1nplctc problcn,~. 
+4 
+(b) I.:>..plain tr~n cl ling sales person probk1n. 
+8 
+<c) I::hplain FIFO branch and huund techniqut'. 
+S 
+(d) l.:"\.phtin Cooh \ theoren1. 
+S 
+B0224 I 5(022 ) 
+
+--- PAGE 22 ---
+Printed Pages - 5 
+Roll No.: .............................. .. 
+B022415(022) 
+B. Tech. (Fourth Semester) Examination, 
+April-May 2021 
+(AICTE Scheme) 
+(Computer Science Engg. Branch) 
+DESIGN & ANALYSIS OF ALGORITHMS 
+Time Allowed : Three hours 
+Maximum Marks: 100 
+Minimum Marks : 35 
+Note : Answer all questions. Part (a) of each question 
+is compulsory and of 4 marks. Answer any two 
+parts from part "b ", "c" and "d", which is of 
+8 marks each. 
+1. (a) What are the fundamental steps involved in problem 
+solving using algorithm. 
+(b) Explain the Asymptotic notations used in designlng 
+algoritlnns. 
+B022415(022) 
+PTO 
+
+--- PAGE 23 ---
+[ 2 ] 
+(c) Write the algorithm oflnsertion Sort and analyze 
+this. 
+(d) Solve the following recurrences. 
+(i) T(n)=T(n/2)+T(n/4)+T(n/8)+n 
+(ii) T ( n) = T ( n - 2) + 2 lg n 
+2. (a) Write the general plan for divide-and-conquer 
+algorithms. Write any four example of divide-and-
+conquer. 
+(b) Write the algorithm of Quick Sort and analyze it. 
+( c) Find the minimum spanning tree using Kruskal 
+algorithm for the following graph. 
+( d) Solve the Knapsack problem using Greedy algorithm, 
+for the following data. 
+B022415(022) 
+[ 3 ] 
+Item 
+A 
+B 
+C 
+D 
+Profit 
+280 
+100 
+120 120 
+Weight 
+40 
+10 
+20 
+24 
+where W= 60. 
+3. (a) What is Dynamic programming? Write the steps of 
+Dynamic Programming. 
+(b) Find Longest Common subsequence of X and Y, 
+whereX= A, B, C, B, D, A, Band Y= B, D, C, 
+A, B, A. 
+(c) Find the pattern in the given text by using Boyer 
+Moore algorithm, where Text : "G CAA T G C C 
+TAT G T GA C C" and Pattern : 'TA T G T G'. 
+( d) Write any one application of string matching algorithm. 
+Which string matching algorithm you will use for 
+this? How you will think that your selected algorithm 
+is better than other string matching algorithm. 
+4. (a) Explain Backtracking and recursive backtracking. 
+(b) Write the rules of 8-queen problem. Find any one 
+B022415(022) 
+PTO 
+
+--- PAGE 24 ---
+[ 4 ] 
+solution of8-queen problem by using backtracking. 
+(c) Find the solution for the sum of subsets problem 
+with the set S = { 3, 4, 5, 6, 10} with M = 9 using 
+backtracking method. 
+( d) Find the Hamiltonian cycle for the given graph using 
+backtracking. 
+5. (a) Define Branch-and-Bound method with different 
+types of nodes used. 
+(b) Solve the 0/1 knapsack problem using Branch and 
+Bound with following data : 
+B022415(022) 
+100) 
+[ 5 ] 
+Items 
+Weight 
+Value 
+11 
+3 
+4 
+12 
+4 
+5 
+13 
+5 
+6 
+where W= 7. 
+( c) Explain FIFO Branch and Bound and LC Branch 
+and Bound, with example. 
+(d) Write short notes on any two : 
+(1) Cook's theorem 
+(ri) NP Complete Classes 
+(rii) NP Hard Classes 
+B022415(022) 
+
+--- PAGE 25 ---
+Printed Pages - 5 
+Roll No.: .............................. .. 
+B022415(022) 
+B. Tech. (Fourth Semester) Examination, 
+April-May 2021 
+(AICTE Scheme) 
+(Computer Science Engg. Branch) 
+DESIGN & ANALYSIS OF ALGORITHMS 
+Time Allowed : Three hours 
+Maximum Marks: 100 
+Minimum Marks : 35 
+Note : Answer all questions. Part (a) of each question 
+is compulsory and of 4 marks. Answer any two 
+parts from part "b ", "c" and "d", which is of 
+8 marks each. 
+1. (a) What are the fundamental steps involved in problem 
+solving using algorithm. 
+(b) Explain the Asymptotic notations used in designlng 
+algoritlnns. 
+B022415(022) 
+PTO 
+
+--- PAGE 26 ---
+[ 2 ] 
+(c) Write the algorithm oflnsertion Sort and analyze 
+this. 
+(d) Solve the following recurrences. 
+(i) T(n)=T(n/2)+T(n/4)+T(n/8)+n 
+(ii) T ( n) = T ( n - 2) + 2 lg n 
+2. (a) Write the general plan for divide-and-conquer 
+algorithms. Write any four example of divide-and-
+conquer. 
+(b) Write the algorithm of Quick Sort and analyze it. 
+( c) Find the minimum spanning tree using Kruskal 
+algorithm for the following graph. 
+( d) Solve the Knapsack problem using Greedy algorithm, 
+for the following data. 
+B022415(022) 
+[ 3 ] 
+Item 
+A 
+B 
+C 
+D 
+Profit 
+280 
+100 
+120 120 
+Weight 
+40 
+10 
+20 
+24 
+where W= 60. 
+3. (a) What is Dynamic programming? Write the steps of 
+Dynamic Programming. 
+(b) Find Longest Common subsequence of X and Y, 
+whereX= A, B, C, B, D, A, Band Y= B, D, C, 
+A, B, A. 
+(c) Find the pattern in the given text by using Boyer 
+Moore algorithm, where Text : "G CAA T G C C 
+TAT G T GA C C" and Pattern : 'TA T G T G'. 
+( d) Write any one application of string matching algorithm. 
+Which string matching algorithm you will use for 
+this? How you will think that your selected algorithm 
+is better than other string matching algorithm. 
+4. (a) Explain Backtracking and recursive backtracking. 
+(b) Write the rules of 8-queen problem. Find any one 
+B022415(022) 
+PTO 
+
+--- PAGE 27 ---
+[ 4 ] 
+solution of8-queen problem by using backtracking. 
+(c) Find the solution for the sum of subsets problem 
+with the set S = { 3, 4, 5, 6, 10} with M = 9 using 
+backtracking method. 
+( d) Find the Hamiltonian cycle for the given graph using 
+backtracking. 
+5. (a) Define Branch-and-Bound method with different 
+types of nodes used. 
+(b) Solve the 0/1 knapsack problem using Branch and 
+Bound with following data : 
+B022415(022) 
+100) 
+[ 5 ] 
+Items 
+Weight 
+Value 
+11 
+3 
+4 
+12 
+4 
+5 
+13 
+5 
+6 
+where W= 7. 
+( c) Explain FIFO Branch and Bound and LC Branch 
+and Bound, with example. 
+(d) Write short notes on any two : 
+(1) Cook's theorem 
+(ri) NP Complete Classes 
+(rii) NP Hard Classes 
+B022415(022) 
+
+--- PAGE 28 ---
+Printed Pages - 4 
+Roll No.: .............................. .. 
+B022415(022) 
+B. Tech. (Fourth Semester) Examination, 
+April-May 2022 
+(AICTE Scheme) 
+(Computer Science Engg. Branch) 
+DESIGN & ANALYSIS OF ALGORITHMS 
+Time Allowed : Three hours 
+Maximum Marks : 100 
+Minimum Marks : 35 
+, 
+Note : Attempt all questions. Attempt any two parts 
+from (a), (b) and (c) of each unit. Each part 
+carries 10 marks. 
+Unit-I 
+1. (a) Explain asymptotic notations used in designing 
+algorithm. 
+(b) Write the algorithm of Bubble sort and analyze it. 
+B022415(022) 
+PTO 
+
+--- PAGE 29 ---
+[ 2 ] 
+( c) Explain master method and solve the following using 
+master slave method : 
+(i) T(n)=3T(n/2)+n
+2 
+(ii) T(n) = 2T(n/2)+nlogn 
+(iii) T(n)= ✓2T(n/2)+logn 
+Unit-II 
+2. (a) Write the algirithm of Merge sort and analyze it. 
+(b) Solve the following using divide and conquer 
+algorithm for matrix multiplication : 
+( c) Find the minimal spanning tree using Prim 's algorithm 
+for following graph : 
+B022415(022) 
+[ 3 ] 
+Unit-ID 
+3. (a) Given two sequences X [l ......... m] and Y [I.. .... n]. 
+Find the longest common sequence to both : 
+X 
+y 
+A 
+B 
+C 
+B 
+D 
+C 
+B 
+D 
+A 
+B 
+A 
+B 
+A 
+(b) Give the matrix having {4, 10, 3, 12, 20 and 7}, 
+size 4x10, 10x3, 3xl2, f2x20, 20x7 so compute 
+the optimal solution using Matrix Chain multiplication. 
+( c) Explain Boyer Moore algorithm with its complexity. 
+Also shows the complexity comparison of string 
+matching algorithm. 
+Unit-IV 
+4. (a) Explain Hamilton cycle with an example. 
+B022415(022) 
+PIO 
+
+--- PAGE 30 ---
+l 4 I 
+(b) What is Graph colouring method? Explain with an 
+example. 
+(c) Explain Knapsack problem. 
+Unit-V 
+5. (a) For the given set of items and knapsack capacity= 
+5 kg, find the optimal solution for the 0/1 knapsack 
+100) 
+problem making use of dynamic programming 
+approach: 
+Item 
+Weight 
+Value 
+1 
+2 
+3 
+2 
+3 
+4 
+, 
+3 
+4 
+5 
+4 
+5 
+6 
+(b) Explain travelling sales person problem with an 
+example. 
+( c) Write short note on : 
+(i) NP Comp1ete Classes 
+(n) FIFO Branch and Bound 
+B022415(022) 

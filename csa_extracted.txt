@@ -1,0 +1,786 @@
+
+=== PAGE 1 ===
+Chhattisgarh Swami Vivekananda Technical University, Bhilai (C.G.) 
+Program / Semester: B.Tech (IV) 
+Branch: Computer Science &Engineering 
+Subject: Computer System Architecture
+Course Code: B022412(022) 
+Total / Minimum-Pass Marks (End Semester Exam): 
+100 / 35 
+L: 2   T: 1   P: 0      Credits: 3 
+Class Tests & Assignments to be conducted: 2 each 
+Duration (End Semester Exam): 03 Hours 
+ 
+UNIT- I Basic Structure Of Computers: Functional units, Basic operational concepts, Bus structures Addressing 
+modes, subroutines: parameter passing, Instruction formats, BASIC PROCESSING UNIT: bus architecture, 
+Instruction Cycle, sequencing of control signals, Hardwired control, Micro programmed Control, microinstruction 
+format. 
+ 
+UNIT-II Arithmetic: Number representations and their operations, Design of Fast Adders, Signed multiplication, 
+Booth’s Algorithm, bit-pair recoding, Integer Division, Floating point numbers and operations, guard bits and 
+rounding. 
+ 
+UNIT- III The Memory System: Various technologies used in memory design, Memory Hierarchy: Main 
+Memory, Auxiliary Memory, Associative Memory, Cache memory, Virtual Memory. Memory Management 
+Hardware, Multi-module memories and Interleaving, 
+ 
+UNIT-IV Input/ Output Organization: Peripheral Devices, I/O interfaces I/O-mapped I/O and memory-mapped 
+I/O, interrupts and interrupt handling mechanisms, vectored interrupts, synchronous vs. asynchronous data transfer, 
+Direct Memory Access  
+ 
+UNIT-V Pipeline and Vector Processing: Parallel Processing, Pipelining, Arithmetic pipeline, Instruction 
+Pipeline, RISC Pipeline, Vector Processing, Array Processors. 
+ 
+Text Books: 
+1. Computer Organization, V.C.Hamacher,Z.G.Vranesic and S.G.Zaky, McGraw Hill,5th Edition,2002. 
+2. Structured Computer Organization, A.S.Tanenbaum, 4th Edition, Pearson Education India 
+3. Computer System Architecture, M. Marris Mano,PHI 
+ 
+Reference Books: 
+1. Computer System Architecture &Organisation, Dr. Usha, Wiley India 
+2. Computer Architecture & Organization, 3rdEdition, J.P. Hayes, McGraw-Hill. 
+3. Computer Organization & Architecture, W. Stallings, Pearson Education India 
+ 
+Course Outcomes [The students should be able to]: 
+1. Identify the basic hardware components of a computer system. 
+2. Familiarize themselves with binary and hexadecimal number systems including computer arithmetic. 
+3. Familiarize themselves with functional units of the processor such as the register file and arithmetic logical 
+unit. 
+4. Understand basics functionality of systems: parallel, pipelined, superscalar and RISC/CISC architectures. 
+5. Represent system design in appropriate formats; addressing modes, an instruction sets as per the system 
+configuration requirements. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Chhattisgarh Swami Vivekananda Technical University, Bhilai (C.G.) 
+Program 
+/ Semester: B.Tech (IV) 
+Branch: Computer Science & Engineering 
+Subject: Computer System Architecture 
+Course Code: B022412(022) 
+Total / Minimum-Pass Marks (End Semester Exam): | L:2 T:1 P:0 
+Credits: 3 
+100 
+/ 35 
+Class Tests & Assignments to be conducted: 2 each 
+Duration (End Semester Exam): 03 Hours 
+UNIT- I Basic Structure Of Computers: Functional units, Basic operational concepts, Bus structures Addressing 
+modes, subroutines: parameter passing, Instruction formats, BASIC PROCESSING UNIT: bus architecture, 
+Instruction Cycle, sequencing of control signals, Hardwired control, Micro programmed Control, microinstruction 
+format. 
+UNIT-II Arithmetic: Number representations and their operations, Design of Fast Adders, Signed multiplication, 
+Booth’s Algorithm, bit-pair recoding, Integer Division, Floating point numbers and operations, guard bits and 
+rounding. 
+UNIT- III The Memory System: Various technologies used in memory design, Memory Hierarchy: Main 
+Memory, Auxiliary Memory, Associative Memory, Cache memory, Virtual Memory. Memory Management 
+Hardware, Multi-module memories and Interleaving, 
+UNIT-IV Input/ Output Organization: Peripheral Devices, I/O interfaces I/O-mapped I/O and memory-mapped 
+I/O, interrupts and interrupt handling mechanisms, vectored interrupts, synchronous vs. asynchronous data transfer, 
+Direct Memory Access 
+UNIT-V Pipeline and Vector Processing: Parallel Processing, Pipelining, Arithmetic pipeline, Instruction 
+Pipeline, RISC Pipeline, Vector Processing, Array Processors. 
+Text Books: 
+1. Computer Organization, V.C.Hamacher,Z.G.Vranesic and S.G.Zaky, McGraw Hill,5th Edition,2002. 
+2. 
+Structured Computer Organization, A.S.Tanenbaum, 4th Edition, Pearson Education India 
+3. Computer System Architecture, M. Marris Mano,PHI 
+Reference Books: 
+1. Computer System Architecture &Organisation, Dr. Usha, Wiley India 
+2. Computer Architecture & Organization, 3rdEdition, J.P. Hayes, McGraw-Hill. 
+3. Computer Organization & Architecture, W. Stallings, Pearson Education India 
+Course Outcomes [The students should be able to]: 
+1. 
+Identify the basic hardware components of a computer system. 
+2. Familiarize themselves with binary and hexadecimal number systems including computer arithmetic. 
+3. Familiarize themselves with functional units of the processor such as the register file and arithmetic logical 
+unit. 
+4. Understand basics functionality of systems: parallel, pipelined, superscalar and RISC/CISC architectures. 
+5. Represent system design in appropriate formats; addressing modes, an instruction sets as per the system 
+configuration requirements. 
+
+=== PAGE 2 ===
+I 
+~ ' 
+Printed Pages - 4 
+B022412(022) 
+B. Tech. (Fourth Scn1ester) Ex:11ni11ation, 
+Nov-Dec 2024 
+(Ne"' Schcrnc) 
+(Computer Science and Engineering Branch) 
+COMPUTER SYSTEM ARCHITECTURE 
+Ti111e Al/o,ve<l : Three hours 
+. 
+. 
+M axi,1111111 Marks : I 00 
+Minbnu111 Pass.Marks: 35 
+Note : Atten1pt all questions. Part(a) of each unit is 
+con1pulsory. Atten1pt any two parts fronz (b), 
+(c) and (d). Part(a)-4 ,narks each, Part (b),(c), 
+(d)-8 ,narks each . 
+. UNIT-I 
+J. (a) Explain the basic instruction fonnat. 
+(b) What are the addressing modes? Explain with 
+suitable example. 
+8022412(022) 
+PTO 
+
+=== PAGE 3 ===
+I 1 I 
+(c) Explain Lhe bus un:hih:cll11-c with suitnble cliugram. 
+(cl) Wrik s11011 n(1\~s on : 
+(i) Hm'<l\\it't'd control 
+(ii) ~·licro programmed control 
+UNIT-II 
+2. (a) Defme arithmetic overflow. 
+(b) Explain Booth multiplication along with 2's 
+complement number using flow chart and example. 
+(c) Explain the addition and substraction of two fixed 
+point signed magnitude data with flowchart. 
+(d) Explain integer division v.~th example. 
+UNIT-Hf 
+3. (a) Describe the memo1y types available in computer 
+system, 
+(b) A CPU has a l 2 bit address for memory 
+addressing : 
+(i) What is the memmy addressability or computer? 
+(ii) Ir the memory has a total capacity of I 6Kl3, 
+What is the word length or the memory? 
+8022412(022) 
+4. 
+~ 
+I J I 
+(c) Explain the working flow of Virtual memory with 
+suitable example, 
+(d) Whal is the concept of cache memory? How it 
+increase the speed of computer system? 
+lJNlT-IV 
+(a) What are the peripherals devices? 
+(b) Differentiate between synchronous and a 
+synchronous data transfer. 
+(c) What is OMA controller? Who control the buses 
+on at the time of data transf-:r in different units of 
+computer system? 
+. (d) Differentiate between VO mapJXd VO and memory 
+mapped 1/0 with suitable e.xample. 
+UNlT-V 
+5. (a) How to improw the througput in pipdining? Write 
+Jown the mechanisms to rt:mow the collision in 
+pipelining. 
+(b) !)~scribe the Instruction ()'-·sign Pipelining Jnd .,Jsu 
+t:xplflin the l3riu1ch bundling Tedmiques. 
+no22.it2(022) 
+PTO 
+
+=== PAGE 4 ===
+I 4 I 
+(c) ·\1/hnt nrc the various pipelining hazards caused by 
+resource usngc conflicts in various in~tnJctions? Also 
+discuss the n1ethods to re111ovc then1. 
+(d) ~xplain the arithn1etic pipeline archi~ecture with 
+suitable exmnpl~. 
+6001 
+H0224 I 2(022) 
+
+=== PAGE 5 ===
+Printed Pages - 4 
+Roll No. : .. 
+B022412(022) . 
+B. Tech. (Fourth Sen1ester) Examination, 
+• 
+I 
+April-May 2025 
+(New Scheme) 
+(Computer Science and Engineering .I~ra_nch) 
+COMPUTER SYSTEM ARCHITECTURE 
+Tin,e Allowed : Three hours 
+Maximum Marks: JOO 
+Mi11bnum Pass Marks: 35 
+Note : ittempt all questions.· Part(a) of each unit is 
+compulso1y. Attempt any two parts from (b), 
+(c) and (d). Part(a)-4 marks each, Part (b),(c), 
+( d)-8 marks each. 
+Unit-1 
+t. (a) Explain register indirect n1ode. 
+(b) Evaluate the arithmetic statement X=(A+B)*(C+D) 
+4 
+B0224 I 2(022)' 
+PTO 
+
+=== PAGE 6 ===
+.. -
+,. . 
+Ill 
+lll 
+i;,.ing th.roe ajJr~<i tn!>lruction and t\Aio addre-s.s 
+size 4 word, the size of main memory is 512 Dyte. 
+im:t.."'\Jcth Wl 
+8 
+find : 
+(c-) \\lw i.\ t~ fonnat ofmt(.-romsrniction m C'.OmputO"' 
+(1) Physical address 
+ardtit ett ~•re" 
+8 
+(ii) Block offset 
+8 
+(d> bpfain ln-.:tru~,~.,n Cycle y,,ith diagram. 
+8 
+(c) Write memory hierarchy with diagram. 
+8 
+Unit-II 
+(d) The ac.cess time of a cache memory is 100 ns and 
+2. (a> [kfi~ Sigr1c:d number. 
+4 
+that of main memory is 1000 ns. It is estimate that 
+80 percent of the memory request ~re for read and 
+(b) Multiply ( - 5) and ( 4) using Boor h's Algorithm. 
+remaining 20 percent for write the hit ratio for read 
+( Rt~gi 'iter siie ~ 4 bit) 
+8 
+access is 0.9. A write through proeedure is used : 
+(C) [l(plain Ilit Pair Rec~>ding and perform multiply 
+(i) What is the average access time of the system 
+(+-lJ) and (-6) using bit pair recoding multiplier 
+considering only memory read cycle? 
+nk..-t:hod 
+8 
+(ai) What is the average access time of the system 
+for both read and write cycles? 
+Cd) Expf:iin Restoring division and divide 17 by J using 
+(m) What is the hit ratio taking into consideration 
+rcsto,ing ~'tht,d 
+8 
+the write cycle? 
+8 
+I 'nit-Ill 
+Unit-IV 
+J. (a) What is Vinual Memory? 
+4 
+4, (a) Explain Peripheral devices. 
+4 
+(b) A dir~1 mapped cache of size 64 word, with block 
+eou, 12(0%2) 
+B02l4U(02l) 
+PTO 
+
+=== PAGE 7 ===
+( 4 ] 
+(b) DilTercncc between synchronous and asynchronous 
+data transmission. 
+8 
+(c) Draw the block diagram of DMA controller and 
+explain. 
+8 
+(d) What are lnterrupt? Explain various types of 
+interrupt. 
+8 
+Unit-V 
+5. (a) Explain RISC Pipeline. 
+4 
+(b) Describe Pipeline Processing. 
+8 
+(c) Explain Processor level parallelism. 
+8 
+(d) Explain arithmetic pipeline with suitable example. 
+8 
+2,010) 
+B022412(022) 
+
+=== PAGE 8 ===
+'°' 
+I 
+-~ 
+• ' • f 
+I 
+' \ 
+-=--
+~- ... 
+~~~ r~, 
+Roll No. . 
+. ........ •·· 
+'i"ilif f liil 11111 
+.:'I 
+• 
+I 
+ll 
+~~ ~;· B022412(022) 
+B. Tech. (Fourth Sen1ester) E~amination, 
+Nov-Dec 2025 
+(New Scheme) . 
+(Computer Science and Engineering Branch) 
+COMPUTER SYSTEM ARCHITECTURE 
+Tb11e Allowed : Three hours 
+1l1axi11i ll 111 Marks : J'00 . , , 
+Mi11i111u111 Pass Marks: 35 
+' 
+Note : Attempt all questions. Part(a) o_f each unit is 
+compulso;y. Attempt any t,vo parts fronl (~). 
+(c) and (d). Part(a)-4 marks each, Part (b).(c), 
+(d)-8 marks each. 
+, ' 
+Unit-I 
+1. (a) Describe various functional units or a cornputcr. 
+(b) Explain various instruction fonnnl ,vith cxan1plcs. 
+8022412(022) 
+
+=== PAGE 9 ===
+I 2 I 
+t, \ \\ :th 1hr h"'~ r 
+• • 
+•11• ~, hlr,c-\ (k'l.l!tc'.ltn c,1,lMl1 tilt' w,,1l;1n1.t 
+c1 i·11ci\" r1 l~ :r 
+f ,,mmtd t·{'l'll n1 , ,,,t 
+\n Ht~Hudi('n 
+• 
+"
+1" ~tore,i af Jt,,.;l\ton ~00 \\llh ,,~ 
+addri:~~ llc-ki Ill 1 ... __ ,. .. .,;,...n '11 l 
+d l 
+• 
+, , """" , 
+lhc- a l, t'Ss held lui:-.. 
+th t.•, aluc<{\\\1 
+\ fll\X'c, .. m tC'!,!1'-lcr RI contain~ 
+the flumbct :Ch) l , hrntr the cffccti,·c addrc!I~ if 
+the arld1c,!>1ng mode t'f 1hc in<..truction i1 (i) direct 
+{ji) immcd1a1c. (iri\ rclatt,·c, (iv) 1<.'gi~1cr indirect (v) 
+:ndc'\ \qth R.l a.i.bt.dndc, ,cg.i!-tcr 
+l'ni1-II 
+tt Explain b11-pai1 tecndin!!, \\ itil ~xu111pk 
+~i\ With the hdp ur -,.ui111hk logic diagrnm. dc ... crihc 
+how to <k,1µ11 !~st adder~ 
+iq 
+Explain Booth'~ Alg.u, 11 l1111 fo, 111ul1 iplicmi()n of' 
+signc-d 2\ cumph.·mtnt 111irni>l"I'> v.-ith the: hdp uf 
+ilov. chaH 
+ldJ F-r~t.1n ,an<>ll'I tloa1111µ, jh1i111 111 11}u ne1ic OJ>t'filll\ll\) 
+;:n}1 i,.arnrk 
+uon~ J?lll 22) 
+I J I 
+lfnrt-m 
+J. (o) hplmn primnrv ,ind UU'{J /ii!J-, ,,i~;v 
+(b) Dr,w..r and c-.:pla1n memo() ~er:-,,,.,1.c 
+ut>c-,' 
+..:ache org.invaunn. 
+(cl) E,plarn tht.: or-.z:,1111zam,n ()frn· :11 .n=i, 
+1 
+-
+' 
+'1 I lfY ,In(. 
+addn:s& trnn!-lanon 
+lniHV 
+{a) Di ffi.;rt;nti..ite bt:twt:t.:n symh Oll\lU'> .ili<l 3-.v,1-
+~hronow, d.1c.1 transtb· 
+(b) Diffcrentidli: b1..·twt:1.:U 10 ma~! 1(L1r.J \k•nory 
+rn.1ppq;d 10 
+tc} 
+t '.,pl.iin 1,htkn:11L typt:-. ot' 1ru.:rrupb .wJ :nt.-n,pt 
+handling 1111.:1.:h,ini-.m in dt.:t:ul 
+{cl) 
+b ,1)!<.1111 the \,orl-rng l)f D1rt\.t \k'll\ I"> \ .::t:;!";~ 
+~0111rulkr \\tth the: h~lp ofbk•1."- ..:1.,,;.11n 
+P-10 
+
+=== PAGE 10 ===
+5. (a) 
+I 4 I 
+Specify a • . 
+. 
+P1Pchnc configuration lo carry 
+arithmetic op·cration (Ai "' Bi) + Ci. 
+out 
+(b) Describe Flynn's classification of paralJcl processing. 
+(c) Consider the execution of the progran1 .15000 
+instructions a linear pipeline with a clock rate .of25 
+MHz. Assume that the instruction pipeline has 5 
+stages and that one instruction is issued per clock 
+cycle. Calculate Speed up factor, Efficiency and 
+Throughput. 
+(d) Descnbc the worlcing of vector processor and aITay 
+processor with exan1ple. 
+620) . ~~-fl; 
+• 
+r::1 'IA3 
+[!], ~-L!J ..,.. 
+B0224·12(022) 
+
+=== PAGE 11 ===
+Printed Pages - 5 
+Roll No.: ................................... .. 
+B022412(022) 
+B. Tech (Fourth Semester) Examination, 
+April-May 2021 
+(Computer Science and Engg. Branch) 
+COMPUTER SYSTEM ARCHITECTURE 
+nme Allowed : Three hours 
+Maximum Marks : 100 
+Minimum Pass Marks : 35 
+Note : Attempt all question. Part (a) of all questions is 
+compulsory. Attempt any two parts from (b), (c) 
+and (d). The figure in the right-hand margin 
+indicate marks. 
+Unit-I 
+1. (a) Who controls the buses in DMA data transfer and 
+how? 
+(b) What do you understand by a subroutine?° Discuss 
+4 
+about parameter passing in subroutines. 
+8 
+B022412(022) 
+PTO 
+
+=== PAGE 12 ===
+[ 2 ] 
+( c) Write the differences between Hardwired and Micro 
+programmed control unit. Draw the block diagram 
+of both. 
+8 
+(d) An instruction is stored at location 300 with its 
+address field at location 301. The address field has 
+the value 400, a processor register RI contain the 
+number 200. Evaluate effective address if the 
+addressing mode of the instruction are 
+(i) direct · 
+(ii) immediate 
+(iii) relative 
+(iv) register indirect 
+Unit-II 
+2. (a) In a computer with 48-bit words, one bit is reserved 
+for the sign. What will be the range of fixed-point 
+integer number? 
+(b) Describe a technique used to make the process of 
+addition and subtraction by 2's complement number 
+faster. 
+8 
+4 
+8 
+(c) Explain Booth multiplication alongwith for 2's 
+complement number using flow chart and example. 8 
+B022412(022) 
+[ 3 ] 
+( d) Evaluate the following by using Restoring Division: 
+Divisor is 11 and Divided is 1000. 
+8 
+Unit-ID 
+3. (a) Define the principle oflocality ofreferences. Which 
+parameter is used to evaluate the performance of 
+cache memory? 
+(b) The access time of cache memory is 100 ns and 
+that of main memory 1000 ns. It is estimated that 
+80% of the memory request for read and remaining 
+for write. The hit ratio for read access only is 0.9. 
+A write through procedure is used. 
+(i) What is the average access time of system 
+considering only memory read? 
+(ii) What is the average access time of system for 
+both read and write required? 
+( c) What do you mean by virtual memory? An address 
+space is specified by 24 bits and corresponding 
+memory space by 16 bits. 
+(i) How many word are there in the address space? 
+(ii) How many words are there in the memory space? 
+(iii) If a page consists of 2K words, how many 
+pages and blocks are there in the system? 
+(d) Explain the working of associative memory with 
+4 
+8 
+8 
+B022412(022) 
+PTO 
+
+=== PAGE 13 ===
+[ 4 ] 
+block diagram and derive the expression for match 
+logic. 
+8 
+Unit-IV 
+4. (a) How Daisy Chaining priority interrupt works? 
+(b) Explain the direct memory access scheme alongwith 
+its advantages for data transfer between external 
+4 
+devices and the main memory. 
+8 
+( c) Explain in detail about the structure of a magnetic 
+disk system. Also mention how we can find its 
+capacity. 
+8 
+( d) What do you understand by computer peripherals? 
+Explain with proper explanation any two computer 
+· peripherals. 
+8 
+Unit-V 
+5. (a) Specify a pipeline configuration to carry out 
+arithmetic operation ( A; + B;) ( C; + D,.) 
+(b) Consider the execution of the program 15000 
+instruction a linear pipeline processor with a clock 
+rate of 25 MHz. Asume that the instruction pipeline 
+has 5 stages and that one instruction is issued per 
+B022412(022) 
+4 
+100) 
+[ 5 ] 
+clock cycle. Calculate 
+(i) speed up factor 
+(ii) efficiency 
+(tii) throughout. 
+( c) What do you understand by parallel processing? 
+8 
+Describe Flynn's classification of parallel processing. 
+8 
+(d) What is the use of pipelining? Prove that an M-
+stage linear pipeline can be at most M times faster 
+than that of non-pipelined serial processor. 
+8 
+B022412(022) 
+
+=== PAGE 14 ===
+Printed Pages - 3 
+RollNo. : ......................... . 
+: 
+B022412(022) 
+B. Tech (Fourth Semester) Examination, 
+...... __ ,,,,. 
+Nov.-Dec. 2021 
+(CSE Branch) ,JI\J C ,- E" 
+COMPUTER SYSTEM ARCIDTECTURE 
+Time Allowed : Three hours 
+Maximum Marks: JOO 
+Minimum Pass Marks : 35 
+Note : Attempt all questions. Attempt any two parts 
+from (a), (b) and (c) of each unit. Each part 
+carries 10 marks. 
+Unit-I 
+1. (a) What is Addressing Mode? Explain the types of 
+Addressing modes in detail. 
+B022412(022) 
+PTO 
+
+=== PAGE 15 ===
+I 2 J 
+(b) Explain Hardwired control and Micro programmed 
+control with neat diagram in detail. Also differentiate 
+between Hardwired control and Micro programmed 
+control. 
+( c) Explain microinstruction format with its field in detail. 
+Unit-II 
+2. (a) Explain Booth's algorithm in detail. Multiply the two 
+numbers 23 and -9 by using the Booth's multi-
+plication algorithm. 
+(b) Explain Storing and Non-Restoring method of integer 
+division in detail. Perform Division Restoring Algo-
+rithm : Dividend = 11 Divisor = 3. 
+( c) Explain Number representation with its types and 
+operations in detail. 
+Unit-ill 
+3. (a) What are the different types of mapping used in 
+cache organization? Explain each in detail. 
+(b) Draw and explain memory hierarchy. Explain c14ierent 
+types of memory with neat diagram. 
+B022412(022) 
+I 3 J 
+( c) Explain Multi-module memories and interleaving with 
+I 
+example. 
+Unit-IV 
+4. (a) Explain 1/0 mapped 1/0 and Memory mapped 1/0 
+in detail. 
+(b) What is Interrupt? Explain different types of interrupt 
+and interrupt handling mechanism in detail. 
+(c) What is D~? Explain the working ofDMA with 
+advantages and disadvantages. 
+Unit-V 
+5. (a) What is Parallel Processing? Explain the concept of 
+Vector processing in detail. 
+(b) Explain the concept of Pipelining. Explain various 
+types of pipelining in detail. 
+( c) Describe Flynn's Classification of parallel processing 
+with neat diagram and example. 
+100) 
+B022412(022) 
+
+=== PAGE 16 ===
+Printed Pages - 5 
+Roll No.: ......................... . 
+B022412(022) 
+B. Tech (Fourth Semester) Examination, 
+April-May 2022 
+(AICTE Scheme) 
+(CSE Branch) 
+COMPUTER SYSTEM ARCHITECTURE 
+Time Allowed : Three hours 
+Maximum Marks: 100 
+Minimum Pass Marks : 35 
+Note : Attempt all questions. Part (a) in each unit is 
+compulsory. Attempt any two from (b), (c) 
+and (d). Part (a) is of 4 marks and part (b), 
+(c) and (d) are of 8 marks each. 
+Unit-I 
+1. (a) What do you mean by micro program? 
+(b) Explain various types of computer instruction formats. 
+B022412(022) 
+PTO 
+
+=== PAGE 17 ===
+I 2 1 
+A two-word instruction is stored in memory at an 
+address designated by symbol W. The address field 
+of the instruction (stored at W+ 1) is designated by 
+symbol Y The operand used during the executive of 
+the instruction is stored at an address symbolized by 
+Z. An index register contains of the value X. State 
+how Z is calculated from the other addresses if the 
+addressing mode of the instruction is : 
+(i) 
+Direct 
+(ii) 
+Indirect 
+(iii) 
+Relative 
+(iv) 
+Indexed 
+(c) Differentiate between hardwired control unit and 
+micro-programmed control unit. 
+( d) Explain the working of a typical hardwired control 
+unit with a neat diagram? 
+Unit-II 
+2. (a) What is divide overlofur? Give suitable example. 
+(b) Show the contents of registers E, A, Q and SC 
+B022412(022) 
+I 3 J 
+during the process of division of 10100011 by 1011 
+using restoring method. 
+(c) Show step-by-step multiplication process using 
+Booth Algorithm. Assume 5 bit registers that hold 
+signed numbers are ( + 15) x (-13). 
+(d) Explain Bit-pair recoding with an example. 
+Unit-ID 
+3. (a) Write the advantages of memory interleaving? 
+(b) A two-way set associative cache memory uses blocks 
+of four words. The cache can accommodate a table 
+of2048 words from main memory. The main memory 
+size is 128 K x 32. 
+(i) 
+Formulate all pertinent information required to 
+construct the cache memory. 
+(ii) 
+What is the size of cache memory? 
+(c) The access time of cache memory is 100 ns and 
+that of main memory 1000 ns. It is estimated that 
+80% of the memory request for read and remaining 
+20% for write. The hit ratio for read access only 
+0·9. A write through procedure is used. 
+B022412(022) 
+PTO 
+
+=== PAGE 18 ===
+[ 4 ] 
+(i) 
+What is the average access time of the system 
+considering only memory read cycle? 
+(ii) 
+What is the average access time of the system 
+for both read and write required? 
+(iii) 
+What is the hit ratio talcing into consideration 
+the write cycles? 
+( d) Explain the working of an associative memory with 
+neat diagram. 
+Unit-IV 
+4. (a) What are priority interrupts. 
+(b) Explain the working of Direct Memory Access with 
+a neat diagram. 
+( c) Differentiate between synchronous and asynchronous 
+data transfer. 
+( d) Explain programmed 1/0 with example. 
+Unit-V 
+5. (a) Define parallel processing? 
+(b) Explain Flynn's classification of parallel architecture. 
+B022412(022) 
+100) 
+[ 5 ] 
+( c) What do you understand by pipelining? Differentiate 
+between instruction pipeline and arithmetic pipeline. 
+(d) A nonpipeline system takes 50 ns to process a task. 
+The same task can be processed in a six-segment 
+pipeline with a clock cycle of 10 ns. Determine the 
+speed up ratio of the pipeline for 100 tasks. What 
+is the maximum speed up that can be achieved? 
+B022412(022) 
+
+=== PAGE 19 ===
+Printed Pages - 4 
+B022412(022) 
+B. Tech (Fourth Semester) Exannnation, 
+Nov.-Dec. 2023 
+(New Sche1ne) 
+(CSE Branch) 
+COMPUTER SYSTEM ARCHITECTURE 
+Time Allowed : Three hours 
+Nfaximum Marks : 100 
+Minimum Pass Marks : 35 
+Note : Attempt all questions. Part (a) in each unit is 
+compu!s01y. Atte,npt any two .f,·om (b) , (c) 
+and (d). Part (a) is of 4 marks and part (b). 
+(c) and (d) are of 8 marks each. 
+Unit-I 
+1. (a) What do you understand by addressing modes? 
+8022412(022) 
+PTO 
+
+=== PAGE 20 ===
+I 2 I 
+It ) \ \ 1j,~ tht: ,i,tk rcnce~ bet\\een hardwired and micro 
+l'fllg1 am med control unit Drav- the block diagram 
+ul hith 
+, c) Lxplain the representation., selection and application 
+uf i n-;uuction fonnats 
+(d) Lxplain accumulator based CPU with proper 
+diagram. 
+Unit-Il 
+2. (a) Define tenm overflow and underflow. 
+(b) Write short notes on 
+(i) Fast address 
+(ii) Bit pair recording of multipliers 
+( c) Explain the floating, point operations with example 
+Define guard bits 
+td) Describe Booth Multiplication algorithm with 
+example 
+llnit-111 
+B022-' 12(022) 
+I 3 I 
+3. (a) Define Cache Memo1y 
+(b) Explain the associative memory orga nization and 
+derive the expression for match logic 
+(c) Explain virtual memory in details. 
+(d) How many J 28 byte RAM chips are required to 
+provide a memory of 2048 bytes show details 
+connection clearly indicating adress, data and 
+decoder? 
+Unit-JV 
+4. (a) Define pe1ipheral devices. 
+(b) What is direct memory access technique') Explain 
+the rate of DMA controller with diagram. 
+(c) Write down the differences betv,een l/0 mapped 
+1/0 and memory mapped l/0. 
+(d) Explain the working of daisy chaining priurity 
+interrupt with diagram. 
+8022-412(022) 
+PTO 
+
+=== PAGE 21 ===
+5. (a) Define pipelining. 
+I 4 I 
+Unit-V 
+(b) Draw and explain flow chart and timing diagram for 
+the Jow· segment instruction pipeline. 
+(c) Define parallel processing. Describe Flynn's 
+classification of parallel processing. 
+(d) Write short notes on : 
+(D Vector processing 
+(ii) Array processing. 
+5701 
+8022412(022) 
