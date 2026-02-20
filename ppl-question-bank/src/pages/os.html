@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Question Bank</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    
+    <style>
+        .main-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        #questionsContainer {
+            margin-top: 2rem;
+        }
+
+        .no-questions {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Statistics Container -->
+        <div id="statsContainer"></div>
+
+        <!-- Filters Container -->
+        <div id="filtersContainer"></div>
+
+        <!-- Results Info -->
+        <div id="resultsInfo"></div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Question Data -->
+    <script type="module" src="../data/os-questions.js"></script>
+
+    <!-- Import Application Modules -->
+    <script type="module">
+        import { QuestionBankApp } from '../assets/js/app.js';
+        import { osQuestions } from '../data/os-questions.js';
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new QuestionBankApp({
+                subject: 'OS - Operating System',
+                storageKey: 'osQuestionData',
+                questions: osQuestions
+            });
+        });
+    </script>
+</body>
+</html>

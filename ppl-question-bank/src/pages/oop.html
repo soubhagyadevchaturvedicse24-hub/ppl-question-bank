@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Question Bank | CSVTU</title>
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Component -->
+        <header id="header-component"></header>
+
+        <!-- Stats Component -->
+        <div id="stats-component"></div>
+
+        <!-- Filters Component -->
+        <div id="filters-component"></div>
+
+        <!-- Questions Container -->
+        <div class="questions-grid" id="questions-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../data/oop-questions.js"></script>
+    <script type="module">
+        import { initializeApp } from '../assets/js/app.js';
+        import { createHeader } from '../assets/js/components/header.js';
+        import { createStatsComponent } from '../assets/js/components/stats.js';
+        import { createFiltersComponent } from '../assets/js/components/filters.js';
+        import { createQuestionCard } from '../assets/js/components/questionCard.js';
+
+        // Initialize header
+        document.getElementById('header-component').innerHTML = createHeader({
+            title: 'OOP with Java Question Bank',
+            subtitle: 'Object Oriented Programming (with Java) - B022414(022)',
+            currentPage: 'oop'
+        });
+
+        // Initialize the app with OOP questions
+        initializeApp(oopQuestions, {
+            onRender: (questions) => {
+                const container = document.getElementById('questions-container');
+                container.innerHTML = questions.map(q => createQuestionCard(q)).join('');
+            }
+        });
+    </script>
+</body>
+</html>
