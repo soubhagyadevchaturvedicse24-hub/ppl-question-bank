@@ -1,9 +1,12 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/ppl", "destination": "/src/pages/ppl.html" },
     { "source": "/deld", "destination": "/src/pages/deld.html" },
-    { "source": "/os", "destination": "/src/pages/os.html" }
+    { "source": "/os", "destination": "/src/pages/os.html" },
+    { "source": "/oop", "destination": "/src/pages/oop.html" }
   ],
   "headers": [
     {
@@ -12,6 +15,19 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
         }
       ]
     }
