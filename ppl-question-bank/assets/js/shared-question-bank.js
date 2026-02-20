@@ -38,6 +38,11 @@ function saveProgress(data, storageKey) {
     saveTimeout = setTimeout(() => {
         setCookie(storageKey, jsonString, 365);
     }, 500);
+    
+    // Dispatch custom event for cross-tab synchronization
+    window.dispatchEvent(new CustomEvent('questionStatusChanged', {
+        detail: { storageKey, data }
+    }));
 }
 
 function loadProgress(storageKey) {
@@ -51,6 +56,19 @@ function loadProgress(storageKey) {
         }
     }
     return JSON.parse(data || '{}');
+}
+
+// Function to update all instances of a question by ID
+function updateAllQuestionInstances(questionId, checked) {
+    document.querySelectorAll(`.question-checkbox`).forEach(checkbox => {
+        const questionItem = checkbox.closest('.question-item');
+        const idElement = questionItem?.querySelector('.question-id');
+        
+        if (idElement && idElement.textContent === questionId) {
+            checkbox.checked = checked;
+            questionItem.classList.toggle('completed', checked);
+        }
+    });
 }
 
 // Core rendering functions
@@ -101,6 +119,8 @@ function createUnitSection(unitKey, unitData, progressData, storageKey, onSave) 
         Object.values(unitData.subtopics).forEach(st => {
             st.questions.forEach(q => {
                 progressData[q.id] = checked;
+                // Update all instances of each question
+                updateAllQuestionInstances(q.id, checked);
             });
         });
         saveProgress(progressData, storageKey);
@@ -158,6 +178,8 @@ function createSubtopicSection(unitKey, subtopicKey, subtopicData, progressData,
         const checked = e.target.checked;
         subtopicData.questions.forEach(q => {
             progressData[q.id] = checked;
+            // Update all instances of each question
+            updateAllQuestionInstances(q.id, checked);
         });
         saveProgress(progressData, storageKey);
         // Update UI without full re-render
@@ -187,9 +209,18 @@ function createQuestionItem(question, progressData, storageKey, onSave) {
     checkbox.checked = progressData[question.id] || false;
 
     checkbox.addEventListener('change', (e) => {
-        progressData[question.id] = e.target.checked;
+        const questionId = question.id;
+        const checked = e.target.checked;
+        
+        // Update progress data
+        progressData[questionId] = checked;
+        
+        // Save progress
         saveProgress(progressData, storageKey);
-        item.classList.toggle('completed', e.target.checked);
+        
+        // Update ALL instances of this question on the page
+        updateAllQuestionInstances(questionId, checked);
+        
         // Update stats without re-rendering entire page
         updateStats(window.questionDatabase, progressData);
     });
@@ -496,6 +527,36 @@ function initializeQuestionBank(questionDatabase, storageKey) {
             firstUnit.nextElementSibling.classList.add('show');
         }
     }, 100);
+    
+    // Listen for storage changes (cross-tab synchronization)
+    window.addEventListener('storage', (e) => {
+        if (e.key === storageKey && e.newValue) {
+            console.log('🔄 Syncing progress from another tab...');
+            const newProgressData = JSON.parse(e.newValue);
+            
+            // Update progressData
+            Object.keys(newProgressData).forEach(key => {
+                progressData[key] = newProgressData[key];
+            });
+            
+            // Update all checkboxes to reflect new state
+            Object.keys(newProgressData).forEach(questionId => {
+                updateAllQuestionInstances(questionId, newProgressData[questionId]);
+            });
+            
+            // Update stats
+            updateStats(questionDatabase, progressData);
+        }
+    });
+    
+    // Listen for custom events (same-page synchronization)
+    window.addEventListener('questionStatusChanged', (e) => {
+        if (e.detail.storageKey === storageKey) {
+            console.log('🔄 Syncing progress within page...');
+            // Update stats to reflect any changes
+            updateStats(questionDatabase, progressData);
+        }
+    });
     
     return { progressData, renderQuestionBank };
 }
