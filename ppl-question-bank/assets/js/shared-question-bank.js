@@ -71,6 +71,59 @@ function updateAllQuestionInstances(questionId, checked) {
     });
 }
 
+// Function to update subtopic stats dynamically
+function updateSubtopicStats(subtopicElement, progressData) {
+    const subtopicCheckboxes = subtopicElement.querySelectorAll('.question-checkbox');
+    const totalQuestions = subtopicCheckboxes.length;
+    let completedQuestions = 0;
+    
+    subtopicCheckboxes.forEach(checkbox => {
+        const questionItem = checkbox.closest('.question-item');
+        const idElement = questionItem?.querySelector('.question-id');
+        if (idElement && progressData[idElement.textContent] === true) {
+            completedQuestions++;
+        }
+    });
+    
+    const statsDiv = subtopicElement.querySelector('.subtopic-stats');
+    if (statsDiv) {
+        statsDiv.textContent = `${totalQuestions} Questions | ${completedQuestions} Done`;
+    }
+    
+    // Update subtopic checkbox state
+    const subtopicCheckbox = subtopicElement.querySelector('.subtopic-checkbox');
+    if (subtopicCheckbox) {
+        subtopicCheckbox.checked = (completedQuestions === totalQuestions && totalQuestions > 0);
+    }
+}
+
+// Function to update unit stats dynamically
+function updateUnitStats(unitElement, progressData) {
+    const subtopics = unitElement.querySelectorAll('.subtopic-section');
+    const totalQuestions = unitElement.querySelectorAll('.question-checkbox').length;
+    let completedQuestions = 0;
+    
+    unitElement.querySelectorAll('.question-checkbox').forEach(checkbox => {
+        const questionItem = checkbox.closest('.question-item');
+        const idElement = questionItem?.querySelector('.question-id');
+        if (idElement && progressData[idElement.textContent] === true) {
+            completedQuestions++;
+        }
+    });
+    
+    const unitInfo = unitElement.querySelector('.unit-info span');
+    if (unitInfo) {
+        const subtopicCount = subtopics.length;
+        unitInfo.textContent = `${subtopicCount} Subtopics | ${totalQuestions} Questions | ${completedQuestions} Done`;
+    }
+    
+    // Update unit checkbox state
+    const unitCheckbox = unitElement.querySelector('.unit-checkbox');
+    if (unitCheckbox) {
+        unitCheckbox.checked = (completedQuestions === totalQuestions && totalQuestions > 0);
+    }
+}
+
 // Core rendering functions
 function createUnitSection(unitKey, unitData, progressData, storageKey, onSave) {
     const section = document.createElement('div');
@@ -127,6 +180,13 @@ function createUnitSection(unitKey, unitData, progressData, storageKey, onSave) 
         // Update UI without full re-render
         updateUnitVisualState(section, checked);
         updateStats(window.questionDatabase, progressData);
+        
+        // Update all subtopic stats in this unit
+        section.querySelectorAll('.subtopic-section').forEach(subtopicElement => {
+            updateSubtopicStats(subtopicElement, progressData);
+        });
+        // Update unit stats
+        updateUnitStats(section, progressData);
     });
 
     section.appendChild(header);
@@ -185,6 +245,14 @@ function createSubtopicSection(unitKey, subtopicKey, subtopicData, progressData,
         // Update UI without full re-render
         updateSubtopicVisualState(section, checked);
         updateStats(window.questionDatabase, progressData);
+        
+        // Update subtopic stats
+        updateSubtopicStats(section, progressData);
+        // Update parent unit stats
+        const unitSection = section.closest('.unit-section');
+        if (unitSection) {
+            updateUnitStats(unitSection, progressData);
+        }
     });
 
     section.appendChild(header);
@@ -223,6 +291,18 @@ function createQuestionItem(question, progressData, storageKey, onSave) {
         
         // Update stats without re-rendering entire page
         updateStats(window.questionDatabase, progressData);
+        
+        // Update subtopic stats
+        const subtopicSection = checkbox.closest('.subtopic-section');
+        if (subtopicSection) {
+            updateSubtopicStats(subtopicSection, progressData);
+        }
+        
+        // Update parent unit stats
+        const unitSection = checkbox.closest('.unit-section');
+        if (unitSection) {
+            updateUnitStats(unitSection, progressData);
+        }
     });
 
     const questionId = document.createElement('div');
@@ -337,24 +417,42 @@ function updateSubtopicVisualState(subtopicSection, checked) {
 }
 
 function getTotalQuestions(questionDatabase) {
+    if (!questionDatabase) {
+        console.error('❌ getTotalQuestions: questionDatabase is undefined');
+        return 0;
+    }
+    
     let total = 0;
     Object.values(questionDatabase).forEach(unitData => {
-        Object.values(unitData.subtopics).forEach(subtopicData => {
-            total += subtopicData.questions.length;
-        });
+        if (unitData && unitData.subtopics) {
+            Object.values(unitData.subtopics).forEach(subtopicData => {
+                if (subtopicData && subtopicData.questions) {
+                    total += subtopicData.questions.length;
+                }
+            });
+        }
     });
     return total;
 }
 
 function updateStats(questionDatabase, progressData) {
+    if (!questionDatabase) {
+        console.error('❌ updateStats: questionDatabase is undefined');
+        return;
+    }
+    
     const totalQuestions = getTotalQuestions(questionDatabase);
-    const completedQuestions = Object.values(progressData).filter(v => v === true).length;
+    const completedQuestions = Object.values(progressData || {}).filter(v => v === true).length;
     const percent = totalQuestions > 0 ? Math.round((completedQuestions / totalQuestions) * 100) : 0;
 
     // Update header stats
-    document.getElementById('totalQuestions').textContent = totalQuestions;
-    document.getElementById('completedQuestions').textContent = completedQuestions;
-    document.getElementById('progressPercent').textContent = percent + '%';
+    const totalQuestionsEl = document.getElementById('totalQuestions');
+    const completedQuestionsEl = document.getElementById('completedQuestions');
+    const progressPercentEl = document.getElementById('progressPercent');
+    
+    if (totalQuestionsEl) totalQuestionsEl.textContent = totalQuestions;
+    if (completedQuestionsEl) completedQuestionsEl.textContent = completedQuestions;
+    if (progressPercentEl) progressPercentEl.textContent = percent + '%';
 
     // Update header progress bar and text
     const progressFill = document.getElementById('headerProgressFill');
@@ -470,7 +568,12 @@ function setupControls(progressData, storageKey, onRender) {
 // Initialize question bank
 function initializeQuestionBank(questionDatabase, storageKey) {
     console.log(`🚀 Initializing Question Bank: ${storageKey}`);
-    console.log(`📊 Units: ${Object.keys(questionDatabase).length}`);
+    console.log(`📊 Units: ${Object.keys(questionDatabase || {}).length}`);
+    
+    if (!questionDatabase || Object.keys(questionDatabase).length === 0) {
+        console.error('❌ questionDatabase is empty or undefined!');
+        return;
+    }
     
     // Store globally for access in update functions
     window.questionDatabase = questionDatabase;
@@ -546,6 +649,14 @@ function initializeQuestionBank(questionDatabase, storageKey) {
             
             // Update stats
             updateStats(questionDatabase, progressData);
+            
+            // Update all subtopic and unit stats
+            document.querySelectorAll('.subtopic-section').forEach(subtopicElement => {
+                updateSubtopicStats(subtopicElement, progressData);
+            });
+            document.querySelectorAll('.unit-section').forEach(unitElement => {
+                updateUnitStats(unitElement, progressData);
+            });
         }
     });
     
@@ -555,6 +666,14 @@ function initializeQuestionBank(questionDatabase, storageKey) {
             console.log('🔄 Syncing progress within page...');
             // Update stats to reflect any changes
             updateStats(questionDatabase, progressData);
+            
+            // Update all subtopic and unit stats
+            document.querySelectorAll('.subtopic-section').forEach(subtopicElement => {
+                updateSubtopicStats(subtopicElement, progressData);
+            });
+            document.querySelectorAll('.unit-section').forEach(unitElement => {
+                updateUnitStats(unitElement, progressData);
+            });
         }
     });
     

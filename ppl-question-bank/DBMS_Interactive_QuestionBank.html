@@ -15,18 +15,22 @@
         </div>
         <div class="header-progress">
             <div class="header-progress-bar">
-                <div class="header-progress-fill" id="progressBar"></div>
+                <div class="header-progress-fill" id="headerProgressFill" style="width: 0%"></div>
             </div>
-            <div class="header-progress-text" id="progressText">0 / 0 questions completed (0%)</div>
+            <div class="header-progress-text" id="headerProgressText">0 of 0 completed</div>
         </div>
         <div class="header-stats">
             <div class="stat-box">
-                <div class="stat-value" id="completedCount">0</div>
+                <div class="stat-value" id="completedQuestions">0</div>
                 <div class="stat-label">Completed</div>
             </div>
             <div class="stat-box">
-                <div class="stat-value" id="remainingCount">0</div>
-                <div class="stat-label">Remaining</div>
+                <div class="stat-value" id="totalQuestions">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="progressPercent">0%</div>
+                <div class="stat-label">Progress</div>
             </div>
         </div>
     </div>
@@ -90,7 +94,7 @@
 
     
     <!-- Shared Question Bank JavaScript -->
-    <script src="assets/js/shared-question-bank.js?v=2.0.3"></script>
+    <script src="assets/js/shared-question-bank.js?v=2.1.1"></script>
 
     <!-- Page-specific Data and Initialization -->
     <script>
