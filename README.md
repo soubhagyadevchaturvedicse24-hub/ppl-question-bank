@@ -1,6 +1,6 @@
 # Interactive Question Banks 📚
 
-Complete Previous Year Questions (PYQ) databases for PPL and DELD courses with interactive features, probability analysis, and modern dashboards.
+Complete Previous Year Questions (PYQ) databases for 5 core Computer Science courses with interactive features, probability analysis, and modern dashboards.
 
 ## 📖 Subjects Available
 
@@ -10,9 +10,24 @@ Complete Previous Year Questions (PYQ) databases for PPL and DELD courses with i
 - Focus: Program Design, Language Characteristics, Functional/Logic Programming, OOP Concepts
 
 ### 2. DELD (Digital Electronics & Logic Design)
-- **125 Total Questions** from 2020-2024 exam papers
-- **5 Units** with 28 subtopics
+- **151 Total Questions** from 2020-2024 exam papers
+- **5 Units** with 31 subtopics
 - Focus: Number Systems, Boolean Algebra, Combinational Circuits, Sequential Circuits, Memory & PLDs
+
+### 3. OS (Operating System)
+- **170 Total Questions** from 2020-2024 exam papers
+- **5 Units** with 24 subtopics
+- Focus: OS Fundamentals, Process Management, CPU Scheduling, Deadlocks, Memory Management, File Systems
+
+### 4. DS (Data Structures)
+- **80 Total Questions** from 2020-2024 exam papers
+- **5 Units** with 18 subtopics
+- Focus: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, Hashing, Heaps
+
+### 5. DBMS (Database Management Systems)
+- **75 Total Questions** from 2020-2024 exam papers
+- **5 Units** with 17 subtopics
+- Focus: DBMS Fundamentals, ER Model, SQL, Normalization, Transactions, Query Optimization
 
 ## 🎯 Features
 
@@ -47,28 +62,29 @@ Visit the deployed version: [Question Banks Home](https://your-vercel-url.vercel
 
 ## 📁 Files
 
-### PPL Files
-- `PPL_Interactive_QuestionBank.html` - Interactive evaluation system
-- `PPL_Probability_Dashboard.html` - Exam probability predictor
-- `PPL_Modern_Dashboard.html` - Modern UI with progress tracking
-- `PPL_Complete_All_Units_Questions.html` - Complete question database
-- `extract_questions.py` - Python script to extract and analyze questions
+### Interactive Question Banks
+- `index.html` - Landing page with all 5 subjects
+- `PPL_Interactive_QuestionBank.html` - PPL question bank
+- `DELD_Interactive_QuestionBank.html` - DELD question bank
+- `OS_Interactive_QuestionBank.html` - OS question bank
+- `DS_Interactive_QuestionBank.html` - Data Structures question bank
+- `DBMS_Interactive_QuestionBank.html` - DBMS question bank
 
-### DELD Files
-- `DELD_Interactive_QuestionBank.html` - Interactive evaluation system
-- `DELD_Probability_Dashboard.html` - Exam probability predictor
-- `DELD_Modern_Dashboard.html` - Modern UI with progress tracking
-- `DELD_Complete_All_Units_Questions.html` - Complete question database
-- `extract_questions_deld.py` - Python script to extract and analyze questions
+### Source Materials
+- `PPL.pdf` - PPL source questions
+- `DELD.pdf` - DELD source questions
+- `os.pdf` - OS source questions
+- `smart.pdf` - Additional DELD PYQ source
 
 ## 💡 How to Use
 
-1. Open `PPL_Interactive_QuestionBank.html` in your browser
-2. Navigate through units and subtopics using dropdown menus
-3. Check off questions as you complete them
-4. Use search and filters to find specific topics
-5. Track your progress in real-time
-6. Your progress is automatically saved!
+1. Open `index.html` in your browser to see all available subjects
+2. Click on any subject to access its question bank
+3. Navigate through units and subtopics using dropdown menus
+4. Check off questions as you complete them
+5. Use search and filters to find specific topics
+6. Track your progress in real-time
+7. Your progress is automatically saved!
 
 ## 🎓 Study Tips
 
@@ -84,4 +100,4 @@ MIT License - Feel free to use for educational purposes
 
 ## 🙏 Acknowledgments
 
-Questions compiled from official PPL exam papers (2020-2024)
+Questions compiled from official exam papers (2020-2024) for PPL, DELD, OS, DS, and DBMS courses.
