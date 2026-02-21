@@ -1,87 +1,158 @@
-# Interactive Question Banks 📚
+﻿# Question Intelligence Platform 
 
-Complete Previous Year Questions (PYQ) databases for PPL and DELD courses with interactive features, probability analysis, and modern dashboards.
+A focused web platform analyzing **Previous Year Questions (PYQ)** across 8 university subjects, organized for evidence-based exam preparation. Built with interactive HTML question banks and a modern React/Vite UI.
 
-## 📖 Subjects Available
+---
 
-### 1. PPL (Principles of Programming Languages)
-- **162 Total Questions** from 2020-2024 exam papers
-- **5 Units** with 68 subtopics
-- Focus: Program Design, Language Characteristics, Functional/Logic Programming, OOP Concepts
+##  Project Structure
 
-### 2. DELD (Digital Electronics & Logic Design)
-- **125 Total Questions** from 2020-2024 exam papers
-- **5 Units** with 28 subtopics
-- Focus: Number Systems, Boolean Algebra, Combinational Circuits, Sequential Circuits, Memory & PLDs
+```
+ index.html                          # Main landing page (entry point)
+ PPL_Interactive_QuestionBank.html   # PPL interactive question bank
+ DELD_Interactive_QuestionBank.html  # DELD interactive question bank
+ OS_Interactive_QuestionBank.html    # OS interactive question bank
 
-## 🎯 Features
+ data/                               # Raw question database files (JS)
+    PPL_qdb.js
+    DELD_qdb.js
+    OS_qdb.js
+    OOP_qdb.js
+    DAA_qdb.js
+    CSA_qdb.js
+    DBMS_qdb.js
+    DM_qdb.js
 
-- **Interactive Dashboards** with modern UI/UX
-- **Question Evaluation System** - Mark questions as Known/Review/Unknown
-- **Smart Search & Filters** by unit, priority, marks, frequency
-- **Progress Tracking** with LocalStorage persistence
-- **Probability Analysis** - AI-powered exam prediction (70-90% accuracy)
-- **Priority Badges** - High/Medium/Low based on historical data
-- **Mobile Responsive Design**
-- **Real-time Statistics** and progress visualization
+ Figma/                              # React/Vite UI app (modern dashboard)
+    src/app/
+       components/                 # React components
+       data/                       # TypeScript question & subject data
+    package.json
+    vite.config.ts
+    vercel.json                     # Deploy Figma app separately
 
-## 📊 PPL Question Distribution
+ scripts/                            # Dev/utility scripts
+    extract_pdf.py                  # PDF text extraction helper
+    Propmt.txt                      # Dev notes / AI prompt context
 
-- **Unit I**: Program Design (31 questions, 13 subtopics)
-- **Unit II**: Language Characteristics (25 questions, 11 subtopics)
-- **Unit III**: Functional & Logic Programming (32 questions, 15 subtopics)
-- **Unit IV**: OOP Concepts-I (37 questions, 16 subtopics)
-- **Unit V**: OOP Concepts-II (37 questions, 13 subtopics)
+ convert-questions.js                # Converts data/*.js  Figma/src/app/data/questions.ts
+ vercel.json                         # Vercel config for main static deployment
+ .gitignore
+```
 
-## 🔌 DELD Question Distribution
+---
 
-- **Unit 1**: Number Systems & Codes (25 questions, 3 subtopics)
-- **Unit 2**: Boolean Algebra & Logic Gates (28 questions, 3 subtopics)
-- **Unit 3**: Combinational Logic Circuits (30 questions, 4 subtopics)
-- **Unit 4**: Sequential Logic Circuits (27 questions, 3 subtopics)
-- **Unit 5**: Memory & Programmable Logic Devices (15 questions, 2 subtopics)
+##  Subjects Available
 
-## 🚀 Live Demo
+### 3rd Semester
 
-Visit the deployed version: [Question Banks Home](https://your-vercel-url.vercel.app)
+| Subject | Code | Questions | Coverage | Interactive Page |
+|---------|------|-----------|----------|-----------------|
+| Digital Electronics & Logic Design | DELD | 193 | 2020–24 | [DELD_Interactive_QuestionBank.html](DELD_Interactive_QuestionBank.html) |
+| Operating System | OS | 182 | 2021–23 | [OS_Interactive_QuestionBank.html](OS_Interactive_QuestionBank.html) |
+| Principles of Programming Languages | PPL | 162 | 2020–24 | [PPL_Interactive_QuestionBank.html](PPL_Interactive_QuestionBank.html) |
 
-## 📁 Files
+### 4th Semester
 
-### PPL Files
-- `PPL_Interactive_QuestionBank.html` - Interactive evaluation system
-- `PPL_Probability_Dashboard.html` - Exam probability predictor
-- `PPL_Modern_Dashboard.html` - Modern UI with progress tracking
-- `PPL_Complete_All_Units_Questions.html` - Complete question database
-- `extract_questions.py` - Python script to extract and analyze questions
+| Subject | Code | Questions | Coverage |
+|---------|------|-----------|----------|
+| Object Oriented Programming (Java) | OOP | 119 | 2021–25 |
+| Design & Analysis of Algorithms | DAA | 152 | 2021–25 |
+| Computer System Architecture | CSA | 118 | 2021–25 |
+| Database Management System | DBMS | ~120 | 2021–25 |
+| Discrete Mathematics | DM | ~110 | 2021–25 |
 
-### DELD Files
-- `DELD_Interactive_QuestionBank.html` - Interactive evaluation system
-- `DELD_Probability_Dashboard.html` - Exam probability predictor
-- `DELD_Modern_Dashboard.html` - Modern UI with progress tracking
-- `DELD_Complete_All_Units_Questions.html` - Complete question database
-- `extract_questions_deld.py` - Python script to extract and analyze questions
+---
 
-## 💡 How to Use
+##  Features
 
-1. Open `PPL_Interactive_QuestionBank.html` in your browser
-2. Navigate through units and subtopics using dropdown menus
-3. Check off questions as you complete them
-4. Use search and filters to find specific topics
-5. Track your progress in real-time
-6. Your progress is automatically saved!
+- **Interactive Question Banks** — evaluate, filter, and track questions per unit/subtopic
+- **Smart Search & Filters** — by unit, priority, marks, year, frequency
+- **Progress Tracking** — auto-saved via LocalStorage (1-year expiry)
+- **Probability Analysis** — AI-powered exam prediction (~70–90% accuracy)
+- **Priority Badges** — High / Medium / Low based on historical frequency data
+- **Mobile Responsive** — works on phones and tablets
+- **Modern React UI** — in `Figma/` using Vite + Tailwind + Radix UI
 
-## 🎓 Study Tips
+---
 
-1. Start with high-priority questions (⭐⭐⭐)
-2. Focus on questions asked 5+ times
-3. Check the probability dashboard for exam predictions
-4. Complete one subtopic at a time
-5. Review Top 15 must-study questions first
+##  Deployment
 
-## 📝 License
+### Main Static Site (HTML question banks)
+Deployed via Vercel from the repository root.
 
-MIT License - Feel free to use for educational purposes
+- **Live URL**: https://ppl-question-bank.vercel.app
+- Short-URL routes: `/ppl`, `/deld`, `/os`
+- Vercel config: `vercel.json`
 
-## 🙏 Acknowledgments
+### React UI App (`Figma/`)
+Can be deployed as a **separate** Vercel project pointed at the `Figma/` directory.
 
-Questions compiled from official PPL exam papers (2020-2024)
+- Framework: Vite
+- Build command: `npm run build`
+- Output directory: `dist`
+- Vercel config: `Figma/vercel.json`
+
+---
+
+##  Local Development
+
+### Interactive HTML Question Banks
+No build step needed — open any HTML file directly in a browser:
+
+```bash
+# Just double-click or open in browser:
+index.html                          # Landing page
+PPL_Interactive_QuestionBank.html   # PPL
+DELD_Interactive_QuestionBank.html  # DELD
+OS_Interactive_QuestionBank.html    # OS
+```
+
+### React UI App
+
+```bash
+cd Figma
+npm install
+npm run dev      # Dev server  http://localhost:5173
+npm run build    # Production build  Figma/dist/
+```
+
+### Regenerate TypeScript Question Data
+When files in `data/` are updated, regenerate the Figma app's TypeScript source:
+
+```bash
+node convert-questions.js
+# Writes to: Figma/src/app/data/questions.ts
+```
+
+---
+
+##  How to Use the Question Banks
+
+1. Open any subject HTML page in your browser
+2. Navigate through units and subtopics using the dropdown menus
+3. Mark questions as **Known / Review / Unknown**
+4. Use search and filters to narrow by topic, marks, year, or priority
+5. The top stats bar shows overall progress at a glance
+6. Progress is automatically saved — close and reopen safely
+
+---
+
+##  Study Tips by Subject
+
+| Subject | Top Tip |
+|---------|---------|
+| DELD | K-map simplification & sequential circuit state diagrams appear every year |
+| OS | Master scheduling algorithm numericals and Banker's Algorithm |
+| PPL | Practice BNF derivations, parse trees, and static vs dynamic scoping |
+| OOP | Trace inheritance/exception code; practice JDBC & collection framework |
+| DAA | Solve recurrences with Master theorem; practice 0/1 Knapsack & LCS |
+
+---
+
+##  License
+
+MIT License — free to use for educational purposes.
+
+##  Acknowledgments
+
+Questions compiled from official university exam papers (2020–2025).

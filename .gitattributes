@@ -1,0 +1,13 @@
+# Normalize all text files to LF on commit (cross-platform consistency)
+* text=auto eol=lf
+
+# Force binary files to never be modified
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

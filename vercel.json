@@ -1,5 +1,26 @@
 {
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    },
+    {
+      "source": "/data/(.*)\\.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/",    "destination": "/index.html" },
+    { "source": "/ppl", "destination": "/PPL_Interactive_QuestionBank.html" },
+    { "source": "/deld","destination": "/DELD_Interactive_QuestionBank.html" },
+    { "source": "/os",  "destination": "/OS_Interactive_QuestionBank.html" }
   ]
 }
